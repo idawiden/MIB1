@@ -40,10 +40,10 @@ public Validering(){
 
     public static boolean kollaAnvandarnamnAgent (JTextField rutaAttKolla){
 
-        boolean giltigtNamn = false;
+        boolean giltigtNamn = true;
         
-        if(rutaAttKolla.getText().contains("Agent")){
-            giltigtNamn = true;
+        if(!rutaAttKolla.getText().contains("Agent")){
+            giltigtNamn = false;
         }else{
            JOptionPane.showMessageDialog(null, "Användarnamnet måste innehålla Agent, t.ex. Agnet T");
          

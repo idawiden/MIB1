@@ -43,7 +43,7 @@ private static InfDB idb;
                namnFinns = true;
                JOptionPane.showMessageDialog(null, "Det användarnamnet finns redan");
            }
-           return namnFinns;
+          
         }
        }catch(InfException e){
            JOptionPane.showMessageDialog(null, "något gick fel");
@@ -248,16 +248,15 @@ private static InfDB idb;
 
     private void RegistreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistreraActionPerformed
     
-    if(Validering.textFaltHarVarde(agentID));{ //sker en validering med en if-sats av textfältet för inmatningen av agentID, då textfältet inte får vara tom vid registrering av agent 
+    if(Validering.textFaltHarVarde(agentID)){ //sker en validering med en if-sats av textfältet för inmatningen av agentID, då textfältet inte får vara tom vid registrering av agent 
     }   
-    if(Validering.textFaltHarVarde(agentNamn));{ //här sker en validering med en if-sats av textfältet för inmatning av agentnamn, då fältet inte får vara tom vid registrering av agent 
+    if(Validering.textFaltHarVarde(agentNamn)){ //här sker en validering med en if-sats av textfältet för inmatning av agentnamn, då fältet inte får vara tom vid registrering av agent 
     }    
     
-    if(Validering.kollaAnvandarnamnAgent(agentNamn));{
-    }
-     if(Validering.textFaltHarVarde(agentLosenord));{ //här sker en validering med en if-sats av textfältet för inmatning av agentlösenord, då fältet inte får vara tom vid registrering av agent 
+
+     if(Validering.textFaltHarVarde(agentLosenord)){ //här sker en validering med en if-sats av textfältet för inmatning av agentlösenord, då fältet inte får vara tom vid registrering av agent 
     }    
-      if(Validering.textFaltHarVarde(agentTelefon));{ // här sker en validering med en if-sats av täxtfältet för inmatning av telefonnummer, då fältet inte får vara tom vid registrering av agent 
+      if(Validering.textFaltHarVarde(agentTelefon)){ // här sker en validering med en if-sats av täxtfältet för inmatning av telefonnummer, då fältet inte får vara tom vid registrering av agent 
     }    
     
      if(agentNamnFinnsRedan(agentNamn)){
@@ -267,6 +266,9 @@ private static InfDB idb;
      if(agentIDFinnsRedan(agentID)){
          
      }
+     if(Validering.kollaAnvandarnamnAgent(agentNamn)){
+    }
+     
     
      
         try{

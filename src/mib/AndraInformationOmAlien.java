@@ -350,7 +350,7 @@ private static InfDB idb;
         
         
         // validering som använder sig av den privata metoden alienIDFinnsRedan
-        if(alienIDFinnsRedan(skrivInNytt)){
+        if(alienIDFinnsRedan(skrivInNytt));{
             
         }
         
