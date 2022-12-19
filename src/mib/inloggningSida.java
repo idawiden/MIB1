@@ -26,46 +26,45 @@ public class inloggningSida extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        losenOrd = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        anvandarNamn = new javax.swing.JTextField();
+        losenOrdRuta = new javax.swing.JTextField();
+        anvandarNamnTextRuta = new javax.swing.JLabel();
+        losenordTextRuta = new javax.swing.JLabel();
+        anvandarNamnRuta = new javax.swing.JTextField();
         LoggaInKnapp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        losenOrd.setColumns(5);
+        losenOrdRuta.setColumns(5);
 
-        jLabel1.setText("Användarnamn");
+        anvandarNamnTextRuta.setText("Användarnamn");
 
-        jLabel2.setText("Lösenord");
+        losenordTextRuta.setText("Lösenord");
 
-        anvandarNamn.setColumns(5);
+        anvandarNamnRuta.setColumns(5);
 
         LoggaInKnapp.setText("Logga in");
+        LoggaInKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoggaInKnappActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(anvandarNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(65, 65, 65))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1)
-                                .addGap(33, 33, 33)))
+                            .addComponent(anvandarNamnRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(anvandarNamnTextRuta))
+                        .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(losenOrd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(LoggaInKnapp)))
+                            .addComponent(losenOrdRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(losenordTextRuta)))
+                    .addComponent(LoggaInKnapp))
                 .addContainerGap(191, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -74,14 +73,14 @@ public class inloggningSida extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(90, 90, 90)
-                        .addComponent(jLabel2))
+                        .addComponent(losenordTextRuta))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1)))
+                        .addComponent(anvandarNamnTextRuta)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(losenOrd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(anvandarNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(losenOrdRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(anvandarNamnRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addComponent(LoggaInKnapp)
                 .addContainerGap(102, Short.MAX_VALUE))
@@ -89,6 +88,11 @@ public class inloggningSida extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void LoggaInKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoggaInKnappActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_LoggaInKnappActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,9 +131,9 @@ public class inloggningSida extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LoggaInKnapp;
-    private javax.swing.JTextField anvandarNamn;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField losenOrd;
+    private javax.swing.JTextField anvandarNamnRuta;
+    private javax.swing.JLabel anvandarNamnTextRuta;
+    private javax.swing.JTextField losenOrdRuta;
+    private javax.swing.JLabel losenordTextRuta;
     // End of variables declaration//GEN-END:variables
 }
