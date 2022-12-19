@@ -17,9 +17,11 @@ public class MIB {
            idb = new InfDB ("mibdb","3306","mibdba","mibkey");
        } catch (InfException ex) {
            Logger.getLogger(MIB.class.getName()).log(Level.SEVERE, null, ex);
+           
        }
        
-   new inloggningSida(idb).setVisible(true);
+       new inloggningsSida(idb).setVisible(true); 
+    
     }
     
     
