@@ -4,6 +4,9 @@
  */
 package mib;
 
+import javax.swing.JOptionPane;
+import oru.inf.InfDB;
+
 /**
  *
  * @author Idawi
@@ -11,11 +14,12 @@ package mib;
 <<<<<<< Updated upstream
 public class inloggningSida extends javax.swing.JFrame {
 
-    /**
-     * Creates new form inloggningSida
-     */
-    public inloggningSida() {
+    private static InfDB idb;
+    
+    public inloggningSida(InfDB idb) {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.idb = idb;
     }
 
     /**
@@ -28,20 +32,20 @@ public class inloggningSida extends javax.swing.JFrame {
     private void initComponents() {
 
         losenOrdRuta = new javax.swing.JTextField();
-        anvandarNamnTextRuta = new javax.swing.JLabel();
+        anvandarNamnRubrik = new javax.swing.JLabel();
         losenordTextRuta = new javax.swing.JLabel();
-        anvandarNamnRuta = new javax.swing.JTextField();
+        anvandarNamn = new javax.swing.JTextField();
         LoggaInKnapp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         losenOrdRuta.setColumns(5);
 
-        anvandarNamnTextRuta.setText("Användarnamn");
+        anvandarNamnRubrik.setText("Användarnamn");
 
         losenordTextRuta.setText("Lösenord");
 
-        anvandarNamnRuta.setColumns(5);
+        anvandarNamn.setColumns(5);
 
         LoggaInKnapp.setText("Logga in");
         LoggaInKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -57,6 +61,7 @@ public class inloggningSida extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(141, 141, 141)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< Updated upstream
                     .addComponent(LoggaInKnapp)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(anvandarNamnTextRuta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -64,10 +69,23 @@ public class inloggningSida extends javax.swing.JFrame {
                         .addComponent(losenOrdRuta)
                         .addComponent(anvandarNamnRuta)))
                 .addContainerGap(172, Short.MAX_VALUE))
+=======
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(anvandarNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(anvandarNamnRubrik))
+                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(losenOrdRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(losenordTextRuta)))
+                    .addComponent(LoggaInKnapp))
+                .addContainerGap(191, Short.MAX_VALUE))
+>>>>>>> Stashed changes
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< Updated upstream
                 .addGap(43, 43, 43)
                 .addComponent(anvandarNamnTextRuta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -77,6 +95,20 @@ public class inloggningSida extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(losenOrdRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
+=======
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(losenordTextRuta))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(anvandarNamnRubrik)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(losenOrdRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(anvandarNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+>>>>>>> Stashed changes
                 .addComponent(LoggaInKnapp)
                 .addContainerGap(57, Short.MAX_VALUE))
         );
@@ -86,48 +118,32 @@ public class inloggningSida extends javax.swing.JFrame {
 
     private void LoggaInKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoggaInKnappActionPerformed
         // TODO add your handling code here:
+        try{
         
+        String aNamn = anvandarNamn.getText();
+        String losenord = losenOrdRuta.getText();
+        String sqlNamn = "SELECT losenord from AGENT where namn=" + aNamn;
+        String sqlLosen = "SELECT namn from Agent where losenord=" + losenord;
+       
+        //String svarNamn = idb.fetchSingle(sqlNamn);
+      
+        String svarLosen = idb.fetchSingle(sqlLosen);
+      
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "du angav fel användarnamn eller lösenord");
+ 
+        
+
+  
+        }
     }//GEN-LAST:event_LoggaInKnappActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(inloggningSida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(inloggningSida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(inloggningSida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(inloggningSida.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new inloggningSida().setVisible(true);
-            }
-        });   
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LoggaInKnapp;
-    private javax.swing.JTextField anvandarNamnRuta;
-    private javax.swing.JLabel anvandarNamnTextRuta;
+    private javax.swing.JTextField anvandarNamn;
+    private javax.swing.JLabel anvandarNamnRubrik;
     private javax.swing.JTextField losenOrdRuta;
     private javax.swing.JLabel losenordTextRuta;
     // End of variables declaration//GEN-END:variables

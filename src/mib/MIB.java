@@ -19,7 +19,7 @@ public class MIB {
            Logger.getLogger(MIB.class.getName()).log(Level.SEVERE, null, ex);
        }
        
-   new inloggningSida().setVisible(true);
+   new inloggningSida(idb).setVisible(true);
     }
     
     
