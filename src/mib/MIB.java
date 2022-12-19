@@ -21,7 +21,14 @@ public class MIB {
        
    new inloggningSida().setVisible(true);
     }
+    
+    
+    
+    
+    
 }
+
+
 
 
 
