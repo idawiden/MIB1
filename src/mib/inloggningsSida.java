@@ -77,16 +77,20 @@ public class inloggningsSida extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        startRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         startRubrik.setText("Vänligen ange användarnamn och lösenord!");
 
+        anvandarnamnRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         anvandarnamnRubrik.setText("Användarnamn:");
 
         anvandarnamnFalt.setColumns(7);
 
+        losenordRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         losenordRubrik.setText("Lösenord:");
 
         losenordFalt.setColumns(7);
 
+        loggaIn.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         loggaIn.setText("Logga in");
         loggaIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,16 +115,16 @@ public class inloggningsSida extends javax.swing.JFrame {
                         .addGap(153, 153, 153)
                         .addComponent(losenordRubrik))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
+                        .addGap(34, 34, 34)
                         .addComponent(startRubrik)))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(27, 27, 27)
                 .addComponent(startRubrik)
-                .addGap(38, 38, 38)
+                .addGap(36, 36, 36)
                 .addComponent(anvandarnamnRubrik)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(anvandarnamnFalt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,7 +132,7 @@ public class inloggningsSida extends javax.swing.JFrame {
                 .addComponent(losenordRubrik)
                 .addGap(18, 18, 18)
                 .addComponent(losenordFalt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(loggaIn)
                 .addGap(30, 30, 30))
         );
