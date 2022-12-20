@@ -42,6 +42,7 @@ public class AgentMeny extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        Valkommen.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         Valkommen.setText("Välkommen tillbaka Agent!");
 
         andraLosenord.setText("Ändra lösenord");
@@ -58,6 +59,7 @@ public class AgentMeny extends javax.swing.JFrame {
             }
         });
 
+        alienRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         alienRubrik.setText("Alien ");
 
         nyUtrustning.setText("Registrera ny utrustning");
@@ -68,6 +70,11 @@ public class AgentMeny extends javax.swing.JFrame {
         });
 
         sokOmradeschef.setText("Sök områdeschef");
+        sokOmradeschef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sokOmradeschefActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,9 +88,7 @@ public class AgentMeny extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Valkommen)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                        .addComponent(andraLosenord)
-                        .addGap(47, 47, 47))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -91,16 +96,20 @@ public class AgentMeny extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(sokOmradeschef))
                             .addComponent(alternativBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 68, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(andraLosenord)
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Valkommen)
-                    .addComponent(andraLosenord))
-                .addGap(43, 43, 43)
+                .addComponent(Valkommen)
+                .addGap(10, 10, 10)
+                .addComponent(andraLosenord)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(alienRubrik)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(alternativBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -108,7 +117,7 @@ public class AgentMeny extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nyUtrustning)
                     .addComponent(sokOmradeschef))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         pack();
@@ -126,6 +135,10 @@ public class AgentMeny extends javax.swing.JFrame {
          new AndraLosenord(idb).setVisible(true);
         
     }//GEN-LAST:event_andraLosenordActionPerformed
+
+    private void sokOmradeschefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokOmradeschefActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sokOmradeschefActionPerformed
 
     /**
      * @param args the command line arguments
