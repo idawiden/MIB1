@@ -6,7 +6,11 @@ package mib;
 
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
-
+import oru.inf.InfException;
+import java.util.HashMap;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  *
@@ -14,6 +18,7 @@ import oru.inf.InfDB;
  */
 public class inloggningsSida extends javax.swing.JFrame {
     private static InfDB idb;
+    private HashMap <String,String> agenter;
 
     /**
      * Creates new form inloggningsSida
@@ -22,7 +27,8 @@ public class inloggningsSida extends javax.swing.JFrame {
     public inloggningsSida(InfDB idb) {
         initComponents();
         this.setLocationRelativeTo(null);
-        inloggningsSida.idb = idb;
+        this.idb = idb;
+        agenter = new HashMap <>();
     }
     
     public static void main(String args[]) {
@@ -84,6 +90,11 @@ public class inloggningsSida extends javax.swing.JFrame {
         losenordFalt.setColumns(7);
 
         loggaIn.setText("Logga in");
+        loggaIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loggaInActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,8 +137,36 @@ public class inloggningsSida extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-                       
 
+    private void loggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loggaInActionPerformed
+       
+        
+        try{
+            String anvandarNamn = anvandarnamnFalt.getText();
+            String losen = losenordFalt.getText();
+            String fraga = "SELECT Losenord from Agent where Namn =" + "'" + anvandarNamn + "'";
+            String resultat = idb.fetchSingle(fraga);
+            
+          if(losen.equals(resultat)){
+              loggaIn.setText("du loggas in");
+    
+            }else {
+               startRubrik.setText("Du angav fel användarnamn eller lösenord ");
+          }
+          }
+          catch(InfException e) {
+                  
+                  }
+ 
+          
+        
+
+
+    }//GEN-LAST:event_loggaInActionPerformed
+         
+        
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField anvandarnamnFalt;
