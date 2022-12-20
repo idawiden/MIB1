@@ -8,9 +8,7 @@ import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import java.util.HashMap;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
 
 /**
  *
@@ -149,7 +147,10 @@ public class inloggningsSida extends javax.swing.JFrame {
             
           if(losen.equals(resultat)){
               loggaIn.setText("du loggas in");
-    
+              new AgentMeny(idb).setVisible(true);
+           
+     
+   
             }else {
                startRubrik.setText("Du angav fel användarnamn eller lösenord ");
           }

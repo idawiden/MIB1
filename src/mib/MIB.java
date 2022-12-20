@@ -21,6 +21,7 @@ public class MIB {
        }
        
         new inloggningsSida(idb).setVisible(true);
+        
     
     }
     
