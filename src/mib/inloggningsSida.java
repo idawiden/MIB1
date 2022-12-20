@@ -143,6 +143,10 @@ public class inloggningsSida extends javax.swing.JFrame {
     private void loggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loggaInActionPerformed
        
         
+        if(Validering.textFaltHarVarde(anvandarnamnFalt) ) {
+          
+      
+        
         try{
             String anvandarNamn = anvandarnamnFalt.getText();
             String losen = losenordFalt.getText();
@@ -153,19 +157,19 @@ public class inloggningsSida extends javax.swing.JFrame {
               loggaIn.setText("du loggas in");
               new AgentMeny(idb).setVisible(true);
            
-     
-   
+          
+          
             }else {
                startRubrik.setText("Du angav fel användarnamn eller lösenord ");
           }
-          }
-          catch(InfException e) {
+          }catch(InfException e) {
                   
                   }
+    
  
-          
+        }
         
-
+        
 
     }//GEN-LAST:event_loggaInActionPerformed
          
