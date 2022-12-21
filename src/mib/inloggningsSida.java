@@ -114,9 +114,9 @@ public class inloggningsSida extends javax.swing.JFrame {
     private void loggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loggaInActionPerformed
        
         
-        if(Validering.textFaltHarVarde(anvandarnamnFalt) && Validering.losenordFaltHarVarde(losenordFalt)) {
+        
           
-      
+  
         
         try{
             String anvandarNamn = anvandarnamnFalt.getText();
@@ -138,7 +138,7 @@ public class inloggningsSida extends javax.swing.JFrame {
                   }
     
  
-        }
+        
         
         
 
