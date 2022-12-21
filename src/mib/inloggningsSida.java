@@ -122,9 +122,9 @@ public class inloggningsSida extends javax.swing.JFrame {
        
         
         
-          
+          if(Validering.textFaltHarVarde(anvandarnamnFalt)){
   
-        
+          }
         try{
             String anvandarNamn = anvandarnamnFalt.getText();
             String losen = losenordFalt.getText();
@@ -143,6 +143,8 @@ public class inloggningsSida extends javax.swing.JFrame {
           }catch(InfException e) {
                   
                   }
+        
+        
     
  
         
@@ -152,7 +154,7 @@ public class inloggningsSida extends javax.swing.JFrame {
     }//GEN-LAST:event_loggaInActionPerformed
 
     private void titelAlternativActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titelAlternativActionPerformed
-        
+        String valdTitel = (String) titelAlternativ.getSelectedItem();
     }//GEN-LAST:event_titelAlternativActionPerformed
          
         
@@ -168,6 +170,8 @@ public class inloggningsSida extends javax.swing.JFrame {
     private javax.swing.JLabel startRubrik;
     private javax.swing.JComboBox<String> titelAlternativ;
     // End of variables declaration//GEN-END:variables
+
+   
         
 }
 
