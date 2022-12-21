@@ -50,7 +50,7 @@ public class inloggningsSida extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        startRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        startRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         startRubrik.setText("Vänligen ange titel och logga in");
 
         anvandarnamnRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -84,25 +84,25 @@ public class inloggningsSida extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(startRubrik)
-                    .addComponent(losenordRubrik)
-                    .addComponent(anvandarnamnRubrik, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(titelAlternativ, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(loggaIn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(losenordFalt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                        .addComponent(anvandarnamnFalt, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(losenordRubrik)
+                        .addComponent(anvandarnamnRubrik, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                        .addComponent(titelAlternativ, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(loggaIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(losenordFalt)
+                        .addComponent(anvandarnamnFalt))
+                    .addComponent(startRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(startRubrik)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(startRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(titelAlternativ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(anvandarnamnRubrik)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(anvandarnamnFalt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -128,6 +128,11 @@ public class inloggningsSida extends javax.swing.JFrame {
           if(Validering.textFaltHarVarde(losenordFalt)){
               
           }
+          
+          if(titelAlternativ.getSelectedItem().equals("Agent")) {
+              
+          
+          
         try{
             String anvandarNamn = anvandarnamnFalt.getText();
             String losen = losenordFalt.getText();
@@ -146,6 +151,74 @@ public class inloggningsSida extends javax.swing.JFrame {
           }catch(InfException e) {
                   
                   }
+          }
+        
+        if(titelAlternativ.getSelectedItem().equals("Administratör")){
+          
+            
+            
+           try{
+            String anvandarNamn = anvandarnamnFalt.getText();
+            String losen = losenordFalt.getText();
+            String fraga = "SELECT Losenord from Agent where administrator = 'J' and Namn =" + "'" + anvandarNamn + "'";
+            
+          
+            String resultat = idb.fetchSingle(fraga);
+            
+          if(losen.equals(resultat)){
+              loggaIn.setText("du loggas in");
+              new AdministratorMeny(idb).setVisible(true);
+           
+          
+          
+            }else {
+               startRubrik.setText("Du angav fel användarnamn eller lösenord");
+          }
+          }catch(InfException e) {
+                  
+                  
+          }
+            
+            if(titelAlternativ.getSelectedItem().equals("Alien")) {
+                
+                
+                 try{
+            String anvandarNamn = anvandarnamnFalt.getText();
+            String losen = losenordFalt.getText();
+            String fraga = "SELECT Losenord from Alien where Namn =" + "'" + anvandarNamn + "'";
+            String resultat = idb.fetchSingle(fraga);
+            
+          if(losen.equals(resultat)){
+              loggaIn.setText("du loggas in");
+              new AlienMeny(idb).setVisible(true);
+          
+          
+          
+            }else {
+               startRubrik.setText("Du angav fel användarnamn eller lösenord ");
+          }
+          }catch(InfException e) {
+              System.out.println(e.getMessage());    
+                  }
+          }
+                
+                
+                
+                
+                
+            
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+       
         
         
     
