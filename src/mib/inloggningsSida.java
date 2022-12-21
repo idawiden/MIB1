@@ -46,11 +46,12 @@ public class inloggningsSida extends javax.swing.JFrame {
         losenordRubrik = new javax.swing.JLabel();
         losenordFalt = new javax.swing.JPasswordField();
         loggaIn = new javax.swing.JButton();
+        titelAlternativ = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         startRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        startRubrik.setText("Vänligen ange användarnamn och lösenord!");
+        startRubrik.setText("Vänligen ange titel och logga in");
 
         anvandarnamnRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         anvandarnamnRubrik.setText("Användarnamn:");
@@ -70,42 +71,48 @@ public class inloggningsSida extends javax.swing.JFrame {
             }
         });
 
+        titelAlternativ.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agent", "Administratör", "Alien" }));
+        titelAlternativ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                titelAlternativActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(startRubrik))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(losenordRubrik)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(anvandarnamnFalt)
-                                .addComponent(anvandarnamnRubrik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(losenordFalt)
-                                .addComponent(loggaIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(startRubrik)
+                    .addComponent(losenordRubrik)
+                    .addComponent(anvandarnamnRubrik, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(titelAlternativ, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(loggaIn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(losenordFalt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                        .addComponent(anvandarnamnFalt, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(startRubrik)
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
+                .addComponent(titelAlternativ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(anvandarnamnRubrik)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(anvandarnamnFalt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(losenordRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(losenordFalt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(loggaIn)
-                .addGap(30, 30, 30))
+                .addGap(33, 33, 33))
         );
 
         pack();
@@ -143,6 +150,10 @@ public class inloggningsSida extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_loggaInActionPerformed
+
+    private void titelAlternativActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titelAlternativActionPerformed
+        
+    }//GEN-LAST:event_titelAlternativActionPerformed
          
         
     
@@ -155,6 +166,7 @@ public class inloggningsSida extends javax.swing.JFrame {
     private javax.swing.JPasswordField losenordFalt;
     private javax.swing.JLabel losenordRubrik;
     private javax.swing.JLabel startRubrik;
+    private javax.swing.JComboBox<String> titelAlternativ;
     // End of variables declaration//GEN-END:variables
         
 }
