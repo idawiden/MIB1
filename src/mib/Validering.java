@@ -16,20 +16,20 @@ public class Validering {
     
     public static boolean textFaltHarVarde(JTextField rutaAttKolla) {
     
-        boolean resultat = true;
+        boolean resultat = false;
         if(rutaAttKolla.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Inmatningsrutan, användarnamn är tom");
-        resultat = false;
+        resultat = true;
         }
         return resultat;
 }
     
     public static boolean losenordFaltHarVarde(JPasswordField losenAttKolla) {
         
-        boolean resultat = true;
+        boolean resultat = false;
         if(losenAttKolla.getText().isEmpty()) {
         JOptionPane.showMessageDialog(null, "Inmatningsrutan, lösenord är tom");
-        resultat = false;
+        resultat = true;
         }
         
         return resultat;
