@@ -123,7 +123,10 @@ public class inloggningsSida extends javax.swing.JFrame {
         
         
           if(Validering.textFaltHarVarde(anvandarnamnFalt)){
-  
+
+          }
+          if(Validering.textFaltHarVarde(losenordFalt)){
+              
           }
         try{
             String anvandarNamn = anvandarnamnFalt.getText();

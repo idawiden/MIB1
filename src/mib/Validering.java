@@ -18,23 +18,14 @@ public class Validering {
     
         boolean resultat = false;
         if(rutaAttKolla.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Inmatningsrutan, användarnamn är tom");
+            JOptionPane.showMessageDialog(null, "En eller flera inmatningsrutor är tomma");
         resultat = true;
         }
         return resultat;
 }
     
-    public static boolean losenordFaltHarVarde(JPasswordField losenAttKolla) {
-        
-        boolean resultat = false;
-        if(losenAttKolla.getText().isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Inmatningsrutan, lösenord är tom");
-        resultat = true;
-        }
-        
-        return resultat;
-        
-    }
+    
+    
     
     
     
