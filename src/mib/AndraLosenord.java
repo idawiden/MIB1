@@ -160,7 +160,7 @@ public class AndraLosenord extends javax.swing.JFrame {
        
         }
         catch(InfException e) {
-            
+            System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_knappBytActionPerformed
 
