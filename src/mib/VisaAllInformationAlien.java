@@ -3,18 +3,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package mib;
+import oru.inf.InfDB;
+import oru.inf.InfException;
+import java.util.HashMap;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+
 
 /**
  *
  * @author filip
  */
 public class VisaAllInformationAlien extends javax.swing.JFrame {
+private static InfDB idb;
 
     /**
      * Creates new form VisaAllInformationAlien
      */
-    public VisaAllInformationAlien() {
+    public VisaAllInformationAlien(InfDB idb) {
         initComponents();
+        this.idb=idb;
     }
 
     /**
@@ -26,21 +35,97 @@ public class VisaAllInformationAlien extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textRutaAllInfo = new javax.swing.JTextArea();
+        skrivInAliennamnRubrik = new javax.swing.JLabel();
+        angivetAliennamn = new javax.swing.JTextField();
+        informationOmAlienRubrik = new javax.swing.JLabel();
+        väljKnapp = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        textRutaAllInfo.setColumns(20);
+        textRutaAllInfo.setRows(5);
+        jScrollPane1.setViewportView(textRutaAllInfo);
+
+        skrivInAliennamnRubrik.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        skrivInAliennamnRubrik.setText("Skriv in Aliennamn ");
+
+        informationOmAlienRubrik.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        informationOmAlienRubrik.setText("Information om Alien");
+        informationOmAlienRubrik.setToolTipText("");
+
+        väljKnapp.setText("Välj ");
+        väljKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                väljKnappActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(informationOmAlienRubrik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(skrivInAliennamnRubrik)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(angivetAliennamn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(väljKnapp))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 102, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(informationOmAlienRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(skrivInAliennamnRubrik)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(angivetAliennamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(väljKnapp))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void väljKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_väljKnappActionPerformed
+        
+       ArrayList<HashMap<String, String>> allInfoAlien;
+       
+        try{
+            String alienNamn = angivetAliennamn.getText();
+            String fraga = "SELECT * from Alien where namn = " + "'" + alienNamn + "'";
+            allInfoAlien = idb.fetchRows(fraga);
+            
+            for(HashMap<String, String> alien: allInfoAlien){
+            textRutaAllInfo.append(alien.get("ALIEN_ID")+ "\t");
+            textRutaAllInfo.append(" " + alien.get("REGISTRERINGSDATUM")+ "\t");
+            textRutaAllInfo.append(" " + alien.get("LOSENORD") + "\t");
+            textRutaAllInfo.append(" " + alien.get("NAMN") + "\t");
+            textRutaAllInfo.append(" " + alien.get("TELEFON")+ "\t");
+            }
+                
+        
+           
+          catch(InfException e) {
+                    JOptionPane.showMessageDialog(null, "Något gick fel");
+                    }
+        }
+    
+    }//GEN-LAST:event_väljKnappActionPerformed
 
     /**
      * @param args the command line arguments
@@ -72,11 +157,17 @@ public class VisaAllInformationAlien extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VisaAllInformationAlien().setVisible(true);
+                new VisaAllInformationAlien(idb).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField angivetAliennamn;
+    private javax.swing.JLabel informationOmAlienRubrik;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel skrivInAliennamnRubrik;
+    private javax.swing.JTextArea textRutaAllInfo;
+    private javax.swing.JButton väljKnapp;
     // End of variables declaration//GEN-END:variables
 }
