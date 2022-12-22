@@ -136,7 +136,7 @@ public class AgentMeny extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void alternativBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativBoxActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_alternativBoxActionPerformed
 
     private void nyUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nyUtrustningActionPerformed
@@ -157,6 +157,11 @@ public class AgentMeny extends javax.swing.JFrame {
         if(alternativBox.getSelectedItem().equals("nyregistrera alien")) {
         new RegistreraAlien(idb).setVisible(true);
         }
+        
+        else if(alternativBox.getSelectedItem().equals("all alieninfo")) {
+             new VisaAllInformationAlien(idb).setVisible(true);
+        }
+        
     }//GEN-LAST:event_valtAlternativKnappActionPerformed
 
 

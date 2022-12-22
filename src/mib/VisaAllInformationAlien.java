@@ -24,8 +24,28 @@ private static InfDB idb;
     public VisaAllInformationAlien(InfDB idb) {
         initComponents();
         this.idb=idb;
+        fyllBoxMedNamn();
     }
 
+    
+    private void fyllBoxMedNamn() {
+        String fraga = "SELECT namn from Alien";
+        
+        ArrayList <String> allaAlienNamn;
+        
+        try {
+            allaAlienNamn = idb.fetchColumn(fraga);
+            
+            for(String namn:allaAlienNamn) {
+                valjNamn.addItem(namn);   
+            }
+            
+        }catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "fel");
+        }
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,9 +58,9 @@ private static InfDB idb;
         jScrollPane1 = new javax.swing.JScrollPane();
         textRutaAllInfo = new javax.swing.JTextArea();
         skrivInAliennamnRubrik = new javax.swing.JLabel();
-        angivetAliennamn = new javax.swing.JTextField();
         informationOmAlienRubrik = new javax.swing.JLabel();
         väljKnapp = new javax.swing.JButton();
+        valjNamn = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,14 +91,15 @@ private static InfDB idb;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(informationOmAlienRubrik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(skrivInAliennamnRubrik)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(angivetAliennamn, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(väljKnapp))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(skrivInAliennamnRubrik)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(valjNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(väljKnapp)))
                         .addGap(0, 102, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -91,8 +112,8 @@ private static InfDB idb;
                 .addComponent(skrivInAliennamnRubrik)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(angivetAliennamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(väljKnapp))
+                    .addComponent(väljKnapp)
+                    .addComponent(valjNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47))
@@ -103,27 +124,37 @@ private static InfDB idb;
 
     private void väljKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_väljKnappActionPerformed
         
+        
+       textRutaAllInfo.setText("");
        ArrayList<HashMap<String, String>> allInfoAlien;
        
         try{
-            String alienNamn = angivetAliennamn.getText();
-            String fraga = "SELECT * from Alien where namn = " + "'" + alienNamn + "'";
+            String valtAlienNamn = valjNamn.getSelectedItem().toString();
+            String fraga = "SELECT * from Alien where namn = "+ "'" + valtAlienNamn + "'";
             allInfoAlien = idb.fetchRows(fraga);
             
             for(HashMap<String, String> alien: allInfoAlien){
-            textRutaAllInfo.append(alien.get("ALIEN_ID")+ "\t");
-            textRutaAllInfo.append(" " + alien.get("REGISTRERINGSDATUM")+ "\t");
-            textRutaAllInfo.append(" " + alien.get("LOSENORD") + "\t");
-            textRutaAllInfo.append(" " + alien.get("NAMN") + "\t");
-            textRutaAllInfo.append(" " + alien.get("TELEFON")+ "\t");
+            textRutaAllInfo.append(alien.get("Alien_ID")+ "\t");
+            textRutaAllInfo.append(" " + alien.get("Registreringsdatum")+ "\t");
+            textRutaAllInfo.append(" " + alien.get("Losenord") + "\t");
+            textRutaAllInfo.append(" " + alien.get("Namn") + "\t");
+            textRutaAllInfo.append(" " + alien.get("Telefon")+ "\t");
+            textRutaAllInfo.append(" " + alien.get("Plats")+ "\t");
+            textRutaAllInfo.append(" " + alien.get("Ansvarig_Agent")+"\n");
             }
                 
         
-           
-          catch(InfException e) {
+        
+        }catch(InfException e) {
                     JOptionPane.showMessageDialog(null, "Något gick fel");
-                    }
+                    System.out.println("Internt felmeddelande" + e.getMessage());
         }
+          catch(Exception ettUndantag){
+                  JOptionPane.showMessageDialog(null, "ett fel uppstod");
+                  System.out.println("Internt felmeddlenade" + ettUndantag.getMessage());
+                  }
+        
+        
     
     }//GEN-LAST:event_väljKnappActionPerformed
 
@@ -163,11 +194,11 @@ private static InfDB idb;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField angivetAliennamn;
     private javax.swing.JLabel informationOmAlienRubrik;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel skrivInAliennamnRubrik;
     private javax.swing.JTextArea textRutaAllInfo;
+    private javax.swing.JComboBox<String> valjNamn;
     private javax.swing.JButton väljKnapp;
     // End of variables declaration//GEN-END:variables
 }
