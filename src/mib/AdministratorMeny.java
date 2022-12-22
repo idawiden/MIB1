@@ -30,25 +30,30 @@ public class AdministratorMeny extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        valkommenRubrik = new javax.swing.JLabel();
+        valjAlien = new javax.swing.JButton();
+        valjAgent = new javax.swing.JButton();
+        kategoriRubrik = new javax.swing.JLabel();
+        valjUtrustning = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel1.setText("Välkommen tillbaka administratör!");
+        valkommenRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        valkommenRubrik.setText("Välkommen tillbaka administratör!");
 
-        jButton1.setText("Alien");
+        valjAlien.setText("Alien");
 
-        jButton2.setText("Agent");
+        valjAgent.setText("Agent");
 
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        jLabel2.setText("Välj kategori:");
+        kategoriRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        kategoriRubrik.setText("Välj kategori:");
 
-        jButton3.setText("Utrustning");
+        valjUtrustning.setText("Ta bort utrustning");
+        valjUtrustning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valjUtrustningActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -57,33 +62,37 @@ public class AdministratorMeny extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
+                    .addComponent(valkommenRubrik)
+                    .addComponent(kategoriRubrik)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(valjAlien)
                         .addGap(26, 26, 26)
-                        .addComponent(jButton2)
+                        .addComponent(valjAgent)
                         .addGap(23, 23, 23)
-                        .addComponent(jButton3)))
-                .addContainerGap(95, Short.MAX_VALUE))
+                        .addComponent(valjUtrustning)))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel1)
+                .addComponent(valkommenRubrik)
                 .addGap(58, 58, 58)
-                .addComponent(jLabel2)
+                .addComponent(kategoriRubrik)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(valjAlien)
+                    .addComponent(valjAgent)
+                    .addComponent(valjUtrustning))
                 .addContainerGap(138, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void valjUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjUtrustningActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_valjUtrustningActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,10 +130,10 @@ public class AdministratorMeny extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel kategoriRubrik;
+    private javax.swing.JButton valjAgent;
+    private javax.swing.JButton valjAlien;
+    private javax.swing.JButton valjUtrustning;
+    private javax.swing.JLabel valkommenRubrik;
     // End of variables declaration//GEN-END:variables
 }

@@ -41,6 +41,7 @@ public class AgentMeny extends javax.swing.JFrame {
         alienRubrik = new javax.swing.JLabel();
         nyUtrustning = new javax.swing.JButton();
         sokOmradeschef = new javax.swing.JButton();
+        valtAlternativKnapp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,31 +79,38 @@ public class AgentMeny extends javax.swing.JFrame {
             }
         });
 
+        valtAlternativKnapp.setText("Ok");
+        valtAlternativKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valtAlternativKnappActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(andraLosenord)
+                .addGap(23, 23, 23))
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(alienRubrik)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Valkommen)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(alienRubrik)
+                            .addComponent(Valkommen))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(valtAlternativKnapp)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(nyUtrustning)
                                 .addGap(18, 18, 18)
                                 .addComponent(sokOmradeschef))
                             .addComponent(alternativBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 68, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(andraLosenord)
-                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,7 +123,9 @@ public class AgentMeny extends javax.swing.JFrame {
                 .addComponent(alienRubrik)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(alternativBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(valtAlternativKnapp)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nyUtrustning)
                     .addComponent(sokOmradeschef))
@@ -142,6 +152,13 @@ public class AgentMeny extends javax.swing.JFrame {
        new sokOmradeschef(idb).setVisible(true);
     }//GEN-LAST:event_sokOmradeschefActionPerformed
 
+    private void valtAlternativKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valtAlternativKnappActionPerformed
+        
+        if(alternativBox.getSelectedItem().equals("nyregistrera alien")) {
+        new RegistreraAlien(idb).setVisible(true);
+        }
+    }//GEN-LAST:event_valtAlternativKnappActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -151,5 +168,6 @@ public class AgentMeny extends javax.swing.JFrame {
     private javax.swing.JButton andraLosenord;
     private javax.swing.JButton nyUtrustning;
     private javax.swing.JButton sokOmradeschef;
+    private javax.swing.JButton valtAlternativKnapp;
     // End of variables declaration//GEN-END:variables
 }

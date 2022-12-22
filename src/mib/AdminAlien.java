@@ -26,17 +26,52 @@ public class AdminAlien extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        alienRubrik = new javax.swing.JLabel();
+        registreraAlienKnapp = new javax.swing.JButton();
+        redigeraInfoKnapp = new javax.swing.JButton();
+        taBortAlienKnapp = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        alienRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
+        alienRubrik.setText("Alien");
+
+        registreraAlienKnapp.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        registreraAlienKnapp.setText("Registrera alien");
+
+        redigeraInfoKnapp.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        redigeraInfoKnapp.setText("Redigera alien-information");
+
+        taBortAlienKnapp.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        taBortAlienKnapp.setText("Ta bort alien");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(redigeraInfoKnapp)
+                    .addComponent(alienRubrik)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(registreraAlienKnapp)
+                        .addGap(50, 50, 50)
+                        .addComponent(taBortAlienKnapp)))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(alienRubrik)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registreraAlienKnapp)
+                    .addComponent(taBortAlienKnapp))
+                .addGap(55, 55, 55)
+                .addComponent(redigeraInfoKnapp)
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         pack();
@@ -78,5 +113,9 @@ public class AdminAlien extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel alienRubrik;
+    private javax.swing.JButton redigeraInfoKnapp;
+    private javax.swing.JButton registreraAlienKnapp;
+    private javax.swing.JButton taBortAlienKnapp;
     // End of variables declaration//GEN-END:variables
 }

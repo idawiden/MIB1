@@ -6,6 +6,7 @@ package mib;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import java.util.HashMap;
+import java.util.Date;
 /**
  *
  * @author filippabostrom
@@ -13,7 +14,7 @@ import java.util.HashMap;
 public class RegistreraAlien extends javax.swing.JFrame {
 private static InfDB idb;
 private String namn;
-private int id;
+private String id;
 private String losen;
 private String telefon;
 private String datum;
@@ -23,11 +24,11 @@ private HashMap <String,String> alienRad;
     /**
      * Creates new form RegistreraAlien
      */
-    public RegistreraAlien() {
+    public RegistreraAlien(InfDB idb) {
         initComponents();
         this.idb = idb;
         namn = "";
-        id = 0;
+        id = "";
         losen = "";
         telefon = "";
         datum = "";
@@ -206,13 +207,17 @@ private HashMap <String,String> alienRad;
         try{
         
         namn = alienNamn.getText();
-        id = alienID.get
+        id = alienID.getText();
+        String andraId = id;
+        int idRatt = Integer.parseInt(andraId);
         losen = alienLosen.getText();
         telefon = alienTelefon.getText();
-        datum = alienDatum.getText();
         plats = valjPlats.getText();
+        String andraPlats = plats;
+        int platsRatt = Integer.parseInt(andraPlats);
+        datum = alienDatum.getText();
         
-        
+       
         
        if(boxAnsvarigAgent.getSelectedItem().equals("Agent O")){
          ansvarigAgent = "Agent O";
@@ -220,8 +225,10 @@ private HashMap <String,String> alienRad;
         String fraga = "SELECT agent_ID from Agent where namn =" + "'" + ansvarigAgent + "'";
         String resultat = idb.fetchSingle(fraga);
         ansvarigAgent = resultat;
+        int agentID = Integer.parseInt(resultat);
         
-        String fraga = "Insert into Alien (Alien_ID, registreringsdatum, losenord,namn,telefon,plats,ansvarig_Agent)Values(" + id + " , "'" + datum + "'", "'" + losen + "'", "'" + namn + "'","'" + telefon + "'","'" + plats + "'"," + ansvarigAgent + ");
+        
+        String laggTill = "Insert into Alien(Alien_ID, Registreringsdatum, Losenord,Namn,Telefon,Plats,Ansvarig_Agent)Values("+idRatt+","'"+datum+"'","'"+losen+"'", "'"+namn+"'","'" +telefon +"'","+platsRatt+ "," +agentID+ ")";
         
       
         }
@@ -260,7 +267,7 @@ private HashMap <String,String> alienRad;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistreraAlien().setVisible(true);
+                new RegistreraAlien(idb).setVisible(true);
             }
         });
     }
