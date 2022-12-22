@@ -12,13 +12,15 @@ import oru.inf.InfException;
  */
 public class AgentMeny extends javax.swing.JFrame {
     private static InfDB idb;
+    private String name;
 
     /**
      * Creates new form AgentMeny
      */
-    public AgentMeny(InfDB idb) {
+    public AgentMeny(InfDB idb, String name) {
         initComponents();
         this.idb = idb;
+        this.name = name;
     }
     
     
