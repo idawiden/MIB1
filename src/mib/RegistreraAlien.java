@@ -7,6 +7,9 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 import java.util.HashMap;
 import java.util.Date;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author filippabostrom
@@ -14,12 +17,12 @@ import java.util.Date;
 public class RegistreraAlien extends javax.swing.JFrame {
 private static InfDB idb;
 private String namn;
-private String id;
+private int id;
 private String losen;
 private String telefon;
 private String datum;
-private String plats;
-private String ansvarigAgent;
+private int plats;
+private int ansvarigAgent;
 private HashMap <String,String> alienRad;
     /**
      * Creates new form RegistreraAlien
@@ -28,13 +31,33 @@ private HashMap <String,String> alienRad;
         initComponents();
         this.idb = idb;
         namn = "";
-        id = "";
+        id = 0;
         losen = "";
         telefon = "";
         datum = "";
-        plats = "";
-        ansvarigAgent = "";
+        plats = 0;
+        ansvarigAgent = 0;
         alienRad = new HashMap<String,String>();
+        fyllBoxMedAgentNamn();
+    }
+    
+    public void fyllBoxMedAgentNamn() {
+        
+        String fraga = "SELECT Namn from Agent";
+        ArrayList <String> allaAgentNamn;
+        
+        try{
+            allaAgentNamn = idb.fetchColumn(fraga);
+            
+            for(String namn: allaAgentNamn){
+                boxAnsvarigAgent.addItem(namn);
+            }
+        }catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
+        
+        
+        
     }
 
     /**
@@ -203,32 +226,30 @@ private HashMap <String,String> alienRad;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         
+ 
         
-        try{
+       try{
         
         namn = alienNamn.getText();
-        id = alienID.getText();
-        String andraId = id;
-        int idRatt = Integer.parseInt(andraId);
-        losen = alienLosen.getText();
-        telefon = alienTelefon.getText();
-        plats = valjPlats.getText();
-        String andraPlats = plats;
-        int platsRatt = Integer.parseInt(andraPlats);
-        datum = alienDatum.getText();
+        String idet = alienID.getText();
+        int idInt = Integer.parseInt(idet);
+        id = idInt;
         
        
-        
-       if(boxAnsvarigAgent.getSelectedItem().equals("Agent O")){
-         ansvarigAgent = "Agent O";
-       } 
-        String fraga = "SELECT agent_ID from Agent where namn =" + "'" + ansvarigAgent + "'";
-        String resultat = idb.fetchSingle(fraga);
-        ansvarigAgent = resultat;
-        int agentID = Integer.parseInt(resultat);
-        
-        
-        String laggTill = "Insert into Alien(Alien_ID, Registreringsdatum, Losenord,Namn,Telefon,Plats,Ansvarig_Agent)Values("+idRatt+","'"+datum+"'","'"+losen+"'", "'"+namn+"'","'" +telefon +"'","+platsRatt+ "," +agentID+ ")";
+        losen = alienLosen.getText();
+        telefon = alienTelefon.getText();
+        String platsen = valjPlats.getText();
+        int platsInt = Integer.parseInt(platsen);
+        plats = platsInt;
+       
+        String datumet =alienDatum.getText(); 
+        datum = datumet;
+           
+       String agentNamn = boxAnsvarigAgent.getSelectedItem().toString();
+       int agentInt = Integer.parseInt(agentNamn);
+         
+       
+       idb.insert("Insert into Alien Values"(" + idInt +", "+datumet+","'"+losen+"'", "'"+namn+"'","'" +telefon +"'","+platsInt+ "," +agentInt+ ");
         
       
         }
