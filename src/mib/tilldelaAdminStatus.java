@@ -93,13 +93,22 @@ private static InfDB idb;
         
         try {
         String agent = valdAgent.getText();
-        String fraga = "UPDATE Agent SET Administrator = " + "'" + "J" + "'" + "where namn = " + "'" + agent + "'";
-        
+        String fraga = "SELECT Administrator from agent where Namn = " + "'" + agent + "'";
+        String resultat = idb.fetchSingle(fraga);
+        if(agent.equals(resultat))
+        {
+         idb.update("UPDATE Agent SET Administrator = " + "'" + "J" + "'" + "where namn = " + "'" + agent + "'";);
+        agent = "J";
         tilldelaAdminStatusRubrik.setText("Administratörstatus har ändrats");
-      
+        
+        }
+        else {
+           JOptionPane.showMessageDialog(null, "Något gick fel"); 
+        }
+        
         
         }catch(Exception e) {
-                JOptionPane.showMessageDialog(null, "Något gick fel");
+                
                 }
     
     }//GEN-LAST:event_ändraStatusPåAgentActionPerformed
