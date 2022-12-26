@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package mib;
+import java.util.ArrayList;
 import oru.inf.InfException;
 import oru.inf.InfDB;
 import javax.swing.JOptionPane;
@@ -19,6 +20,24 @@ private static InfDB idb;
     public tilldelaAdminStatus(InfDB idb) {
         initComponents();
         this.idb = idb;
+        fyllBoxMedAgentNamn();
+    }
+    
+     private void fyllBoxMedAgentNamn() {
+        String fraga = "SELECT namn from Agent";
+        
+        ArrayList <String> allaAgentNamn;
+        
+        try {
+            allaAgentNamn = idb.fetchColumn(fraga);
+            
+            for(String namn:allaAgentNamn) {
+                fyllBoxMedAgenter.addItem(namn);   
+            }
+            
+        }catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "fel");
+        }
     }
 
     /**
@@ -32,8 +51,9 @@ private static InfDB idb;
 
         tilldelaAdminStatusRubrik = new javax.swing.JLabel();
         skrivInAgentRubrik = new javax.swing.JLabel();
-        valdAgent = new javax.swing.JTextField();
         ändraStatusPåAgent = new javax.swing.JButton();
+        valjStatusBox = new javax.swing.JComboBox<>();
+        fyllBoxMedAgenter = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,12 +63,17 @@ private static InfDB idb;
         skrivInAgentRubrik.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         skrivInAgentRubrik.setText("Skriv in Agent");
 
-        valdAgent.setToolTipText("");
-
         ändraStatusPåAgent.setText("ändra status");
         ändraStatusPåAgent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ändraStatusPåAgentActionPerformed(evt);
+            }
+        });
+
+        valjStatusBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "J", "N" }));
+        valjStatusBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valjStatusBoxActionPerformed(evt);
             }
         });
 
@@ -57,20 +82,19 @@ private static InfDB idb;
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(tilldelaAdminStatusRubrik))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(skrivInAgentRubrik)
-                            .addComponent(ändraStatusPåAgent))))
+                .addGap(81, 81, 81)
+                .addComponent(tilldelaAdminStatusRubrik)
                 .addContainerGap(88, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(valdAgent, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(166, 166, 166))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(159, 159, 159)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ändraStatusPåAgent)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(fyllBoxMedAgenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(skrivInAgentRubrik)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(valjStatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,7 +104,9 @@ private static InfDB idb;
                 .addGap(41, 41, 41)
                 .addComponent(skrivInAgentRubrik)
                 .addGap(18, 18, 18)
-                .addComponent(valdAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(valjStatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fyllBoxMedAgenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49)
                 .addComponent(ändraStatusPåAgent)
                 .addContainerGap(86, Short.MAX_VALUE))
@@ -91,27 +117,29 @@ private static InfDB idb;
 
     private void ändraStatusPåAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ändraStatusPåAgentActionPerformed
         
+        
+        
         try {
-        String agent = valdAgent.getText();
+        String agent = fyllBoxMedAgenter.getSelectedItem().toString();
+        String valdStatus = valjStatusBox.getSelectedItem().toString();
         String fraga = "SELECT Administrator from agent where Namn = " + "'" + agent + "'";
-        String resultat = idb.fetchSingle(fraga);
-        if(agent.equals(resultat))
-        {
-         idb.update("UPDATE Agent SET Administrator = " + "'" + "J" + "'" + "where namn = " + "'" + agent + "'";);
-        agent = "J";
+       
+        idb.update("UPDATE Agent SET Administrator = " + "'" + valdStatus + "'" + "where namn = " + "'" + agent + "'");
         tilldelaAdminStatusRubrik.setText("Administratörstatus har ändrats");
         
-        }
-        else {
-           JOptionPane.showMessageDialog(null, "Något gick fel"); 
-        }
         
-        
-        }catch(Exception e) {
-                
+ 
+        }catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel"); 
+            System.out.println(e.getMessage());
+               
                 }
     
     }//GEN-LAST:event_ändraStatusPåAgentActionPerformed
+
+    private void valjStatusBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjStatusBoxActionPerformed
+        
+    }//GEN-LAST:event_valjStatusBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,9 +177,10 @@ private static InfDB idb;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> fyllBoxMedAgenter;
     private javax.swing.JLabel skrivInAgentRubrik;
     private javax.swing.JLabel tilldelaAdminStatusRubrik;
-    private javax.swing.JTextField valdAgent;
+    private javax.swing.JComboBox<String> valjStatusBox;
     private javax.swing.JButton ändraStatusPåAgent;
     // End of variables declaration//GEN-END:variables
 }

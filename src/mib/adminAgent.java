@@ -31,37 +31,37 @@ private static InfDB idb;
     private void initComponents() {
 
         agentRubrik = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        registreraAgent = new javax.swing.JButton();
+        informationOmAgent = new javax.swing.JButton();
+        tilldelaAdministratorStatus = new javax.swing.JButton();
+        redigeraAgentInfo = new javax.swing.JButton();
+        taBortAgent = new javax.swing.JButton();
+        andraOmradeschef = new javax.swing.JButton();
+        andraKontorschef = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         agentRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
         agentRubrik.setText("Agent");
 
-        jButton1.setText("Registrera agent");
+        registreraAgent.setText("Registrera agent");
 
-        jButton2.setText("Information om agent");
+        informationOmAgent.setText("Information om agent");
 
-        jButton3.setText("Tilldela administratörstatus");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        tilldelaAdministratorStatus.setText("Tilldela administratörstatus");
+        tilldelaAdministratorStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                tilldelaAdministratorStatusActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Redigera agent-information");
+        redigeraAgentInfo.setText("Redigera agent-information");
 
-        jButton5.setText("Ta bort agent");
+        taBortAgent.setText("Ta bort agent");
 
-        jButton6.setText("Ändra områdeschef");
+        andraOmradeschef.setText("Ändra områdeschef");
 
-        jButton7.setText("Ändra kontorchef");
+        andraKontorschef.setText("Ändra kontorchef");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,18 +70,18 @@ private static InfDB idb;
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2)
+                    .addComponent(redigeraAgentInfo)
+                    .addComponent(tilldelaAdministratorStatus)
+                    .addComponent(informationOmAgent)
                     .addComponent(agentRubrik)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton6))
+                            .addComponent(registreraAgent)
+                            .addComponent(andraOmradeschef))
                         .addGap(54, 54, 54)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton7)
-                            .addComponent(jButton5))))
+                            .addComponent(andraKontorschef)
+                            .addComponent(taBortAgent))))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -91,27 +91,27 @@ private static InfDB idb;
                 .addComponent(agentRubrik)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton5))
+                    .addComponent(registreraAgent)
+                    .addComponent(taBortAgent))
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(informationOmAgent)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(tilldelaAdministratorStatus)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(redigeraAgentInfo)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7))
+                    .addComponent(andraOmradeschef)
+                    .addComponent(andraKontorschef))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void tilldelaAdministratorStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tilldelaAdministratorStatusActionPerformed
        new tilldelaAdminStatus(idb).setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_tilldelaAdministratorStatusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,12 +150,12 @@ private static InfDB idb;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel agentRubrik;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
+    private javax.swing.JButton andraKontorschef;
+    private javax.swing.JButton andraOmradeschef;
+    private javax.swing.JButton informationOmAgent;
+    private javax.swing.JButton redigeraAgentInfo;
+    private javax.swing.JButton registreraAgent;
+    private javax.swing.JButton taBortAgent;
+    private javax.swing.JButton tilldelaAdministratorStatus;
     // End of variables declaration//GEN-END:variables
 }

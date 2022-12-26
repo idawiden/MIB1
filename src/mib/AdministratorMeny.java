@@ -44,6 +44,11 @@ public class AdministratorMeny extends javax.swing.JFrame {
         valjAlien.setText("Alien");
 
         valjAgent.setText("Agent");
+        valjAgent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valjAgentActionPerformed(evt);
+            }
+        });
 
         kategoriRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         kategoriRubrik.setText("Välj kategori:");
@@ -93,6 +98,10 @@ public class AdministratorMeny extends javax.swing.JFrame {
     private void valjUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjUtrustningActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_valjUtrustningActionPerformed
+
+    private void valjAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjAgentActionPerformed
+ new adminAgent(idb).setVisible(true);
+    }//GEN-LAST:event_valjAgentActionPerformed
 
     /**
      * @param args the command line arguments
