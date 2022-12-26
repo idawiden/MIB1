@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package mib;
+import oru.inf.InfException;
+import oru.inf.InfDB;
 
 
 /**
@@ -10,12 +12,13 @@ package mib;
  * @author filippabostrom
  */
 public class adminAgent extends javax.swing.JFrame {
-
+private static InfDB idb;
     /**
      * Creates new form adminAgent
      */
-    public adminAgent() {
+    public adminAgent(InfDB idb) {
         initComponents();
+        this.idb = idb;
     }
 
     /**
@@ -46,6 +49,11 @@ public class adminAgent extends javax.swing.JFrame {
         jButton2.setText("Information om agent");
 
         jButton3.setText("Tilldela administratörstatus");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Redigera agent-information");
 
@@ -101,6 +109,10 @@ public class adminAgent extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       new tilldelaAdminStatus(idb).setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -131,7 +143,7 @@ public class adminAgent extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new adminAgent().setVisible(true);
+                new adminAgent(idb).setVisible(true);
             }
         });
     }
