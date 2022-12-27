@@ -6,6 +6,7 @@ package mib;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
 /**
  *
  * @author filippabostrom
@@ -19,6 +20,30 @@ private static InfDB idb;
         initComponents();
          this.idb = idb;
     }
+    
+    private void fyllBoxMedKontor() {
+        
+        String fraga = "Select Kontorsbeteckning from Kontorschef";
+        
+        ArrayList<String> kontor ;
+        
+        try{
+        
+        kontor = idb.fetchColumn(fraga);
+        
+        for(String kontorsNamn : kontor) {
+            valjKontor.addItem(kontorsNamn);
+        }
+        
+        }catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "fel");
+        
+        }
+        
+        
+        
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,17 +55,15 @@ private static InfDB idb;
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        valjKontor = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setText("Sök områdeschef för område");
 
-        jTextField1.setColumns(8);
-
-        jLabel2.setText("Skriv in områdeskontor");
+        jLabel2.setText("Välj områdeskontor");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -49,8 +72,8 @@ private static InfDB idb;
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(valjKontor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addContainerGap(142, Short.MAX_VALUE))
         );
@@ -61,9 +84,9 @@ private static InfDB idb;
                 .addComponent(jLabel1)
                 .addGap(52, 52, 52)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(valjKontor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
         pack();
@@ -74,6 +97,6 @@ private static InfDB idb;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> valjKontor;
     // End of variables declaration//GEN-END:variables
 }

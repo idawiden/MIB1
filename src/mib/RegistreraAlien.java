@@ -249,7 +249,7 @@ private HashMap <String,String> alienRad;
        int agentInt = Integer.parseInt(agentNamn);
          
        
-       idb.insert("Insert into Alien Values"("" + idInt +"", ""+datumet+"","'"+losen+"'", "'"+namn+"'","'" +telefon +"'",""+platsInt+ "","" +agentInt+ "");
+       idb.insert("Insert into Alien Values"("'" + idInt +"'", "'"+datumet+"'","'"+losen+"'", "'"+namn+"'","'" +telefon +"'","'"+platsInt+ "'","'" +agentInt+ "'"));
         
       
         }
