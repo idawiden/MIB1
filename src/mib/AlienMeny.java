@@ -29,26 +29,26 @@ private static InfDB idb;
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        andraLosenordAlien = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        visaOmradeschef = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel1.setText("Välkommen tillbaka alien!");
 
-        jButton1.setText("Ändra lösenord");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        andraLosenordAlien.setText("Ändra lösenord");
+        andraLosenordAlien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                andraLosenordAlienActionPerformed(evt);
             }
         });
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel2.setText("Visa info ");
 
-        jButton2.setText("Områdeschef");
+        visaOmradeschef.setText("Områdeschef");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,38 +58,37 @@ private static InfDB idb;
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(53, 53, 53))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addContainerGap(163, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jLabel2))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(visaOmradeschef)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(andraLosenordAlien)
+                        .addGap(53, 53, 53))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addGap(35, 35, 35)
-                .addComponent(jButton1)
-                .addGap(5, 5, 5)
-                .addComponent(jLabel2)
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(andraLosenordAlien))
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addComponent(visaOmradeschef)
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void andraLosenordAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraLosenordAlienActionPerformed
+       new AndraLosenordAlien(idb).setVisible(true);
+    }//GEN-LAST:event_andraLosenordAlienActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,9 +126,9 @@ private static InfDB idb;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton andraLosenordAlien;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton visaOmradeschef;
     // End of variables declaration//GEN-END:variables
 }

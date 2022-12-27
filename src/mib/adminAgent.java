@@ -47,6 +47,11 @@ private static InfDB idb;
         registreraAgent.setText("Registrera agent");
 
         informationOmAgent.setText("Information om agent");
+        informationOmAgent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                informationOmAgentActionPerformed(evt);
+            }
+        });
 
         tilldelaAdministratorStatus.setText("Tilldela administratörstatus");
         tilldelaAdministratorStatus.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +117,10 @@ private static InfDB idb;
     private void tilldelaAdministratorStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tilldelaAdministratorStatusActionPerformed
        new tilldelaAdminStatus(idb).setVisible(true);
     }//GEN-LAST:event_tilldelaAdministratorStatusActionPerformed
+
+    private void informationOmAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_informationOmAgentActionPerformed
+       new visaAllInformationAgent(idb).setVisible(true);
+    }//GEN-LAST:event_informationOmAgentActionPerformed
 
     /**
      * @param args the command line arguments
