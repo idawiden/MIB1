@@ -129,17 +129,18 @@ public class inloggningsSida extends javax.swing.JFrame {
               
           }
           
+          
           if(titelAlternativ.getSelectedItem().equals("Agent")) {
               
           
           
         try{
-            String anvandarNamn = anvandarnamnFalt.getText();
-            String losen = losenordFalt.getText();
-            String fraga = "SELECT Losenord from Agent where Namn =" + "'" + anvandarNamn + "'";
-            String resultat = idb.fetchSingle(fraga);
+            String anvandarNamnAgent = anvandarnamnFalt.getText();
+            String losenAgent = losenordFalt.getText();
+            String fragaAgent = "SELECT Losenord from Agent where Namn =" + "'" + anvandarNamnAgent + "'";
+            String resultat = idb.fetchSingle(fragaAgent);
             
-          if(losen.equals(resultat)){
+          if(losenAgent.equals(resultat)){
               loggaIn.setText("du loggas in");
               new AgentMeny(idb).setVisible(true);
            
@@ -179,17 +180,20 @@ public class inloggningsSida extends javax.swing.JFrame {
                   
           }
             
-            if(titelAlternativ.getSelectedItem().equals("Alien")) {
+           if(titelAlternativ.getSelectedItem().equals("Alien")) {
                 
             
-                 try{
-            String anvandarNamn = anvandarnamnFalt.getText();
-            String losen = losenordFalt.getText();
-            String fraga = "SELECT Losenord from Alien where Namn =" + "'" + anvandarNamn + "'";
-            String resultat = idb.fetchSingle(fraga);
+           
+            try{
+            String anvandarNamnAlien = anvandarnamnFalt.getText();
+            String losenAlien = losenordFalt.getText();
+            String fragaAlien = "SELECT Losenord from Alien where Namn =" + "'" + anvandarNamnAlien + "'";
+            
+            String resultat = idb.fetchSingle(fragaAlien);
                  
-          if(losen.equals(resultat)){
+          if(losenAlien.equals(resultat)){
               loggaIn.setText("du loggas in");
+              
               new AlienMeny(idb).setVisible(true);
           
           
@@ -198,7 +202,7 @@ public class inloggningsSida extends javax.swing.JFrame {
                startRubrik.setText("Du angav fel användarnamn eller lösenord ");
           }
           }catch(InfException e) {
-              System.out.println(e.getMessage());    
+                 
                   }
           }
                 

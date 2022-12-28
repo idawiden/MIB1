@@ -57,6 +57,8 @@ private static InfDB idb;
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         valjKontor = new javax.swing.JComboBox<>();
+        sokKnapp = new javax.swing.JButton();
+        visaOmradeschefHar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +67,15 @@ private static InfDB idb;
 
         jLabel2.setText("Välj områdeskontor");
 
+        sokKnapp.setText("Sök");
+        sokKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sokKnappActionPerformed(evt);
+            }
+        });
+
+        visaOmradeschefHar.setColumns(10);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -72,7 +83,11 @@ private static InfDB idb;
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(valjKontor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(visaOmradeschefHar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(valjKontor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(74, 74, 74)
+                        .addComponent(sokKnapp))
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
                 .addContainerGap(142, Short.MAX_VALUE))
@@ -85,18 +100,28 @@ private static InfDB idb;
                 .addGap(52, 52, 52)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(valjKontor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(valjKontor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sokKnapp))
+                .addGap(33, 33, 33)
+                .addComponent(visaOmradeschefHar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void sokKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokKnappActionPerformed
+        
+    }//GEN-LAST:event_sokKnappActionPerformed
 
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton sokKnapp;
     private javax.swing.JComboBox<String> valjKontor;
+    private javax.swing.JTextField visaOmradeschefHar;
     // End of variables declaration//GEN-END:variables
 }

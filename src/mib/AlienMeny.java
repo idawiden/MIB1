@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package mib;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 /**
@@ -17,6 +19,28 @@ private static InfDB idb;
     public AlienMeny(InfDB idb) {
         initComponents();
         this.idb = idb;
+        fyllBoxMedAlienNamn();
+    }
+    
+    private void fyllBoxMedAlienNamn(){
+        
+         String fraga = "SELECT namn from Alien";
+        
+        ArrayList <String> allaAlienNamn;
+        
+        try {
+            allaAlienNamn = idb.fetchColumn(fraga);
+            
+            for(String namn:allaAlienNamn) {
+                valjInloggadAlien.addItem(namn);   
+            }
+            
+        }catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "fel");
+        }
+        
+        
+        
     }
 
     /**
@@ -32,6 +56,10 @@ private static InfDB idb;
         andraLosenordAlien = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         visaOmradeschef = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        visaAlienOmradeschef = new javax.swing.JTextArea();
+        valjInloggadAlien = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,6 +77,17 @@ private static InfDB idb;
         jLabel2.setText("Visa info ");
 
         visaOmradeschef.setText("Områdeschef");
+        visaOmradeschef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                visaOmradeschefActionPerformed(evt);
+            }
+        });
+
+        visaAlienOmradeschef.setColumns(20);
+        visaAlienOmradeschef.setRows(5);
+        jScrollPane1.setViewportView(visaAlienOmradeschef);
+
+        jLabel3.setText("Vem är inloggad?");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,26 +100,45 @@ private static InfDB idb;
                         .addComponent(jLabel1)
                         .addContainerGap(163, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(visaOmradeschef)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(valjInloggadAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(andraLosenordAlien)
-                        .addGap(53, 53, 53))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(visaOmradeschef)
+                                .addGap(139, 139, 139))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(andraLosenordAlien)
+                                .addGap(53, 53, 53))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addGap(61, 61, 61)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(andraLosenordAlien))
-                .addGap(18, 18, 18)
-                .addComponent(visaOmradeschef)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel1)
+                        .addGap(61, 61, 61)
+                        .addComponent(andraLosenordAlien)
+                        .addGap(14, 14, 14)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(visaOmradeschef)
+                    .addComponent(valjInloggadAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
 
         pack();
@@ -89,6 +147,24 @@ private static InfDB idb;
     private void andraLosenordAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraLosenordAlienActionPerformed
        new AndraLosenordAlien(idb).setVisible(true);
     }//GEN-LAST:event_andraLosenordAlienActionPerformed
+
+    private void visaOmradeschefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaOmradeschefActionPerformed
+        
+        visaAlienOmradeschef.setText("");
+        try{
+        String valtNamn = valjInloggadAlien.getSelectedItem().toString();
+        
+        String fraga = "SELECT Agent.Namn from Agent join Omradeschef on Agent.Agent_ID = Omradeschef.Agent_ID join Alien on Alien.Plats = Omradeschef.Omrade where Alien.Namn = " + "'" + valtNamn + "'" ;
+        String resultat = idb.fetchSingle(fraga);
+        visaAlienOmradeschef.append(resultat);
+        
+        
+    }catch(InfException e) {
+    JOptionPane.showMessageDialog(null, "Något gick fel");
+                    System.out.println("Internt felmeddelande" + e.getMessage());
+}
+
+    }//GEN-LAST:event_visaOmradeschefActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,6 +205,10 @@ private static InfDB idb;
     private javax.swing.JButton andraLosenordAlien;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> valjInloggadAlien;
+    private javax.swing.JTextArea visaAlienOmradeschef;
     private javax.swing.JButton visaOmradeschef;
     // End of variables declaration//GEN-END:variables
 }
