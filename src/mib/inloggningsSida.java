@@ -196,40 +196,23 @@ public class inloggningsSida extends javax.swing.JFrame {
               
               new AlienMeny(idb).setVisible(true);
           
-          
-          
-            }else {
-               startRubrik.setText("Du angav fel användarnamn eller lösenord ");
+          }else{
+             startRubrik.setText("Du angav fel användarnamn eller lösenord ");
           }
+          
           }catch(InfException e) {
-                 
+              JOptionPane.showMessageDialog(null, "Något gick fel");
+                 System.out.println("internt felmeddelande" + e.getMessage());
                   }
-          }
+          
                 
-                
-                
-                
-                
+    
             
-            
-        }
-        
-        
-        
-        
-        
-        
-        
-        
+           }
         
        
         
-        
-    
- 
-        
-        
-        
+        }
 
     }//GEN-LAST:event_loggaInActionPerformed
 
