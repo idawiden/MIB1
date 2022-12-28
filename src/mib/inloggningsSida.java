@@ -188,10 +188,9 @@ public class inloggningsSida extends javax.swing.JFrame {
             String anvandarNamnAlien = anvandarnamnFalt.getText();
             String losenAlien = losenordFalt.getText();
             String fragaAlien = "SELECT Losenord from Alien where Namn =" + "'" + anvandarNamnAlien + "'";
-            
             String resultat = idb.fetchSingle(fragaAlien);
                  
-          if(losenAlien.equals(resultat)){
+            if(losenAlien.equals(resultat)){
               loggaIn.setText("du loggas in");
               
               new AlienMeny(idb).setVisible(true);
