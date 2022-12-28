@@ -217,7 +217,7 @@ private HashMap <String,String> alienRad;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        
+         HashMap<String,String> radAlien;
  
         
        try{
@@ -247,9 +247,9 @@ private HashMap <String,String> alienRad;
        ansvarigAgent = agentInt;
        
        
-         
+         idb.insert("Insert into Alien(Alien_ID,Registreringsdatum,Losenord,Namn,Telefon, Plats,Ansvarig_Agent) Values(" + id +"," +datum+","+losen+","+namn+"," +telefon +","+plats+ "," +ansvarigAgent+ ")");
        
-       idb.insert("Insert into Alien Values(" + id +"," +datum+","+losen+","+namn+"," +telefon +","+plats+ "," +ansvarigAgent+ ")");
+       
         rubrik.setText("En ny alien är registrerad i systemet");
       
         }

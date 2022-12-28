@@ -162,6 +162,10 @@ public class AgentMeny extends javax.swing.JFrame {
              new VisaAllInformationAlien(idb).setVisible(true);
         }
         
+        else if(alternativBox.getSelectedItem().equals("platslista aliens")){
+             new platsLista(idb).setVisible(true);
+        }
+        
     }//GEN-LAST:event_valtAlternativKnappActionPerformed
 
 
