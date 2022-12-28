@@ -69,7 +69,7 @@ private HashMap <String,String> alienRad;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        rubrik = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         alienID = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -90,8 +90,8 @@ private HashMap <String,String> alienRad;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel1.setText("Fyll i information");
+        rubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        rubrik.setText("Fyll i information");
 
         jLabel2.setText("Namn:");
 
@@ -102,8 +102,6 @@ private HashMap <String,String> alienRad;
         jLabel5.setText("Lösenord:");
 
         jLabel6.setText("Telefonnummer:");
-
-        boxAnsvarigAgent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agent O", "Agent K", "Agent J", "Agent Z" }));
 
         jLabel7.setText("Välj ansvarig agent:");
 
@@ -141,7 +139,7 @@ private HashMap <String,String> alienRad;
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(34, 34, 34)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1)
+                                            .addComponent(rubrik)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(1, 1, 1)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +175,7 @@ private HashMap <String,String> alienRad;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jLabel1)
+                        .addComponent(rubrik)
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(alienID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,8 +228,11 @@ private HashMap <String,String> alienRad;
         id = idInt;
         
        
-        losen = alienLosen.getText();
-        telefon = alienTelefon.getText();
+        String hamtaLosen = alienLosen.getText();
+        losen = hamtaLosen;
+        String hamtaTelefon = alienTelefon.getText();
+        telefon = hamtaTelefon;
+        
         String platsen = valjPlats.getText();
         int platsInt = Integer.parseInt(platsen);
         plats = platsInt;
@@ -240,15 +241,21 @@ private HashMap <String,String> alienRad;
         datum = datumet;
            
        String agentNamn = boxAnsvarigAgent.getSelectedItem().toString();
-       int agentInt = Integer.parseInt(agentNamn);
+       String fraga = "Select agent_ID from agent where Namn = " + "'" + agentNamn + "'";
+       String resultat = idb.fetchSingle(fraga);
+       int agentInt = Integer.parseInt(resultat);
+       ansvarigAgent = agentInt;
+       
+       
          
        
-       idb.insert("Insert into Alien Values(" + idInt +",'" +datumet+",'"+losen+",'"+namn+",'" +telefon +",'"+platsInt+ ",'" +agentInt+ "');");
-        
+       idb.insert("Insert into Alien Values(" + id +"," +datum+","+losen+","+namn+"," +telefon +","+plats+ "," +ansvarigAgent+ ")");
+        rubrik.setText("En ny alien är registrerad i systemet");
       
         }
         catch(InfException e) {
-                
+                JOptionPane.showMessageDialog(null, "någor gick fel");
+                System.out.println("internt felmeddelande" + e.getMessage());
                 }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -296,7 +303,6 @@ private HashMap <String,String> alienRad;
     private javax.swing.JComboBox<String> boxAnsvarigAgent;
     private javax.swing.JComboBox<String> boxRas;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -305,6 +311,7 @@ private HashMap <String,String> alienRad;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel rubrik;
     private javax.swing.JTextField valjPlats;
     // End of variables declaration//GEN-END:variables
 }
