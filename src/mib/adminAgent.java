@@ -65,6 +65,11 @@ private static InfDB idb;
         taBortAgent.setText("Ta bort agent");
 
         andraOmradeschef.setText("Ändra områdeschef");
+        andraOmradeschef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                andraOmradeschefActionPerformed(evt);
+            }
+        });
 
         andraKontorschef.setText("Ändra kontorchef");
 
@@ -121,6 +126,10 @@ private static InfDB idb;
     private void informationOmAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_informationOmAgentActionPerformed
        new visaAllInformationAgent(idb).setVisible(true);
     }//GEN-LAST:event_informationOmAgentActionPerformed
+
+    private void andraOmradeschefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraOmradeschefActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_andraOmradeschefActionPerformed
 
     /**
      * @param args the command line arguments

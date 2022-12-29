@@ -116,6 +116,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xc4;ndra omr&#xe5;deschef"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="andraOmradeschefActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="andraKontorschef">
       <Properties>

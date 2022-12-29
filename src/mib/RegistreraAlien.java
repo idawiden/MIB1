@@ -10,6 +10,11 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+
 /**
  *
  * @author filippabostrom
@@ -247,14 +252,16 @@ private HashMap <String,String> alienRad;
        ansvarigAgent = agentInt;
        
        
-         idb.insert("Insert into Alien(Alien_ID,Registreringsdatum,Losenord,Namn,Telefon, Plats,Ansvarig_Agent) Values(" + id +"," +datum+","+losen+","+namn+"," +telefon +","+plats+ "," +ansvarigAgent+ ")");
+       
+       String sql = "Insert into Alien Values(Alien_ID,Registreringsdatum,Losenord,Namn,Telefon, Plats,Ansvarig_Agent) Values(" + id +"," +datum+","+losen+","+namn+"," +telefon +","+plats+ "," +ansvarigAgent+ ")";
+         //idb.insert("Insert into Alien Values(Alien_ID,Registreringsdatum,Losenord,Namn,Telefon, Plats,Ansvarig_Agent) Values(" + id +"," +datum+","+losen+","+namn+"," +telefon +","+plats+ "," +ansvarigAgent+ ")");
        
        
         rubrik.setText("En ny alien är registrerad i systemet");
       
         }
         catch(InfException e) {
-                JOptionPane.showMessageDialog(null, "någor gick fel");
+                JOptionPane.showMessageDialog(null, "Något gick fel");
                 System.out.println("internt felmeddelande" + e.getMessage());
                 }
     }//GEN-LAST:event_jButton1ActionPerformed
