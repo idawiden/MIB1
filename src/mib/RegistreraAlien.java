@@ -10,9 +10,7 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import java.sql.PreparedStatement;
-import java.sql.Connection;
-import java.sql.SQLException;
+import static java.lang.Integer.parseInt;
 
 
 /**
@@ -238,9 +236,8 @@ private HashMap <String,String> alienRad;
         String hamtaTelefon = alienTelefon.getText();
         telefon = hamtaTelefon;
         
-        String platsen = valjPlats.getText();
-        int platsInt = Integer.parseInt(platsen);
-        plats = platsInt;
+        int platsen = parseInt(valjPlats.getText());
+        plats = platsen;
        
         String datumet =alienDatum.getText(); 
         datum = datumet;
@@ -253,9 +250,9 @@ private HashMap <String,String> alienRad;
        
        
        
-       String sql = "Insert into Alien Values(Alien_ID,Registreringsdatum,Losenord,Namn,Telefon, Plats,Ansvarig_Agent) Values(" + id +"," +datum+","+losen+","+namn+"," +telefon +","+plats+ "," +ansvarigAgent+ ")";
+       String sqlQuery = "Insert into Alien Values(Alien_ID,Registreringsdatum,Losenord,Namn,Telefon, Plats,Ansvarig_Agent) Values(" + id +"," +datum+","+losen+","+namn+"," +telefon +","+plats+ "," +ansvarigAgent+ ")";
          //idb.insert("Insert into Alien Values(Alien_ID,Registreringsdatum,Losenord,Namn,Telefon, Plats,Ansvarig_Agent) Values(" + id +"," +datum+","+losen+","+namn+"," +telefon +","+plats+ "," +ansvarigAgent+ ")");
-       
+       idb.insert(sqlQuery);
        
         rubrik.setText("En ny alien är registrerad i systemet");
       
