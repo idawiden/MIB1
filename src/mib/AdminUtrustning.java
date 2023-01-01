@@ -24,6 +24,18 @@ private static InfDB idb;
         initComponents();
         this.idb = idb;
     }
+    
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,6 +49,9 @@ private static InfDB idb;
         valjUKategoriMeny = new javax.swing.JLabel();
         uKategoriOkknapp = new javax.swing.JButton();
         valjUKategori = new javax.swing.JComboBox<>();
+        valjNamnPaUtrustning = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        taBortUtrustning = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,34 +61,54 @@ private static InfDB idb;
         uKategoriOkknapp.setText("Välj");
         uKategoriOkknapp.setActionCommand("OK");
 
+        valjUKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vapen", "Teknik", "Kommunikation" }));
+
+        jLabel1.setText("Välj utrustning");
+
+        taBortUtrustning.setText("Ta bort");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(valjUKategoriMeny)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(valjUKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(valjUKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(valjUKategoriMeny))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(valjNamnPaUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(taBortUtrustning)
+                                .addGap(10, 10, 10)))
+                        .addGap(69, 69, 69))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(uKategoriOkknapp)))
-                .addContainerGap(227, Short.MAX_VALUE))
+                        .addComponent(uKategoriOkknapp)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(valjUKategoriMeny)
+                .addGap(89, 89, 89)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(valjUKategoriMeny)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(valjUKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(valjUKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valjNamnPaUtrustning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(uKategoriOkknapp)
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(uKategoriOkknapp)
+                    .addComponent(taBortUtrustning))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         pack();
@@ -178,7 +213,10 @@ private static InfDB idb;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton taBortUtrustning;
     private javax.swing.JButton uKategoriOkknapp;
+    private javax.swing.JComboBox<String> valjNamnPaUtrustning;
     private javax.swing.JComboBox<String> valjUKategori;
     private javax.swing.JLabel valjUKategoriMeny;
     // End of variables declaration//GEN-END:variables

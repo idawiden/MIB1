@@ -96,7 +96,7 @@ public class AdministratorMeny extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void valjUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjUtrustningActionPerformed
-        // TODO add your handling code here:
+         new taBortUtrustning(idb).setVisible(true);
     }//GEN-LAST:event_valjUtrustningActionPerformed
 
     private void valjAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjAgentActionPerformed
