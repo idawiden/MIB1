@@ -118,7 +118,7 @@ private static InfDB idb;
     private void valjUKategoriActionPerformed(java.awt.event.ActionEvent evt) {                                          
       
         
-        visaUKategorilista.setText(" ");
+        
         ArrayList<String> vapenLista;
         
         if(valjUKategori.getSelectedItem().equals("Vapen")) {
@@ -129,7 +129,7 @@ private static InfDB idb;
            vapenLista = idb.fetchColumn(fraga);
            
            for(String namnAvUKategori: vapenLista){
-            visaUKategorilista.append(namnAvUKategori + "\t");
+            
            }
            
           }catch(InfException e){
@@ -148,7 +148,7 @@ private static InfDB idb;
            teknikLista = idb.fetchColumn(fraga);
            
            for(String namnAvUKategori: teknikLista){
-            visaUKategorilista.append(namnAvUKategori + "\t");
+            
            }
            
           }catch(InfException e){
@@ -167,7 +167,7 @@ private static InfDB idb;
            kommunikationLista = idb.fetchColumn(fraga);
            
            for(String namnAvUKategori: kommunikationLista){
-            visaUKategorilista.append(namnAvUKategori + "\t");
+            
            }
            
           }catch(InfException e){
