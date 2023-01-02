@@ -241,6 +241,10 @@ private HashMap <String,String> alienRad;
         if(Validering.textFaltHarVarde(skrivInInfo)){
         }
         
+        if(Validering.alienNamnFinnsRedan(alienNamn)){
+            
+        }
+        
        try{
         String namn = alienNamn.getText();
         String idet = alienID.getText();
