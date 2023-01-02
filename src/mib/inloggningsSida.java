@@ -180,7 +180,7 @@ public class inloggningsSida extends javax.swing.JFrame {
                   
           }
             
-           if(titelAlternativ.getSelectedItem().equals("Alien")) {
+            if(titelAlternativ.getSelectedItem().equals("Alien")) {
                 
             
            
@@ -202,7 +202,7 @@ public class inloggningsSida extends javax.swing.JFrame {
           }catch(InfException e) {
               JOptionPane.showMessageDialog(null, "Något gick fel");
                  System.out.println("internt felmeddelande" + e.getMessage());
-                  }
+          }
           
                 
     
@@ -216,7 +216,7 @@ public class inloggningsSida extends javax.swing.JFrame {
     }//GEN-LAST:event_loggaInActionPerformed
 
     private void titelAlternativActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titelAlternativActionPerformed
-        String valdTitel = (String) titelAlternativ.getSelectedItem();
+     
     }//GEN-LAST:event_titelAlternativActionPerformed
          
         
