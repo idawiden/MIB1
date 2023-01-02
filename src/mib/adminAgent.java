@@ -45,6 +45,11 @@ private static InfDB idb;
         agentRubrik.setText("Agent");
 
         registreraAgent.setText("Registrera agent");
+        registreraAgent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registreraAgentActionPerformed(evt);
+            }
+        });
 
         informationOmAgent.setText("Information om agent");
         informationOmAgent.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +135,10 @@ private static InfDB idb;
     private void andraOmradeschefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraOmradeschefActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_andraOmradeschefActionPerformed
+
+    private void registreraAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registreraAgentActionPerformed
+new RegistreraAgent(idb).setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_registreraAgentActionPerformed
 
     /**
      * @param args the command line arguments

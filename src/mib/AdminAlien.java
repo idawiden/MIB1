@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package mib;
+import oru.inf.InfDB;
 
 /**
  *
@@ -38,6 +39,11 @@ public class AdminAlien extends javax.swing.JFrame {
 
         registreraAlienKnapp.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         registreraAlienKnapp.setText("Registrera alien");
+        registreraAlienKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registreraAlienKnappActionPerformed(evt);
+            }
+        });
 
         redigeraInfoKnapp.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         redigeraInfoKnapp.setText("Redigera alien-information");
@@ -76,6 +82,10 @@ public class AdminAlien extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void registreraAlienKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registreraAlienKnappActionPerformed
+       
+    }//GEN-LAST:event_registreraAlienKnappActionPerformed
 
     /**
      * @param args the command line arguments
