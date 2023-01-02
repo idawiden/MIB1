@@ -34,7 +34,7 @@ private HashMap <String,String> alienRad;
         initComponents();
         this.idb = idb;
         namn = "";
-        id = 0;
+        this.id = id;
         losen = "";
         telefon = "";
         datum = "";
@@ -224,7 +224,6 @@ private HashMap <String,String> alienRad;
  
         
        try{
-        
         namn = alienNamn.getText();
         String idet = alienID.getText();
         int idInt = Integer.parseInt(idet);
@@ -251,7 +250,6 @@ private HashMap <String,String> alienRad;
        
        
        String sqlQuery = "Insert into Alien Values(Alien_ID,Registreringsdatum,Losenord,Namn,Telefon, Plats,Ansvarig_Agent) Values(" + id +"," +datum+","+losen+","+namn+"," +telefon +","+plats+ "," +ansvarigAgent+ ")";
-         //idb.insert("Insert into Alien Values(Alien_ID,Registreringsdatum,Losenord,Namn,Telefon, Plats,Ansvarig_Agent) Values(" + id +"," +datum+","+losen+","+namn+"," +telefon +","+plats+ "," +ansvarigAgent+ ")");
        idb.insert(sqlQuery);
        
         rubrik.setText("En ny alien är registrerad i systemet");
@@ -263,6 +261,7 @@ private HashMap <String,String> alienRad;
                 }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
