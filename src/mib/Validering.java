@@ -21,6 +21,7 @@ public class Validering {
     
 public Validering(InfDB idb){
     this.idb = idb;
+    
 }
     public static boolean textFaltHarVarde(JTextField rutaAttKolla) {
     
