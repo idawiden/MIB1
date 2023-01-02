@@ -226,8 +226,20 @@ private HashMap <String,String> alienRad;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-         HashMap<String,String> radAlien;
- 
+        
+        if(Validering.textFaltHarVarde(alienNamn)){
+        }
+        if(Validering.textFaltHarVarde(alienID)){ 
+        }
+         
+        if(Validering.textFaltHarVarde(alienLosen)){
+        }
+          
+        if(Validering.textFaltHarVarde(valjPlats)){
+        }
+           
+        if(Validering.textFaltHarVarde(skrivInInfo)){
+        }
         
        try{
         String namn = alienNamn.getText();
@@ -256,6 +268,8 @@ private HashMap <String,String> alienRad;
        
        String sqlQuery = "Insert into Alien " +" Values(" + rattID + ",curdate(),'"+hamtaLosen+"'," + "'" +namn+"','" +hamtaTelefon +"',"+rattPlats+ "," +rattAgentID+ ");";
        idb.insert(sqlQuery);
+       
+       
        
        String ras = boxRas.getSelectedItem().toString();
        String extraInfoB = skrivInInfo.getText();
