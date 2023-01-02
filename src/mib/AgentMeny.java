@@ -140,7 +140,7 @@ public class AgentMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_alternativBoxActionPerformed
 
     private void nyUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nyUtrustningActionPerformed
-        // TODO add your handling code here:
+         new RegistreraUtrustning(idb).setVisible(true);
     }//GEN-LAST:event_nyUtrustningActionPerformed
 
     private void andraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraLosenordActionPerformed
