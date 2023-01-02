@@ -19,6 +19,7 @@ private static InfDB idb;
     public sokOmradeschef(InfDB idb) {
         initComponents();
          this.idb = idb;
+         fyllBoxMedKontor();
     }
     
     private void fyllBoxMedKontor() {
