@@ -19,13 +19,7 @@ import static java.lang.Integer.parseInt;
  */
 public class RegistreraAlien extends javax.swing.JFrame {
 private static InfDB idb;
-private String namn;
-private int id;
-private String losen;
-private String telefon;
-private String datum;
-private int plats;
-private int ansvarigAgent;
+
 private HashMap <String,String> alienRad;
     /**
      * Creates new form RegistreraAlien
