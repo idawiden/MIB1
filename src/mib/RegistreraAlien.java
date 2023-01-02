@@ -301,6 +301,8 @@ private HashMap <String,String> alienRad;
         
         if(boxRas.getSelectedItem().equals("squid")){
             extraInformation.setText("Ange antal armar");
+            extraInformation.setVisible(true);
+            skrivInInfo.setVisible(true);
            
         }
         
