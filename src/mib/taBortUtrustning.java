@@ -214,8 +214,7 @@ public class taBortUtrustning extends javax.swing.JFrame {
        idb.delete(fraga);
       
            
-       
-        
+   
         }
         
         }catch(InfException e) {

@@ -33,13 +33,6 @@ private HashMap <String,String> alienRad;
     public RegistreraAlien(InfDB idb) {
         initComponents();
         this.idb = idb;
-        namn = "";
-        this.id = id;
-        losen = "";
-        telefon = "";
-        datum = "";
-        plats = 0;
-        ansvarigAgent = 0;
         alienRad = new HashMap<String,String>();
         fyllBoxMedAgentNamn();
     }
@@ -75,10 +68,8 @@ private HashMap <String,String> alienRad;
         rubrik = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         alienID = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         alienNamn = new javax.swing.JTextField();
-        alienDatum = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         alienLosen = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -97,8 +88,6 @@ private HashMap <String,String> alienRad;
         rubrik.setText("Fyll i information");
 
         jLabel2.setText("Namn:");
-
-        jLabel3.setText("Registreringsdatum:");
 
         jLabel4.setText("Alien_ID:");
 
@@ -148,11 +137,9 @@ private HashMap <String,String> alienRad;
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jLabel2)
                                                     .addComponent(jLabel5)))
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel3))
+                                            .addComponent(jLabel6))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(alienDatum, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
                                             .addComponent(alienTelefon)
                                             .addComponent(alienLosen)))
                                     .addGroup(layout.createSequentialGroup()
@@ -197,10 +184,7 @@ private HashMap <String,String> alienRad;
                             .addComponent(alienTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(boxRas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(alienDatum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1)))
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel7)
@@ -224,32 +208,34 @@ private HashMap <String,String> alienRad;
  
         
        try{
-        namn = alienNamn.getText();
+        String namn = alienNamn.getText();
         String idet = alienID.getText();
         int idInt = Integer.parseInt(idet);
-        id = idInt;
+        int rattID = idInt;
         
        
         String hamtaLosen = alienLosen.getText();
-        losen = hamtaLosen;
-        String hamtaTelefon = alienTelefon.getText();
-        telefon = hamtaTelefon;
-        
-        int platsen = parseInt(valjPlats.getText());
-        plats = platsen;
        
-        String datumet =alienDatum.getText(); 
-        datum = datumet;
+        String hamtaTelefon = alienTelefon.getText();
+        
+        String plats = valjPlats.getText();
+        String fragaPlats = "Select Plats_ID from Plats where Benamning =" + "'" + plats + "'";
+        String resultatPlats = idb.fetchSingle(fragaPlats);
+        int platsen = parseInt(resultatPlats);
+        int rattPlats = platsen;
+       
+        
+        
            
        String agentNamn = boxAnsvarigAgent.getSelectedItem().toString();
        String fraga = "Select agent_ID from agent where Namn = " + "'" + agentNamn + "'";
        String resultat = idb.fetchSingle(fraga);
        int agentInt = Integer.parseInt(resultat);
-       ansvarigAgent = agentInt;
+       int rattAgentID = agentInt;
        
        
        
-       String sqlQuery = "Insert into Alien Values(Alien_ID,Registreringsdatum,Losenord,Namn,Telefon, Plats,Ansvarig_Agent) Values(" + id +"," +datum+","+losen+","+namn+"," +telefon +","+plats+ "," +ansvarigAgent+ ")";
+       String sqlQuery = "Insert into Alien " +" Values(" + rattID + ",curdate(),'"+hamtaLosen+"'," + "'" +namn+"','" +hamtaTelefon +"',"+rattPlats+ "," +rattAgentID+ ");";
        idb.insert(sqlQuery);
        
         rubrik.setText("En ny alien är registrerad i systemet");
@@ -298,7 +284,6 @@ private HashMap <String,String> alienRad;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField alienDatum;
     private javax.swing.JTextField alienID;
     private javax.swing.JTextField alienLosen;
     private javax.swing.JTextField alienNamn;
@@ -307,7 +292,6 @@ private HashMap <String,String> alienRad;
     private javax.swing.JComboBox<String> boxRas;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
