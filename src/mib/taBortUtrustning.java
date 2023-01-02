@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
-
+import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  *
@@ -199,14 +200,22 @@ public class taBortUtrustning extends javax.swing.JFrame {
 
     private void taBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taBortActionPerformed
         
+        
+        ArrayList<HashMap<String,String>> utrustningsLista;
+        
+      
         try{
         String valdUtrustning = valjNamnUtrustning.getSelectedItem().toString();
         String valdKategori = kategoriBox.getSelectedItem().toString();
         
         if(kategoriBox.getSelectedItem().equals("Teknik")){
-        String fraga = "Delete from Utrustning join Teknik on Utrustning.Utrustnings_ID = Teknik.Utrustnings_ID where Utrustning.Benamning = " + "'" + valdUtrustning + "'";
-        String resultat = idb.fetchSingle(fraga);
-        idb.delete(resultat);
+       String fraga = "Delete from Utrustning,Teknik where Utrustning.Utrustnings_ID = Teknik.Utrustnings_ID and Utrustning.Benamning = " + "'" + valdUtrustning + "'";
+       utrustningsLista = idb.fetchRows(fraga);
+       idb.delete(fraga);
+      
+           
+       
+        
         }
         
         }catch(InfException e) {
