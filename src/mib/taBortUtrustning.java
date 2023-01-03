@@ -208,10 +208,16 @@ public class taBortUtrustning extends javax.swing.JFrame {
         String valdUtrustning = valjNamnUtrustning.getSelectedItem().toString();
         String valdKategori = kategoriBox.getSelectedItem().toString();
         
-        if(kategoriBox.getSelectedItem().equals("Teknik")){
-       String fraga = "Delete from Utrustning,Teknik where Utrustning.Utrustnings_ID = Teknik.Utrustnings_ID and Utrustning.Benamning = " + "'" + valdUtrustning + "'";
+       
+       String fraga = "Delete from Utrustning"+"'"+valdKategori+"'" +" where Utrustning.Utrustnings_ID = " + "'" + valdKategori +"'" + ".Utrustnings_ID and Utrustning.Benamning = " + "'" + valdUtrustning + "'";
        utrustningsLista = idb.fetchRows(fraga);
-       idb.delete(fraga);
+      
+      for(HashMap<String,String> utrustning: utrustningsLista) {
+          if(utrustning.equals(fraga)){
+              idb.delete(fraga);
+          }
+          
+      
       
            
    
