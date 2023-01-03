@@ -103,12 +103,11 @@ public Validering(InfDB idb){
       
       
       
-  }
-  return 
   
   
   
-}
+  
+
     
     
    
