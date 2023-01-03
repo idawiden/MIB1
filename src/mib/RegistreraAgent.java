@@ -169,36 +169,36 @@ private static InfDB idb;
     }   
     if(Validering.textFaltHarVarde(agentNamn));{ //här sker en validering med en if-sats av textfältet för inmatning av agentnamn, då fältet inte får vara tom vid registrering av agent 
     }    
-     if(Validering.textFaltHarVarde(agentLosenord));{ //här sker en validering med en if-sats av textfält för inmatning av agentlösenord, då fältet inte får vara tom vid registrering av agent 
+     if(Validering.textFaltHarVarde(agentLosenord));{ //här sker en validering med en if-sats av textfältet för inmatning av agentlösenord, då fältet inte får vara tom vid registrering av agent 
     }    
-      if(Validering.textFaltHarVarde(agentTelefon));{ // här sker en validering med en if.sats
+      if(Validering.textFaltHarVarde(agentTelefon));{ // här sker en validering med en if-sats av täxtfältet för inmatning av telefonnummer, då fältet inte får vara tom vid registrering av agent 
     }    
-     if(Validering.textFaltHarVarde(omrade));{
+     if(Validering.textFaltHarVarde(omrade));{ //här sker en validering med en if-sats av textfältet för inmatning av omrad, då fältet inte får vara tomt vid registrering av agent 
     }    
     
      
         try{
-            String namn = agentNamn.getText();
-            String id = agentID.getText();
-            int idInt = Integer.parseInt(id);
-            int agentId = idInt;
+            String namn = agentNamn.getText(); //hämtar det inmatade agentnamnet i textrutan agentNamn
+            String id = agentID.getText();//hämtar id i textrutan agentID
+            int idInt = Integer.parseInt(id); //här görs agentID om till en integer 
+            int agentId = idInt; //agentId är nu en int
             
-            String telefonnummer = agentTelefon.getText();
+            String telefonnummer = agentTelefon.getText(); //hämtar telefonnummret i textrutan agentTelefon
             
-            String losen = agentLosenord.getText();
+            String losen = agentLosenord.getText(); //hämtar det inskrivna lösenordet i textrutan agentLosenord 
             
-            String agentOmrade = omrade.getText();
-            String fragaOmrade = "SELECT Omrades_ID from omrade where Benamning =" + "'" + agentOmrade + "'";
+            String agentOmrade = omrade.getText(); //hämtar det inmatade området 
+            String fragaOmrade = "SELECT Omrades_ID from omrade where Benamning =" + "'" + agentOmrade + "'"; //hämtar områdesID från databasen där benämning är det som matas in i orade text rutan 
             String resultatOmrade = idb.fetchSingle(fragaOmrade);
-            int omrade = parseInt(resultatOmrade);
-            int rattOmrade = omrade;
+            int omrade = parseInt(resultatOmrade); //här görs område om till en int 
+            int rattOmrade = omrade; //område får variabelnnamnet rattOmrade
             
-            String adminStatus = boxAdminstatus.getSelectedItem().toString();
+            String adminStatus = boxAdminstatus.getSelectedItem().toString(); //hämtar det som finns i komboboxen 
             
-            String sqlQuery = "Insert into Agent " + " Values (" + agentId + ",'"+ namn + "', '" + telefonnummer +  "'" + ", curdate(),'" + adminStatus +"'," + "'" + losen + "'," + rattOmrade + ");";
+            String sqlQuery = "Insert into Agent " + " Values (" + agentId + ",'"+ namn + "', '" + telefonnummer +  "'" + ", curdate(),'" + adminStatus +"'," + "'" + losen + "'," + rattOmrade + ");"; //en metod som lägger till alla värden i agent tabellen 
             idb.insert(sqlQuery);
             
-            rubrik.setText("En ny agent är registrerad i systemet");
+            rubrik.setText("En ny agent är registrerad i systemet"); //här updateras rubriken till det angivna 
         
         
             
