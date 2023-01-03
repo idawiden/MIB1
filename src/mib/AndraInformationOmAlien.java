@@ -24,6 +24,9 @@ private static InfDB idb;
         skrivInInformationRubrik.setVisible(false);
         skrivInNytt.setVisible(false);
         ändraKnapp.setVisible(false);
+        valjInfo.setVisible(false);
+        rubrikVadVillAndra.setVisible(false);
+        
         
     }
     
@@ -53,8 +56,8 @@ private static InfDB idb;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        rubrikVadVillAndra = new javax.swing.JLabel();
+        valjInfo = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         boxAlienNamn = new javax.swing.JComboBox<>();
         valjAlien = new javax.swing.JButton();
@@ -64,19 +67,29 @@ private static InfDB idb;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel1.setText("Vad vill du ändra?");
+        rubrikVadVillAndra.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        rubrikVadVillAndra.setText("Vad vill du ändra?");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AlienID", "Namn", "Lösenord", "Plats", "Ansvarigagent", "Ras" }));
+        valjInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alien_ID", "Losenord", "Plats", "Namn", "Ansvarig_Agent", "Telefon" }));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel2.setText("Välj alien");
 
         valjAlien.setText("Välj");
+        valjAlien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valjAlienActionPerformed(evt);
+            }
+        });
 
         skrivInNytt.setColumns(8);
 
         ändraKnapp.setText("Ändra");
+        ändraKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ändraKnappActionPerformed(evt);
+            }
+        });
 
         skrivInInformationRubrik.setText("Skriv in ny infromation");
 
@@ -96,18 +109,16 @@ private static InfDB idb;
                                 .addGap(34, 34, 34)
                                 .addComponent(valjAlien))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(rubrikVadVillAndra)
                                 .addGap(54, 54, 54)
                                 .addComponent(skrivInInformationRubrik)))
                         .addContainerGap(34, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(valjInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(skrivInNytt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(ändraKnapp)
-                                .addGap(16, 16, 16)))
+                            .addComponent(ändraKnapp)
+                            .addComponent(skrivInNytt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(61, 61, 61))))
         );
         layout.setVerticalGroup(
@@ -120,19 +131,81 @@ private static InfDB idb;
                     .addComponent(valjAlien))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(rubrikVadVillAndra, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(skrivInInformationRubrik, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valjInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(skrivInNytt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addGap(35, 35, 35)
                 .addComponent(ändraKnapp)
-                .addGap(44, 44, 44))
+                .addGap(43, 43, 43))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void valjAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjAlienActionPerformed
+        valjInfo.setVisible(true);
+        rubrikVadVillAndra.setVisible(true);
+        skrivInInformationRubrik.setVisible(true);
+        skrivInNytt.setVisible(true);
+        ändraKnapp.setVisible(true);
+        
+    }//GEN-LAST:event_valjAlienActionPerformed
+
+    private void ändraKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ändraKnappActionPerformed
+        
+        try{
+        String alienNamn =  boxAlienNamn.getSelectedItem().toString();
+        String egenskaper = valjInfo.getSelectedItem().toString();  
+        String nyInfo = skrivInNytt.getText();
+        
+        if(egenskaper.equals("Alien_ID")){
+        idb.update("UPDATE alien SET Alien_ID = "+ "'"+ nyInfo + "'" + " where namn = "+ "'" + alienNamn +"'");
+        String fragaAlienID = "Select Alien_ID from Alien where namn =" + "'" +nyInfo + "'";
+        String resultatAlien = idb.fetchSingle(fragaAlienID);
+        int alienIDInt = Integer.parseInt(resultatAlien);
+        idb.update("UPDATE alien SET Alien_ID = "+ alienIDInt + " where namn = "+ "'" + alienNamn +"'");
+        rubrikVadVillAndra.setText("Ny ändring har gjorts");
+        }
+        
+        
+        
+        if(egenskaper.equals("Namn")){
+        idb.update("UPDATE alien SET Namn = "+ "'"+ nyInfo + "'" + " where namn = "+ "'" + alienNamn +"'");
+        rubrikVadVillAndra.setText("Ny ändring har gjorts");
+        }
+        if(egenskaper.equals("Plats")){
+        String fragaPlats = "Select Plats_ID from Plats where Benamning =" + "'" +nyInfo+"'";
+        String resultatInt = idb.fetchSingle(fragaPlats);
+        int platsInt = Integer.parseInt(resultatInt);
+        idb.update("UPDATE alien SET Plats = "+ platsInt + " where namn = "+ "'" + alienNamn +"'");
+        rubrikVadVillAndra.setText("Ny ändring har gjorts");
+        }
+        
+        if(egenskaper.equals("Telefon")){
+        idb.update("UPDATE alien SET Telefon = "+ "'"+ nyInfo + "'" + " where namn = "+ "'" + alienNamn +"'");
+        rubrikVadVillAndra.setText("Ny ändring har gjorts");
+        }
+        
+        if(egenskaper.equals("Ansvarig_Agent")){
+         String fragaAgent = "Select Agent_ID from Agent where Namn ="  + "'"+ nyInfo+"'";
+         String resultatAgent = idb.fetchSingle(fragaAgent);
+         int agentInt = Integer.parseInt(resultatAgent);
+         idb.update("UPDATE alien SET Ansvarig_Agent = "+ agentInt + " where namn = "+ "'" + alienNamn +"'");
+         rubrikVadVillAndra.setText("Ny ändring har gjorts");
+        }
+        
+        
+        
+            
+        }catch(InfException e) {
+           JOptionPane.showMessageDialog(null, "något gick fel");
+            System.out.println("internt felmeddelande" + e.getMessage());
+        }
+        
+    }//GEN-LAST:event_ändraKnappActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,12 +244,12 @@ private static InfDB idb;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxAlienNamn;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel rubrikVadVillAndra;
     private javax.swing.JLabel skrivInInformationRubrik;
     private javax.swing.JTextField skrivInNytt;
     private javax.swing.JButton valjAlien;
+    private javax.swing.JComboBox<String> valjInfo;
     private javax.swing.JButton ändraKnapp;
     // End of variables declaration//GEN-END:variables
 }
