@@ -36,7 +36,7 @@
                               <Component id="valjAlien" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <Component id="rubrikVadVillAndra" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                               <Component id="skrivInInformationRubrik" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -44,14 +44,11 @@
                       <EmptySpace pref="34" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
+                      <Component id="valjInfo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="ändraKnapp" min="-2" max="-2" attributes="0"/>
                           <Component id="skrivInNytt" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="ändraKnapp" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
                       <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                   </Group>
@@ -70,23 +67,23 @@
               </Group>
               <EmptySpace pref="78" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="rubrikVadVillAndra" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="skrivInInformationRubrik" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="valjInfo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="skrivInNytt" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Component id="ändraKnapp" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="rubrikVadVillAndra">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Helvetica Neue" size="18" style="0"/>
@@ -94,16 +91,16 @@
         <Property name="text" type="java.lang.String" value="Vad vill du &#xe4;ndra?"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="valjInfo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="6">
-            <StringItem index="0" value="AlienID"/>
-            <StringItem index="1" value="Namn"/>
-            <StringItem index="2" value="L&#xf6;senord"/>
-            <StringItem index="3" value="Plats"/>
-            <StringItem index="4" value="Ansvarigagent"/>
-            <StringItem index="5" value="Ras"/>
+            <StringItem index="0" value="Alien_ID"/>
+            <StringItem index="1" value="Losenord"/>
+            <StringItem index="2" value="Plats"/>
+            <StringItem index="3" value="Namn"/>
+            <StringItem index="4" value="Ansvarig_Agent"/>
+            <StringItem index="5" value="Telefon"/>
           </StringArray>
         </Property>
       </Properties>
@@ -133,6 +130,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="V&#xe4;lj"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="valjAlienActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="skrivInNytt">
       <Properties>
@@ -143,6 +143,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xc4;ndra"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="&#xe4;ndraKnappActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="skrivInInformationRubrik">
       <Properties>
