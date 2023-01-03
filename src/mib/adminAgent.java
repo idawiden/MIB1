@@ -77,6 +77,11 @@ private static InfDB idb;
         });
 
         andraKontorschef.setText("Ändra kontorchef");
+        andraKontorschef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                andraKontorschefActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,8 +142,12 @@ private static InfDB idb;
     }//GEN-LAST:event_andraOmradeschefActionPerformed
 
     private void registreraAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registreraAgentActionPerformed
-new RegistreraAgent(idb).setVisible(true);        // TODO add your handling code here:
+    new RegistreraAgent(idb).setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_registreraAgentActionPerformed
+
+    private void andraKontorschefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraKontorschefActionPerformed
+       new ÄndraAgentSomÄrKontorschef(idb).setVisible(true);
+    }//GEN-LAST:event_andraKontorschefActionPerformed
 
     /**
      * @param args the command line arguments
