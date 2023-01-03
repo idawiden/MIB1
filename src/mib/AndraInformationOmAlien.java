@@ -309,14 +309,16 @@ private static InfDB idb;
          String alienIdResultat = idb.fetchSingle(hamtaAlienId);
          int alienInt = Integer.parseInt(alienIdResultat);
          
-         if()
-         String hittaNuvarandeRas = "Select 
+         if(boxMedRaser.getSelectedItem().equals("Squid")){
+         String hittaNuvarandeRas = "Select Alien_ID from Squid where Alien_ID = " + alienInt +"+";
          String nuvarandeRas = idb.fetchSingle(hittaNuvarandeRas);
-         String taBort = "Delete from " + "'" + nuvarandeRas + "'" +" where Alien_Id = " + alienInt +"+";
+         String taBort = "Delete from Worm"+" where Alien_ID = " + alienInt +"+";
          idb.delete(taBort);
+         String taBortIgen = "Delete from Boglodite" + "where Alien_ID =" + alienInt + "+";
          
          String sqlRas = "Insert into "+ hamtaRas + " Values("+alienInt + ", "+ extraInfoInt +");";
          idb.insert(sqlRas);
+         }
          
          if(hamtaRas.equals("worm")){
           String sqlRasWorm = "Insert into" +hamtaRas + " Values("+alienInt+");";
