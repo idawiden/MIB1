@@ -140,16 +140,18 @@ public class AndraLosenord extends javax.swing.JFrame {
 
     private void knappBytActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knappBytActionPerformed
         
+        // metod som ändrar ett lösenord hos en Agent
+        
         try{
-        String losen = nuvarandeLosen.getText();
-        String losenNytt = nyttLosen.getText();
-        String losenNyttNytt = upprepaNyttLosen.getText();
-        String anvandarnamn = angeAnvandarnamn.getText();
-        String fraga = "SELECT Losenord from Agent where Losenord =" + "'" + losen + "'";
+        String losen = nuvarandeLosen.getText(); // hämtar det nuvarande lösenordet
+        String losenNytt = nyttLosen.getText(); // hämtar det nya lösenordet
+        String losenNyttNytt = upprepaNyttLosen.getText(); // hämtar det nya lösenordet igen
+        String anvandarnamn = angeAnvandarnamn.getText(); // hämtar det användarnamn som är inloggad och som vill byta lösenord
+        String fraga = "SELECT Losenord from Agent where Losenord =" + "'" + losen + "'"; // hämtar lösenordet från databasten som stämmer överens med det nuvarande lösenordet
         String resultat = idb.fetchSingle(fraga);
-        if(losen.equals(resultat)&& losenNytt.equals(losenNyttNytt)){
+        if(losen.equals(resultat)&& losenNytt.equals(losenNyttNytt)){ // if-sats som kollar och med nuvarande lösenordet stämmer överns med databasen och att det nya lösenordet stämmer överns i båda textfälten
         losen = losenNytt; 
-        idb.update("UPDATE agent SET losenord = " + "'" + losenNytt + "'" + " where namn = " + "'" + anvandarnamn + "'");
+        idb.update("UPDATE agent SET losenord = " + "'" + losenNytt + "'" + " where namn = " + "'" + anvandarnamn + "'"); // här sker en updatering i databasen, där det nya lösenordet som valts sätts in som lösenord för den valda agenten
 
         bytLosenRubrik.setText("Ditt lösenord har ändrats");
         }
