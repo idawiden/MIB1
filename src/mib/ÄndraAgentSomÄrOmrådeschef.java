@@ -143,12 +143,14 @@ private static InfDB idb;
           int rattAgentId = agentInt;
           
           String omrade = skrivInOmrade.getText();
-          String fragaOmrade = "SELECT omrades_ID from omrade where Benamning = " + "'" + omrade + "'";
+          System.out.println(omrade);
+          String fragaOmrade = "SELECT Agent_ID from omradeschef where omrade = " + "'" + omrade + "'";
           String resultatOmrade = idb.fetchSingle(fragaOmrade);
+          int agentNyttID = Integer.parseInt(resultatOmrade);
           int omradet = Integer.parseInt(resultatOmrade);
           System.out.println(omradet);
         
-          idb.update("UPDATE omradeschef SET Omrade = " + omradet + ",'" + "Agent_ID = " + agentInt + "where  = " + "'"+ omrade + "'");
+          idb.update("UPDATE omradeschef SET agent_ID = " + "'" + rattAgentId+ "'" + " where agent_ID = " + "'" + agentNyttID + "'");
           
           
        
