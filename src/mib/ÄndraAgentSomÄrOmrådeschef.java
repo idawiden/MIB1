@@ -146,9 +146,9 @@ private static InfDB idb;
           String fragaOmrade = "SELECT omrades_ID from omrade where Benamning = " + "'" + omrade + "'";
           String resultatOmrade = idb.fetchSingle(fragaOmrade);
           int omradet = Integer.parseInt(resultatOmrade);
-          
+          System.out.println(omradet);
         
-          idb.update("UPDATE omradeschef SET Omrade = " + omradet + ",'" + "Agent_ID = " + agentInt + "where omrade = " + "'"+ omrade + "'");
+          idb.update("UPDATE omradeschef SET Omrade = " + omradet + ",'" + "Agent_ID = " + agentInt + "where  = " + "'"+ omrade + "'");
           
           
        
