@@ -4,18 +4,20 @@
  */
 package mib;
 import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
  * @author filippabostrom
  */
 public class AdminAlien extends javax.swing.JFrame {
-
+private static InfDB idb;
     /**
      * Creates new form AdminAlien
      */
-    public AdminAlien() {
+    public AdminAlien(InfDB idb) {
         initComponents();
+        this.idb = idb;
     }
 
     /**
@@ -50,6 +52,11 @@ public class AdminAlien extends javax.swing.JFrame {
 
         taBortAlienKnapp.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         taBortAlienKnapp.setText("Ta bort alien");
+        taBortAlienKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                taBortAlienKnappActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,6 +94,10 @@ public class AdminAlien extends javax.swing.JFrame {
        
     }//GEN-LAST:event_registreraAlienKnappActionPerformed
 
+    private void taBortAlienKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taBortAlienKnappActionPerformed
+         new AdminTaBortAlien(idb).setVisible(true);
+    }//GEN-LAST:event_taBortAlienKnappActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -117,7 +128,7 @@ public class AdminAlien extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminAlien().setVisible(true);
+                new AdminAlien(idb).setVisible(true);
             }
         });
     }

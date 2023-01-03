@@ -101,7 +101,7 @@ public class taBortUtrustning extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        rubrik = new javax.swing.JLabel();
         kategoriBox = new javax.swing.JComboBox<>();
         valjKategori = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -110,7 +110,7 @@ public class taBortUtrustning extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Välj kategori av utrustning");
+        rubrik.setText("Välj kategori av utrustning");
 
         kategoriBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Teknik", "Vapen", "Kommunikation" }));
 
@@ -138,7 +138,7 @@ public class taBortUtrustning extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(rubrik)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addGap(56, 56, 56))
@@ -159,7 +159,7 @@ public class taBortUtrustning extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(102, 102, 102)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(rubrik)
                     .addComponent(jLabel2))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -204,15 +204,27 @@ public class taBortUtrustning extends javax.swing.JFrame {
         
         
       
-        try{
-        String valdUtrustning = valjNamnUtrustning.getSelectedItem().toString();
-        String valdKategori = kategoriBox.getSelectedItem().toString();
+       try{
+       String valdUtrustning = valjNamnUtrustning.getSelectedItem().toString();
+       String valdKategori = kategoriBox.getSelectedItem().toString();
         
-       String id = "Select Utrustnings_ID from" + "'" +ValdKategori + "'" +"where 
-       String fragaKategori = "Delete from" + "'" + valdKategori + "'" + "where 
+       String hamtaUtrustningsID = "Select Utrustnings_ID from Utrustning where Benamning =" + "'" + valdUtrustning +"'";
+       String svar = idb.fetchSingle(hamtaUtrustningsID);
+       int utrustningsID = Integer.parseInt(svar);
        
+       
+       String deleteUtrustningAgent = "Delete from Innehar_Utrustning where Utrustnings_ID =" + utrustningsID;
+       idb.delete(deleteUtrustningAgent);
+       idb.
+       String deleteUtrustning = "Delete from Utrustning where Utrustnings_ID = " + utrustningsID; 
+       idb.delete(deleteUtrustning);
       
       
+      String deleteFranKategori = "Delete from" + valdKategori + "where Utrustnings_ID = " +utrustningsID;
+      idb.delete(deleteFranKategori);
+      
+      
+      rubrik.setText("Utrustning har raderats");
           
       
       
@@ -266,9 +278,9 @@ public class taBortUtrustning extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JComboBox<String> kategoriBox;
+    private javax.swing.JLabel rubrik;
     private javax.swing.JButton taBort;
     private javax.swing.JButton valjKategori;
     private javax.swing.JComboBox<String> valjNamnUtrustning;

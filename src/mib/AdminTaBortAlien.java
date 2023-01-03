@@ -117,11 +117,15 @@ private static InfDB idb;
       
       
       String AlienID = "Select Alien_ID from Alien where namn =" + "'" + valdAlien + "'";
+      String resultat = idb.fetchSingle(AlienID);
       
-      idb.delete("delete from alien, boglodite, worm, squid where Alien_namn = '" + valdAlien + "' and Alien_ID = " + AlienID);
+      
 
+      valjRubrik.setText("Den valda alien raderades");
       
       
+      idb.delete("delete from alien, boglodite, worm, squid from alien inner join table boglodite on Alien.Alien_ID = boglodite.Alien_ID join squid on boglodite.Alien_ID = squid.Alien_ID join worm on squid.Alien_ID = worm.Alien.ID where namn = " + "'" + valdAlien + "'" + "and Alien_ID = " + resultat + "'");
+              
       
     
         }catch(InfException e) {

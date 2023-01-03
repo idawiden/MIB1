@@ -42,6 +42,11 @@ public class AdministratorMeny extends javax.swing.JFrame {
         valkommenRubrik.setText("Välkommen tillbaka administratör!");
 
         valjAlien.setText("Alien");
+        valjAlien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valjAlienActionPerformed(evt);
+            }
+        });
 
         valjAgent.setText("Agent");
         valjAgent.addActionListener(new java.awt.event.ActionListener() {
@@ -102,6 +107,10 @@ public class AdministratorMeny extends javax.swing.JFrame {
     private void valjAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjAgentActionPerformed
  new adminAgent(idb).setVisible(true);
     }//GEN-LAST:event_valjAgentActionPerformed
+
+    private void valjAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjAlienActionPerformed
+         new AdminAlien(idb).setVisible(true);
+    }//GEN-LAST:event_valjAlienActionPerformed
 
     /**
      * @param args the command line arguments
