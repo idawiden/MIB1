@@ -215,7 +215,7 @@ public class taBortUtrustning extends javax.swing.JFrame {
        
        String deleteUtrustningAgent = "Delete from Innehar_Utrustning where Utrustnings_ID =" + utrustningsID;
        idb.delete(deleteUtrustningAgent);
-       idb.
+       
        String deleteUtrustning = "Delete from Utrustning where Utrustnings_ID = " + utrustningsID; 
        idb.delete(deleteUtrustning);
       

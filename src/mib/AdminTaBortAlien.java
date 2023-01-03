@@ -135,7 +135,6 @@ private static InfDB idb;
               
       }
              
-      
       if(resultat.equals(worm)){
         String deleteWorm = "Delete from Worm where Alien_ID ="+ resultat+ " +";
          idb.delete(deleteWorm);
