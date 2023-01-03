@@ -144,17 +144,17 @@ private static InfDB idb;
           
           String omrade = skrivInOmrade.getText();
           System.out.println(omrade);
-          String fragaOmrade = "SELECT Agent_ID from omradeschef where omrade = " + "'" + omrade + "'";
-          String resultatOmrade = idb.fetchSingle(fragaOmrade);
-          int agentNyttID = Integer.parseInt(resultatOmrade);
-          int omradet = Integer.parseInt(resultatOmrade);
+          String fraga2 = "SELECT Agent_ID from omradeschef where omrade = " + "'" + omrade + "'";
+          String resultat2 = idb.fetchSingle(fraga2);
+          int agentNyttID = Integer.parseInt(resultat2);
+          int omradet = Integer.parseInt(resultat2);
           System.out.println(omradet);
         
-          idb.update("UPDATE omradeschef SET agent_ID = " + "'" + rattAgentId+ "'" + " where agent_ID = " + "'" + agentNyttID + "'");
+          idb.update("UPDATE omradeschef SET agent_ID = " + "'" + rattAgentId+ "'" + "where agent_ID = " + "'" + agentNyttID + "'");
           
           
        
-         rubrik.setText("Agent som områdeschef uppdaterad");
+         rubrik.setText("Områdeschef uppdaterad");
           
         }catch(InfException e) {
             JOptionPane.showMessageDialog(null, "Gick inte att ändra information om agent som områdeschef");

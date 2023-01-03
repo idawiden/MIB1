@@ -130,23 +130,23 @@ private static InfDB idb;
     }// </editor-fold>//GEN-END:initComponents
 
     private void tilldelaAdministratorStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tilldelaAdministratorStatusActionPerformed
-       new tilldelaAdminStatus(idb).setVisible(true);
+       new tilldelaAdminStatus(idb).setVisible(true); //här ska tilldelaAdminStatus menyn bli synlig 
     }//GEN-LAST:event_tilldelaAdministratorStatusActionPerformed
 
     private void informationOmAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_informationOmAgentActionPerformed
-       new visaAllInformationAgent(idb).setVisible(true);
+       new visaAllInformationAgent(idb).setVisible(true); // här ska visaAllInformationAgent menyn bli synlig 
     }//GEN-LAST:event_informationOmAgentActionPerformed
 
     private void andraOmradeschefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraOmradeschefActionPerformed
-        new ÄndraAgentSomÄrOmrådeschef(idb).setVisible(true);
+        new ÄndraAgentSomÄrOmrådeschef(idb).setVisible(true); //här ska ÄndraAgnetSomÄrOmrådeschef menyn bli synlig 
     }//GEN-LAST:event_andraOmradeschefActionPerformed
 
     private void registreraAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registreraAgentActionPerformed
-    new RegistreraAgent(idb).setVisible(true);        // TODO add your handling code here:
+    new RegistreraAgent(idb).setVisible(true);   //här ska registreraAgent menyn bli synlig      
     }//GEN-LAST:event_registreraAgentActionPerformed
 
     private void andraKontorschefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraKontorschefActionPerformed
-       new ÄndraAgentSomÄrKontorschef(idb).setVisible(true);
+       new ÄndraAgentSomÄrKontorschef(idb).setVisible(true); //här ska ändraAgentSomÄrKontorschef menyn bli synlig 
     }//GEN-LAST:event_andraKontorschefActionPerformed
 
     /**

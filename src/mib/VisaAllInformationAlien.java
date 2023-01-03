@@ -28,10 +28,10 @@ private static InfDB idb;
     }
 
     
-    private void fyllBoxMedNamn() {
-        String fraga = "SELECT namn from Alien";
+    private void fyllBoxMedNamn() { //en metod som fyller komboboxen med alla alien som finns i alientabellen 
+        String fraga = "SELECT namn from Alien"; //hämtar alla aliens från databasen som finns i alientabellen 
         
-        ArrayList <String> allaAlienNamn;
+        ArrayList <String> allaAlienNamn; //skapar en arraylist av alienobjekt av typen string 
         
         try {
             allaAlienNamn = idb.fetchColumn(fraga);
@@ -131,11 +131,11 @@ private static InfDB idb;
        ArrayList<HashMap<String, String>> allInfoAlien;
        
         try{
-            String valtAlienNamn = valjNamn.getSelectedItem().toString();
-            String fraga = "SELECT * from Alien where namn = "+ "'" + valtAlienNamn + "'";
-            allInfoAlien = idb.fetchRows(fraga);
+            String valtAlienNamn = valjNamn.getSelectedItem().toString(); //en metod som hämtar ut ett alien namn från komboboxen beroende på valt item 
+            String fraga = "SELECT * from Alien where namn = "+ "'" + valtAlienNamn + "'"; //hämtar all infromation i tabellen alien från databasen där namn är lika med den valda alien i komboboxen 
+            allInfoAlien = idb.fetchRows(fraga); //
             
-            for(HashMap<String, String> alien: allInfoAlien){
+            for(HashMap<String, String> alien: allInfoAlien){ //för att visa all information så används en arraylist av hashmap för att kolla hela alien tabellen 
             textRutaAllInfo.append(alien.get("Alien_ID")+ "\t");
             textRutaAllInfo.append(" " + alien.get("Registreringsdatum")+ "\t");
             textRutaAllInfo.append(" " + alien.get("Losenord") + "\t");
@@ -148,11 +148,11 @@ private static InfDB idb;
         
         
         }catch(InfException e) {
-                    JOptionPane.showMessageDialog(null, "Något gick fel");
+                    JOptionPane.showMessageDialog(null, "Något gick fel"); //felmeddelande vid eventuella errors
                     System.out.println("Internt felmeddelande" + e.getMessage());
         }
           catch(Exception ettUndantag){
-                  JOptionPane.showMessageDialog(null, "ett fel uppstod");
+                  JOptionPane.showMessageDialog(null, "ett fel uppstod"); //felmeddelande vid eventuella errors 
                   System.out.println("Internt felmeddlenade" + ettUndantag.getMessage());
                   }
         
