@@ -90,6 +90,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Ta bort alien"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="taBortAlienKnappActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
