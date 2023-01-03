@@ -120,11 +120,40 @@ private static InfDB idb;
       String resultat = idb.fetchSingle(AlienID);
       
       
-
+      String hamtaSquid = "Select Alien_ID from Squid where Alien_ID =" + resultat+"+";
+      String squid = idb.fetchSingle(hamtaSquid);
+      String hamtaWorm = "Select Alien_ID from Worm where Alien_ID =" + resultat+"+";
+      String worm = idb.fetchSingle(hamtaWorm);
+      String hamtaBoglodite = "Select Alien_ID from Boglodite where Alien_ID =" + resultat+"+";
+      String boglodite = idb.fetchSingle(hamtaBoglodite);
+      
+      
+      
+      if(resultat.equals(squid)){
+      String deleteSquid = "Delete from Squid where Alien_ID ="+ resultat+ " +";
+       idb.delete(deleteSquid);
+              
+      }
+             
+      
+      if(resultat.equals(worm)){
+        String deleteWorm = "Delete from Worm where Alien_ID ="+ resultat+ " +";
+         idb.delete(deleteWorm);
+      }
+      
+      if(resultat.equals(boglodite)){
+       String deleteBoglodite = "Delete from Boglodite where Alien_ID ="+ resultat+ " +";
+       idb.delete(deleteBoglodite);
+      }
+      
+      String deleteAlien = "Delete from Alien where Alien_ID =" + resultat +"+";
+      idb.delete(deleteAlien);
+      
+      
       valjRubrik.setText("Den valda alien raderades");
       
       
-      idb.delete("delete from alien, boglodite, worm, squid from alien inner join table boglodite on Alien.Alien_ID = boglodite.Alien_ID join squid on boglodite.Alien_ID = squid.Alien_ID join worm on squid.Alien_ID = worm.Alien.ID where namn = " + "'" + valdAlien + "'" + "and Alien_ID = " + resultat + "'");
+      // idb.delete("delete from alien, boglodite, worm, squid from alien inner join table boglodite on Alien.Alien_ID = boglodite.Alien_ID join squid on boglodite.Alien_ID = squid.Alien_ID join worm on squid.Alien_ID = worm.Alien.ID where namn = " + "'" + valdAlien + "'" + "and Alien_ID = " + resultat + "'");
               
       
     
