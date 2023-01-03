@@ -135,6 +135,9 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
     }//GEN-LAST:event_nuvarandeLosenAlienActionPerformed
 
     private void bytLosenordAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bytLosenordAlienActionPerformed
+        
+        // metod som ändrar lösenordet hos en alien
+        
         try
         {
         
