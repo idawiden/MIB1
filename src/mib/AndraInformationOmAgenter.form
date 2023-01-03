@@ -51,10 +51,10 @@
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="infoRubrik" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rubrik2" min="-2" max="-2" attributes="0"/>
                           <Component id="nyInfoTextRuta" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -78,8 +78,8 @@
               </Group>
               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="infoRubrik" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="rubrik2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -126,8 +126,11 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="V&#xe4;lj"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="valjAgentActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="infoRubrik">
       <Properties>
         <Property name="text" type="java.lang.String" value="Vad vill du &#xe4;ndra?"/>
       </Properties>
@@ -154,7 +157,7 @@
         <Property name="columns" type="int" value="8"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="rubrik2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Skriv in ny information"/>
       </Properties>
@@ -173,6 +176,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="V&#xe4;lj omr&#xe5;de"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="valjOmradeKnappActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="andraKnapp">
       <Properties>
@@ -186,6 +192,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="V&#xe4;lj status"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ValjStatusKnappActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="boxMedStatus">
       <Properties>

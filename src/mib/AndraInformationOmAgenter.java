@@ -21,7 +21,17 @@ private static InfDB idb;
     public AndraInformationOmAgenter(InfDB idb) {
         initComponents();
         this.idb = idb;
-        fyllBoxMedAgentNamn();
+        infoRubrik.setVisible(false);
+        kategoriBox.setVisible(false);
+        nyInfoTextRuta.setVisible(false);
+        rubrik2.setVisible(false);
+        boxMedOmraden.setVisible(false);
+        boxMedStatus.setVisible(false);
+        valjOmradeKnapp.setVisible(false);
+        ValjStatusKnapp.setVisible(false);
+        andraKnapp.setVisible(false);
+                
+                
         
     }
     
@@ -85,10 +95,10 @@ private static InfDB idb;
         jLabel1 = new javax.swing.JLabel();
         boxMedAgenter = new javax.swing.JComboBox<>();
         valjAgent = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        infoRubrik = new javax.swing.JLabel();
         kategoriBox = new javax.swing.JComboBox<>();
         nyInfoTextRuta = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        rubrik2 = new javax.swing.JLabel();
         boxMedOmraden = new javax.swing.JComboBox<>();
         valjOmradeKnapp = new javax.swing.JButton();
         andraKnapp = new javax.swing.JButton();
@@ -101,16 +111,26 @@ private static InfDB idb;
         jLabel1.setText("Välj agent");
 
         valjAgent.setText("Välj");
+        valjAgent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valjAgentActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("Vad vill du ändra?");
+        infoRubrik.setText("Vad vill du ändra?");
 
         kategoriBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agent_ID", "Namn", "Telefon", "Administrator", "Losenord", "Omrade" }));
 
         nyInfoTextRuta.setColumns(8);
 
-        jLabel3.setText("Skriv in ny information");
+        rubrik2.setText("Skriv in ny information");
 
         valjOmradeKnapp.setText("Välj område");
+        valjOmradeKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valjOmradeKnappActionPerformed(evt);
+            }
+        });
 
         andraKnapp.setText("Ändra");
         andraKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -120,6 +140,11 @@ private static InfDB idb;
         });
 
         ValjStatusKnapp.setText("Välj status");
+        ValjStatusKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ValjStatusKnappActionPerformed(evt);
+            }
+        });
 
         boxMedStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N", "J" }));
 
@@ -149,10 +174,10 @@ private static InfDB idb;
                         .addComponent(valjAgent)
                         .addGap(30, 30, 30))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(infoRubrik)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
+                            .addComponent(rubrik2)
                             .addComponent(nyInfoTextRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -169,8 +194,8 @@ private static InfDB idb;
                     .addComponent(valjAgent))
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(infoRubrik)
+                    .addComponent(rubrik2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(kategoriBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,9 +226,64 @@ private static InfDB idb;
          
          if(kategori.equals("Agent_ID")) {
              
+             
+        idb.update("UPDATE alien SET Alien_ID = "+ agentIDInt + " where namn = "+ "'" + agentNamn +"'");
+        infoRubrik.setText("Ny ändring har gjorts");
+             
          }
+         
+         if(kategori.equals("Namn")){
+        idb.update("UPDATE Agent SET Namn = "+ "'"+ nyInfo + "'" + " where namn = "+ "'" + agentNamn +"'");
+        infoRubrik.setText("Ny ändring har gjorts");
+         }
+         
+         if(kategori.equals("Telefon")){
+        idb.update("UPDATE Agent SET Telefon = "+ "'"+ nyInfo + "'" + " where namn = "+ "'" + agentNamn +"'");
+        infoRubrik.setText("Ny ändring har gjorts");
+        }
+         
+         if(kategori.equals("Omrade")){
+        String fragaOmrade = "Select Omrades_ID from Omrade where Benamning =" + "'" +nyInfo+"'";
+        String resultatInt = idb.fetchSingle(fragaOmrade);
+        int omradesInt = Integer.parseInt(resultatInt);
+        idb.update("UPDATE Agent SET Omrade = "+ omradesInt + " where namn = "+ "'" + agentNamn +"'");
+        infoRubrik.setText("Ny ändring har gjorts");
+        }
+        
+        if(kategori.equals("Status")){
+            String hamtaStatus = boxMedStatus.getSelectedItem().toString();
+            idb.update("UPDATE Agent set Administrator =" + "'"+ hamtaStatus + "'" + " where namn = " +"'"+ agentNamn + "'" );
+        }
+         
+         
+       }catch (InfException e){
+           
+           
+           
+           
+           
        }
     }//GEN-LAST:event_andraKnappActionPerformed
+
+    private void valjAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjAgentActionPerformed
+        infoRubrik.setVisible(true);
+        kategoriBox.setVisible(true);
+        valjOmradeKnapp.setVisible(true);
+        ValjStatusKnapp.setVisible(true);
+        nyInfoTextRuta.setVisible(true);
+        rubrik2.setVisible(true);
+        
+    }//GEN-LAST:event_valjAgentActionPerformed
+
+    private void valjOmradeKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjOmradeKnappActionPerformed
+    boxMedOmraden.setVisible(true);
+    fyllBoxMedAgentNamn();
+   
+    }//GEN-LAST:event_valjOmradeKnappActionPerformed
+
+    private void ValjStatusKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValjStatusKnappActionPerformed
+       boxMedStatus.setVisible(true);
+    }//GEN-LAST:event_ValjStatusKnappActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,11 +326,11 @@ private static InfDB idb;
     private javax.swing.JComboBox<String> boxMedAgenter;
     private javax.swing.JComboBox<String> boxMedOmraden;
     private javax.swing.JComboBox<String> boxMedStatus;
+    private javax.swing.JLabel infoRubrik;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JComboBox<String> kategoriBox;
     private javax.swing.JTextField nyInfoTextRuta;
+    private javax.swing.JLabel rubrik2;
     private javax.swing.JButton valjAgent;
     private javax.swing.JButton valjOmradeKnapp;
     // End of variables declaration//GEN-END:variables
