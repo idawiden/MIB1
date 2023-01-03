@@ -20,29 +20,30 @@ import static java.lang.Integer.parseInt;
 public class RegistreraAlien extends javax.swing.JFrame {
 private static InfDB idb;
 
-private HashMap <String,String> alienRad;
+
     /**
      * Creates new form RegistreraAlien
      */
     public RegistreraAlien(InfDB idb) {
         initComponents();
         this.idb = idb;
-        alienRad = new HashMap<String,String>();
-        fyllBoxMedAgentNamn();
+        fyllBoxMedAgentNamn(); // här anropas metoden direkt i konstruktorn så att komboBoxen fylls direkt vid instansering
         skrivInInfo.setVisible(false);
         extraInformation.setVisible(false);
     }
     
     public void fyllBoxMedAgentNamn() {
         
-        String fraga = "SELECT Namn from Agent";
-        ArrayList <String> allaAgentNamn;
+        //metoden som fyller komboBoxen (boxAnsvarigAgent) med alla agentnamn som finns i listan i databasen
+        
+        String fraga = "SELECT Namn from Agent"; // fråga som hämtar alla namn på agenter
+        ArrayList <String> allaAgentNamn; // lagras i en samling, en arrayList
         
         try{
-            allaAgentNamn = idb.fetchColumn(fraga);
+            allaAgentNamn = idb.fetchColumn(fraga); // listan allaAgentNamn håller i alla namn som hämtats ut från frågan
             
-            for(String namn: allaAgentNamn){
-                boxAnsvarigAgent.addItem(namn);
+            for(String namn: allaAgentNamn){ // for-each-loop som snurrrar igenom hela listan 
+                boxAnsvarigAgent.addItem(namn); // och lägger till alla namnen i komboBoxen
             }
         }catch(InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
@@ -226,6 +227,8 @@ private HashMap <String,String> alienRad;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
+        // validering som ser till att alla fält fylls i med ett värde 
+        
         
         if(Validering.textFaltHarVarde(alienNamn)){
         }
@@ -246,40 +249,57 @@ private HashMap <String,String> alienRad;
         }
         
        try{
-        String namn = alienNamn.getText();
-        String idet = alienID.getText();
+        String namn = alienNamn.getText(); // hämtar det angivna alienNamnet
+        String idet = alienID.getText(); // hämtar det angivna alienIDet
+        
+        // alienIdet görs sedan om till datatypen INT 
         int idInt = Integer.parseInt(idet);
         int rattID = idInt;
         
        
-        String hamtaLosen = alienLosen.getText();
+        String hamtaLosen = alienLosen.getText(); // hämtar det angivna lösenordet
        
-        String hamtaTelefon = alienTelefon.getText();
+        String hamtaTelefon = alienTelefon.getText(); // hämtar det angivna telefonnummret
         
-        String plats = valjPlats.getText();
+        String plats = valjPlats.getText(); // hämtar namnet på den angivna platsen
+        
+        // fråga till databasen som hämtar plats_ID för det angivna platsnamnet
+        // då det är ett platsID som ska läggas in i Alien tabellen
         String fragaPlats = "Select Plats_ID from Plats where Benamning =" + "'" + plats + "'";
         String resultatPlats = idb.fetchSingle(fragaPlats);
         int platsen = parseInt(resultatPlats);
         int rattPlats = platsen;
        
           
-       String agentNamn = boxAnsvarigAgent.getSelectedItem().toString();
+       String agentNamn = boxAnsvarigAgent.getSelectedItem().toString(); // hämtar valt Agent namn som ansvarig agent för Alien
+       
+       // fråga till databasen som hämtar ut agentID för den valda Agenten
+       // då det är ett agentID som ska läggas in i Alien tabellen
        String fraga = "Select agent_ID from agent where Namn = " + "'" + agentNamn + "'";
        String resultat = idb.fetchSingle(fraga);
        int agentInt = Integer.parseInt(resultat);
        int rattAgentID = agentInt;
        
        
+       // här sker en insert, ett tillägg till alien tabellen med en ny alien
+       // i frågan till databasen skickas värden för alla kolummner med 
        String sqlQuery = "Insert into Alien " +" Values(" + rattID + ",curdate(),'"+hamtaLosen+"'," + "'" +namn+"','" +hamtaTelefon +"',"+rattPlats+ "," +rattAgentID+ ");";
        idb.insert(sqlQuery);
        
        
+       // när en ny alien registreras vill man även registrera vilken ras alien är av
        
-       String ras = boxRas.getSelectedItem().toString();
-       String extraInfoB = skrivInInfo.getText();
-       int extraInfoBInt = Integer.parseInt(extraInfoB);
+       
+       
+       String ras = boxRas.getSelectedItem().toString(); // hämtar vald ras från komboboxen
+       String extraInfoB = skrivInInfo.getText(); // hämtar extra information till rasen
+       int extraInfoBInt = Integer.parseInt(extraInfoB); // extra informationen är av datatypen Int och deklararas därför till en int
+       
+       //insert till databasen och ras tabellerna, beroende på vilken ras som valts
        String sqlras = "Insert into "+ ras + " Values("+rattID + ", "+ extraInfoBInt +");";
        idb.insert(sqlras);
+       
+       // om den valda rasen är worm ska ingen extra information läggas till, därav if-satsen
        if(ras.equals("worm")){
            String sqlRasWorm = "Insert into" +ras + " Values("+rattID+");";
            idb.insert(sqlRasWorm);
@@ -296,6 +316,9 @@ private HashMap <String,String> alienRad;
 
     private void valjRasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjRasActionPerformed
         
+        // beroende på vilken ras man väljer så vill man lägga till olika slag av extra information
+        // för att underlätta detta sker här tre olika if-satser som sätter rubriker samt textrutor synliga när en viss ras valts
+        
         
         if(boxRas.getSelectedItem().equals("boglodite")) {
             extraInformation.setText("Ange antal boogies");
@@ -303,6 +326,9 @@ private HashMap <String,String> alienRad;
             skrivInInfo.setVisible(true);
         }
         
+        
+        // om rasen Squid väljs så vill man t.ex. att texten "ange antal armar" 
+        //ska bli synlig för att göra det möjligt att skriva in denna information
         if(boxRas.getSelectedItem().equals("squid")){
             extraInformation.setText("Ange antal armar");
             extraInformation.setVisible(true);
