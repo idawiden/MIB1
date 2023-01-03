@@ -177,8 +177,9 @@ public class inloggningsSida extends javax.swing.JFrame {
           }
           }catch(InfException e) {
                   
-                  
+              
           }
+        }
             
             if(titelAlternativ.getSelectedItem().equals("Alien")) {
                 
@@ -211,7 +212,7 @@ public class inloggningsSida extends javax.swing.JFrame {
         
        
         
-        }
+        
 
     }//GEN-LAST:event_loggaInActionPerformed
 

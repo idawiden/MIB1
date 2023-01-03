@@ -28,6 +28,14 @@ private static InfDB idb;
         rubrikVadVillAndra.setVisible(false);
         boxMedAgenter.setVisible(false);
         valjAgentKnapp.setVisible(false);
+        boxMedRaser.setVisible(false);
+        valjRasKnapp.setVisible(false);
+       
+        skrivInExtraInfo.setVisible(false);
+        skrivInInformationRubrik.setVisible(false);
+        extraInfoRubrik.setVisible(false);
+        valjRasIgen.setVisible(false);
+        
         
         
         
@@ -89,13 +97,18 @@ private static InfDB idb;
         skrivInInformationRubrik = new javax.swing.JLabel();
         boxMedAgenter = new javax.swing.JComboBox<>();
         valjAgentKnapp = new javax.swing.JButton();
+        boxMedRaser = new javax.swing.JComboBox<>();
+        valjRasKnapp = new javax.swing.JButton();
+        skrivInExtraInfo = new javax.swing.JTextField();
+        extraInfoRubrik = new javax.swing.JLabel();
+        valjRasIgen = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         rubrikVadVillAndra.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         rubrikVadVillAndra.setText("Vad vill du ändra?");
 
-        valjInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alien_ID", "Losenord", "Plats", "Namn", "Ansvarig_Agent", "Telefon" }));
+        valjInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alien_ID", "Losenord", "Plats", "Namn", "Ansvarig_Agent", "Telefon", "Ras" }));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel2.setText("Välj alien");
@@ -125,6 +138,26 @@ private static InfDB idb;
             }
         });
 
+        boxMedRaser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Squid", "Boglodite", "Worm" }));
+
+        valjRasKnapp.setText("Välj ras");
+        valjRasKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valjRasKnappActionPerformed(evt);
+            }
+        });
+
+        skrivInExtraInfo.setColumns(6);
+
+        extraInfoRubrik.setText("Extra information");
+
+        valjRasIgen.setText("Välj");
+        valjRasIgen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valjRasIgenActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -133,53 +166,77 @@ private static InfDB idb;
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(valjAgentKnapp)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(29, 29, 29)
                         .addComponent(boxAlienNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(valjAlien)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(valjInfo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(boxMedAgenter, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ändraKnapp)
-                            .addComponent(skrivInNytt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(61, 61, 61))
+                        .addComponent(valjAlien)
+                        .addGap(91, 91, 91))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(valjAgentKnapp)
+                        .addGap(27, 27, 27)
+                        .addComponent(valjRasKnapp)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(rubrikVadVillAndra)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                        .addComponent(skrivInInformationRubrik)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(extraInfoRubrik)
+                                .addGap(18, 18, 18)
+                                .addComponent(skrivInExtraInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ändraKnapp))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(boxMedAgenter, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(boxMedRaser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                                .addComponent(valjRasIgen))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(valjInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(skrivInInformationRubrik)
+                                    .addComponent(skrivInNytt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(34, 34, 34))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(boxAlienNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(valjAlien))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rubrikVadVillAndra)
                     .addComponent(skrivInInformationRubrik))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(valjInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(skrivInNytt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(valjAgentKnapp)
-                .addGap(21, 21, 21)
+                    .addComponent(skrivInNytt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valjInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ändraKnapp)
-                    .addComponent(boxMedAgenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43))
+                    .addComponent(valjAgentKnapp)
+                    .addComponent(valjRasKnapp))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boxMedAgenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxMedRaser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valjRasIgen))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(skrivInExtraInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(extraInfoRubrik))
+                        .addGap(37, 37, 37))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(ändraKnapp)
+                        .addGap(16, 16, 16))))
         );
 
         pack();
@@ -192,6 +249,7 @@ private static InfDB idb;
         skrivInNytt.setVisible(true);
         ändraKnapp.setVisible(true);
         valjAgentKnapp.setVisible(true);
+        valjRasKnapp.setVisible(true);
         
     }//GEN-LAST:event_valjAlienActionPerformed
 
@@ -243,6 +301,31 @@ private static InfDB idb;
          rubrikVadVillAndra.setText("Ny ändring har gjorts");
         }
         
+        if(egenskaper.equals("Ras")){
+         String hamtaRas = boxMedRaser.getSelectedItem().toString();
+         String extraInfo = skrivInExtraInfo.getText();
+         int extraInfoInt = Integer.parseInt(extraInfo);
+         String hamtaAlienId = "Select Alien_ID from Alien where namn =" + "'" + alienNamn + "'";
+         String alienIdResultat = idb.fetchSingle(hamtaAlienId);
+         int alienInt = Integer.parseInt(alienIdResultat);
+         
+         if()
+         String hittaNuvarandeRas = "Select 
+         String nuvarandeRas = idb.fetchSingle(hittaNuvarandeRas);
+         String taBort = "Delete from " + "'" + nuvarandeRas + "'" +" where Alien_Id = " + alienInt +"+";
+         idb.delete(taBort);
+         
+         String sqlRas = "Insert into "+ hamtaRas + " Values("+alienInt + ", "+ extraInfoInt +");";
+         idb.insert(sqlRas);
+         
+         if(hamtaRas.equals("worm")){
+          String sqlRasWorm = "Insert into" +hamtaRas + " Values("+alienInt+");";
+           idb.insert(sqlRasWorm);
+           
+            rubrikVadVillAndra.setText("Ny ändring har gjorts");
+                     
+         }
+        }
         
         
             
@@ -260,6 +343,41 @@ private static InfDB idb;
          fyllBoxMedAgentNamn();
          
     }//GEN-LAST:event_valjAgentKnappActionPerformed
+
+    private void valjRasKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjRasKnappActionPerformed
+        boxMedRaser.setVisible(true);
+        skrivInInformationRubrik.setVisible(false);
+        skrivInNytt.setVisible(false);
+        valjRasIgen.setVisible(true);
+        
+       
+         
+    }//GEN-LAST:event_valjRasKnappActionPerformed
+
+    private void valjRasIgenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjRasIgenActionPerformed
+       
+        
+        if(boxMedRaser.getSelectedItem().equals("Squid")){
+        skrivInInformationRubrik.setText("Ange antal armar");
+        skrivInExtraInfo.setVisible(true);
+        skrivInInformationRubrik.setVisible(true);
+        }
+        
+        if(boxMedRaser.getSelectedItem().equals("boglodite")){
+        skrivInInformationRubrik.setText("Ange antal boogies");
+        skrivInExtraInfo.setVisible(true);
+        skrivInInformationRubrik.setVisible(true);
+        }
+        
+        if(boxMedRaser.getSelectedItem().equals("worm")){
+        skrivInExtraInfo.setVisible(false);
+        skrivInInformationRubrik.setVisible(false);
+        }
+        
+        
+        
+         
+    }//GEN-LAST:event_valjRasIgenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -299,13 +417,18 @@ private static InfDB idb;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxAlienNamn;
     private javax.swing.JComboBox<String> boxMedAgenter;
+    private javax.swing.JComboBox<String> boxMedRaser;
+    private javax.swing.JLabel extraInfoRubrik;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel rubrikVadVillAndra;
+    private javax.swing.JTextField skrivInExtraInfo;
     private javax.swing.JLabel skrivInInformationRubrik;
     private javax.swing.JTextField skrivInNytt;
     private javax.swing.JButton valjAgentKnapp;
     private javax.swing.JButton valjAlien;
     private javax.swing.JComboBox<String> valjInfo;
+    private javax.swing.JButton valjRasIgen;
+    private javax.swing.JButton valjRasKnapp;
     private javax.swing.JButton ändraKnapp;
     // End of variables declaration//GEN-END:variables
 }
