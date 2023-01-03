@@ -195,7 +195,7 @@ private static InfDB idb;
             
             String adminStatus = boxAdminstatus.getSelectedItem().toString();
             
-            String sqlQuery = "Insert into Agent " + " Values (" + agentId + "'"+ namn + "', '" + telefonnummer +  "'" + ", curdate(),'" + adminStatus +"'," + "'" + losen + "'," + "'" + rattOmrade + ");";
+            String sqlQuery = "Insert into Agent " + " Values (" + agentId + ",'"+ namn + "', '" + telefonnummer +  "'" + ", curdate(),'" + adminStatus +"'," + "'" + losen + "'," + rattOmrade + ");";
             idb.insert(sqlQuery);
             
             rubrik.setText("En ny agent är registrerad i systemet");
