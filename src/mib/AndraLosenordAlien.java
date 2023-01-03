@@ -141,24 +141,24 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
         try
         {
         
-        String losenAlien = nuvarandeLosenAlien.getText();
-                 String losenNyttAlien = nyttLosenAlien.getText();
-                 String losenNyttNyttAlien = upprepaNyttLosenAlien.getText();
-                 String anvandarnamn= anvandarnamnAlien.getText();
-                 String fraga = "SELECT Losenord from Alien where Losenord = " + "'" + losenAlien + "'";
+                 String losenAlien = nuvarandeLosenAlien.getText(); //hämtar det nuvarande lösenordet hos en alien 
+                 String losenNyttAlien = nyttLosenAlien.getText(); //hämtar det nya lösenordet som en alien vill updatera till
+                 String losenNyttNyttAlien = upprepaNyttLosenAlien.getText(); //hämtar det nya lösenordet igenom 
+                 String anvandarnamn= anvandarnamnAlien.getText(); //hämtar det användarnamn på den alien som är inloggad och som vill byta lösenord
+                 String fraga = "SELECT Losenord from Alien where Losenord = " + "'" + losenAlien + "'"; //hämtar lösenordet från databasen som stämmer överrens med det nuvarande lösenordet som alien loggar in med
                  String resultat = idb.fetchSingle(fraga);
-                 if(losenAlien.equals(resultat) && losenAlien.equals(losenNyttNyttAlien)){
-                     losenAlien = losenNyttAlien;
-                     idb.update("UPDATE Alien SET losenord = " + "'" + losenNyttAlien + "'" + "where namn = " + "'" + anvandarnamn + "'");
+                 if(losenAlien.equals(resultat) && losenAlien.equals(losenNyttNyttAlien)){ //en if-sats som kollar om det nuvarande lösenordet stämmer överrens med lösenordet i databasen och lösenordet stämmer överrens med det nya lösenordet
+                     losenAlien = losenNyttAlien; //här uppdateras sedan en aliens lösenord 
+                     idb.update("UPDATE Alien SET losenord = " + "'" + losenNyttAlien + "'" + "where namn = " + "'" + anvandarnamn + "'");//detta ovan sker med hjälp av en update metod som sker här 
                  
-                 bytLosenRubrikAlien.setText("Ditt lösenord har ändrats");
+                 bytLosenRubrikAlien.setText("Ditt lösenord har ändrats");//här ändras rubriken till att lösenordet har ändrats för en alien, så användaren får bekräftat att ändringen gick igenom. Detta sker bara om if-satsen uppfylls.
                  }
                  else {
-                     JOptionPane.showMessageDialog(null, "Det gick inte att uppdatera lösenord");
+                     JOptionPane.showMessageDialog(null, "Det gick inte att uppdatera lösenord"); //om inte så skrivs detta meddelande ut
                  }
                  
        }     
-      catch(InfException e) {
+      catch(InfException e) { //detta fångar eventuella error 
           System.out.println(e.getMessage());
               
               }           

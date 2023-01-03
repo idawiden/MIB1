@@ -165,13 +165,13 @@ private static InfDB idb;
 
     private void RegistreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistreraActionPerformed
     
-    if(Validering.textFaltHarVarde(agentID));{
+    if(Validering.textFaltHarVarde(agentID));{ //sker en validering med en if-sats av textfältet för inmatningen av agentID, då textfältet inte får vara tom vid registrering av agent 
     }   
-    if(Validering.textFaltHarVarde(agentNamn));{
+    if(Validering.textFaltHarVarde(agentNamn));{ //här sker en validering med en if-sats av textfältet för inmatning av agentnamn, då fältet inte får vara tom vid registrering av agent 
     }    
-     if(Validering.textFaltHarVarde(agentLosenord));{
+     if(Validering.textFaltHarVarde(agentLosenord));{ //här sker en validering med en if-sats av textfält för inmatning av agentlösenord, då fältet inte får vara tom vid registrering av agent 
     }    
-      if(Validering.textFaltHarVarde(agentTelefon));{
+      if(Validering.textFaltHarVarde(agentTelefon));{ // här sker en validering med en if.sats
     }    
      if(Validering.textFaltHarVarde(omrade));{
     }    
