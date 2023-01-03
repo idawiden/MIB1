@@ -121,7 +121,7 @@ public class inloggningsSida extends javax.swing.JFrame {
     private void loggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loggaInActionPerformed
        
         
-        // validering som ser till att textfälten inte är tomma, och ger ifrån sig ett felmeddelande 
+        // validering som ser till att textfälten inte är tomma, samt ger ifrån sig ett felmeddelande
           if(Validering.textFaltHarVarde(anvandarnamnFalt)){
 
           }
@@ -129,24 +129,24 @@ public class inloggningsSida extends javax.swing.JFrame {
               
           }
           
-          
+          //  här sker ett val i en komboBox, där man väljer om man vill logga in som Agent, Alien eller Administratör
           if(titelAlternativ.getSelectedItem().equals("Agent")) {
               
           
           
         try{
-            String anvandarNamnAgent = anvandarnamnFalt.getText();
-            String losenAgent = losenordFalt.getText();
-            String fragaAgent = "SELECT Losenord from Agent where Namn =" + "'" + anvandarNamnAgent + "'";
-            String resultat = idb.fetchSingle(fragaAgent);
+            String anvandarNamnAgent = anvandarnamnFalt.getText(); // hämtar det angivna användarnamnen
+            String losenAgent = losenordFalt.getText(); // hämtar det angivna lösenordet
+            String fragaAgent = "SELECT Losenord from Agent where Namn =" + "'" + anvandarNamnAgent + "'"; // fråga till databasen som hämtar det lösenord som stämmer överns med det angivna användarnamnet
+            String resultat = idb.fetchSingle(fragaAgent); // i varibeln resultat hålls svaret på frågan
             
-          if(losenAgent.equals(resultat)){
-              loggaIn.setText("du loggas in");
-              new AgentMeny(idb).setVisible(true);
+          if(losenAgent.equals(resultat)){ // sker en if-sats som kollar om lösenordet som angivits i lösenordsrutan stämmer överns med resultaten från frågan till databasen
+              loggaIn.setText("du loggas in"); // om det stämmer överens så loggas man in
+              new AgentMeny(idb).setVisible(true); // och en agent i detta fall blir flyttad till JFramen (agentMeny)
            
           
           
-            }else {
+            }else { // skriver man fel lösenord får man ett felmeddelande i rubriken
                startRubrik.setText("Du angav fel användarnamn eller lösenord ");
           }
           }catch(InfException e) {
