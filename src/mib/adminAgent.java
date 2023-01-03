@@ -133,7 +133,7 @@ private static InfDB idb;
     }//GEN-LAST:event_informationOmAgentActionPerformed
 
     private void andraOmradeschefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraOmradeschefActionPerformed
-        // TODO add your handling code here:
+        new ÄndraAgentSomÄrOmrådeschef(idb).setVisible(true);
     }//GEN-LAST:event_andraOmradeschefActionPerformed
 
     private void registreraAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registreraAgentActionPerformed
