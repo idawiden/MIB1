@@ -84,6 +84,30 @@ public Validering(InfDB idb){
         return namnFinns;
     
     }
+  
+  
+  public static boolean korrektAntalTecken(JPasswordField rutaAttKolla){
+      
+      boolean korrektAntal = true;
+      String s = rutaAttKolla.getText();
+      int antalTecken = Integer.parseInt(s);
+      
+      
+      if(rutaAttKolla.getText().contains(s)){
+          
+          
+      
+  }
+      
+      
+      
+      
+      
+  }
+  return 
+  
+  
+  
 }
     
     
