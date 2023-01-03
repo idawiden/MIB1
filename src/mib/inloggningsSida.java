@@ -121,7 +121,7 @@ public class inloggningsSida extends javax.swing.JFrame {
     private void loggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loggaInActionPerformed
        
         
-        
+        // validering som ser till att textfälten inte är tomma, och ger ifrån sig ett felmeddelande 
           if(Validering.textFaltHarVarde(anvandarnamnFalt)){
 
           }
