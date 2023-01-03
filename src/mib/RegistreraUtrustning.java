@@ -160,7 +160,7 @@ private static InfDB idb;
             
             String benamning = benämning.getText();
             
-            String fraga = "Insert into Utrustning" + "Values(" +rattUtrustning + ", '"+benamning+"');";
+            String fraga = "Insert into Utrustning" + "Values(" +rattUtrustning + ", + " + "'"+benamning+"');";
             idb.insert(fraga);
             
             String kategori = boxValjKategori.getSelectedItem().toString();
