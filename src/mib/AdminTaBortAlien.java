@@ -23,7 +23,26 @@ private static InfDB idb;
     public AdminTaBortAlien(InfDB idb) {
         initComponents();
         this.idb = idb;
+        fyllBoxMedNamn();
     }
+    
+    private void fyllBoxMedNamn() {
+        String fraga = "SELECT namn from Alien";
+        
+        ArrayList <String> allaAlienNamn;
+        
+        try {
+            allaAlienNamn = idb.fetchColumn(fraga);
+            
+            for(String namn:allaAlienNamn) {
+                boxMedAlienNamn.addItem(namn);   
+            }
+            
+        }catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "fel");
+        }
+    }
+
 
     
     /**
@@ -35,17 +54,43 @@ private static InfDB idb;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        valjRubrik = new javax.swing.JLabel();
+        boxMedAlienNamn = new javax.swing.JComboBox<>();
+        valjKnapp = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        valjRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        valjRubrik.setText("Välj alien");
+
+        boxMedAlienNamn.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+
+        valjKnapp.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        valjKnapp.setText("Radera");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(143, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(valjRubrik)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(boxMedAlienNamn, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(valjKnapp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(163, 163, 163))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(valjRubrik)
+                .addGap(39, 39, 39)
+                .addComponent(boxMedAlienNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(valjKnapp)
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         pack();
@@ -81,11 +126,14 @@ private static InfDB idb;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminTaBortAlien().setVisible(true);
+                new AdminTaBortAlien(idb).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> boxMedAlienNamn;
+    private javax.swing.JButton valjKnapp;
+    private javax.swing.JLabel valjRubrik;
     // End of variables declaration//GEN-END:variables
 }

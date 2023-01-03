@@ -3,18 +3,45 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package mib;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 
 /**
  *
  * @author filippabostrom
  */
 public class AndraInformationOmAlien extends javax.swing.JFrame {
-
+private static InfDB idb;
     /**
      * Creates new form AndraInformationOmAlien
      */
-    public AndraInformationOmAlien() {
+    public AndraInformationOmAlien(InfDB idb) {
         initComponents();
+        this.idb = idb;
+        fyllBoxMedNamn();
+        skrivInInformationRubrik.setVisible(false);
+        skrivInNytt.setVisible(false);
+        ändraKnapp.setVisible(false);
+        
+    }
+    
+    private void fyllBoxMedNamn() {
+        String fraga = "SELECT namn from Alien";
+        
+        ArrayList <String> allaAlienNamn;
+        
+        try {
+            allaAlienNamn = idb.fetchColumn(fraga);
+            
+            for(String namn:allaAlienNamn) {
+                boxAlienNamn.addItem(namn);   
+            }
+            
+        }catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "fel");
+        }
     }
 
     /**
@@ -26,17 +53,82 @@ public class AndraInformationOmAlien extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        boxAlienNamn = new javax.swing.JComboBox<>();
+        valjAlien = new javax.swing.JButton();
+        skrivInNytt = new javax.swing.JTextField();
+        ändraKnapp = new javax.swing.JButton();
+        skrivInInformationRubrik = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel1.setText("Vad vill du ändra?");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AlienID", "Namn", "Lösenord", "Plats", "Ansvarigagent", "Ras" }));
+
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel2.setText("Välj alien");
+
+        valjAlien.setText("Välj");
+
+        skrivInNytt.setColumns(8);
+
+        ändraKnapp.setText("Ändra");
+
+        skrivInInformationRubrik.setText("Skriv in ny infromation");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(29, 29, 29)
+                                .addComponent(boxAlienNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(valjAlien))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(54, 54, 54)
+                                .addComponent(skrivInInformationRubrik)))
+                        .addContainerGap(34, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(skrivInNytt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(ändraKnapp)
+                                .addGap(16, 16, 16)))
+                        .addGap(61, 61, 61))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(boxAlienNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valjAlien))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(skrivInInformationRubrik, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(skrivInNytt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addComponent(ändraKnapp)
+                .addGap(44, 44, 44))
         );
 
         pack();
@@ -72,11 +164,19 @@ public class AndraInformationOmAlien extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AndraInformationOmAlien().setVisible(true);
+                new AndraInformationOmAlien(idb).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> boxAlienNamn;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel skrivInInformationRubrik;
+    private javax.swing.JTextField skrivInNytt;
+    private javax.swing.JButton valjAlien;
+    private javax.swing.JButton ändraKnapp;
     // End of variables declaration//GEN-END:variables
 }

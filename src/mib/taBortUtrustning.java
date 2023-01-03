@@ -201,27 +201,24 @@ public class taBortUtrustning extends javax.swing.JFrame {
     private void taBortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taBortActionPerformed
         
         
-        ArrayList<HashMap<String,String>> utrustningsLista;
+        
         
       
         try{
         String valdUtrustning = valjNamnUtrustning.getSelectedItem().toString();
         String valdKategori = kategoriBox.getSelectedItem().toString();
         
+       String id = "Select Utrustnings_ID from" + "'" +ValdKategori + "'" +"where 
+       String fragaKategori = "Delete from" + "'" + valdKategori + "'" + "where 
        
-       String fraga = "Delete from Utrustning"+"'"+valdKategori+"'" +" where Utrustning.Utrustnings_ID = " + "'" + valdKategori +"'" + ".Utrustnings_ID and Utrustning.Benamning = " + "'" + valdUtrustning + "'";
-       utrustningsLista = idb.fetchRows(fraga);
       
-      for(HashMap<String,String> utrustning: utrustningsLista) {
-          if(utrustning.equals(fraga)){
-              idb.delete(fraga);
-          }
+      
           
       
       
            
    
-        }
+        
         
         }catch(InfException e) {
             
