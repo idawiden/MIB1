@@ -4,7 +4,7 @@
  */
 package mib;
 
-import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -17,6 +17,8 @@ import java.util.ArrayList;
  */
 public class AdminTaBortAlien extends javax.swing.JFrame {
 private static InfDB idb;
+    private Object Select;
+    private Object valdRasKategori;
     /**
      * Creates new form AdminTaBortAlien
      */
@@ -41,10 +43,16 @@ private static InfDB idb;
         }catch(InfException e) {
             JOptionPane.showMessageDialog(null, "fel");
         }
+        
+        
+        
+      
+        
+ 
+     
     }
-
-
     
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,6 +75,11 @@ private static InfDB idb;
 
         valjKnapp.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         valjKnapp.setText("Radera");
+        valjKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valjKnappActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,6 +108,29 @@ private static InfDB idb;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void valjKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjKnappActionPerformed
+         
+
+        try{
+        String valdAlien = boxMedAlienNamn.getSelectedItem().toString();
+      
+      
+      String AlienID = "Select Alien_ID from Alien where namn =" + "'" + valdAlien + "'";
+      
+      idb.delete("delete from alien, boglodite, worm, squid where Alien_namn = '" + valdAlien + "' and Alien_ID = " + AlienID);
+
+      
+      
+      
+    
+        }catch(InfException e) {
+   
+            JOptionPane.showMessageDialog(null, "något gick fel");
+            System.out.println("internt felmeddelande" + e.getMessage());
+        }
+        
+    }//GEN-LAST:event_valjKnappActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,4 +172,7 @@ private static InfDB idb;
     private javax.swing.JButton valjKnapp;
     private javax.swing.JLabel valjRubrik;
     // End of variables declaration//GEN-END:variables
+
+   
 }
+
