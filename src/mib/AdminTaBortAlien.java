@@ -121,11 +121,13 @@ private static InfDB idb;
       
       
       String hamtaSquid = "Select Alien_ID from Squid where Alien_ID =" + resultat+"";
-      System.out.println(hamtaSquid);
+     
       
       String squid = idb.fetchSingle(hamtaSquid);
+      
       String hamtaWorm = "Select Alien_ID from Worm where Alien_ID =" + resultat+"";
       String worm = idb.fetchSingle(hamtaWorm);
+      
       String hamtaBoglodite = "Select Alien_ID from Boglodite where Alien_ID =" + resultat+"";
       String boglodite = idb.fetchSingle(hamtaBoglodite);
       
@@ -133,8 +135,7 @@ private static InfDB idb;
       
       if(resultat.equals(squid)){
       idb.delete("Delete from Squid where Alien_ID ="+ resultat+ "");
-       
-              
+             
       }
              
       if(resultat.equals(worm)){
@@ -153,8 +154,7 @@ private static InfDB idb;
       valjRubrik.setText("Den valda alien raderades");
       
       
-      // idb.delete("delete from alien, boglodite, worm, squid from alien inner join table boglodite on Alien.Alien_ID = boglodite.Alien_ID join squid on boglodite.Alien_ID = squid.Alien_ID join worm on squid.Alien_ID = worm.Alien.ID where namn = " + "'" + valdAlien + "'" + "and Alien_ID = " + resultat + "'");
-              
+      
       
     
         }catch(InfException e) {

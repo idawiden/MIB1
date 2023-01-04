@@ -118,13 +118,13 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       int agentIDInt = Integer.parseInt(resultat);
       
       
-      String hamtaFaltAgent = "Select Agent_ID from Faltagent where Agent_ID = " + agentIDInt;
+      String hamtaFaltAgent = "Select Agent_ID from Faltagent where Agent_ID = " + resultat+ "";
       String faltagent = idb.fetchSingle(hamtaFaltAgent);
       
       String hamtaKontorschef = "Select Agent_ID from Kontorschef where Agent_ID =" + resultat +"";
       String kontorschef = idb.fetchSingle(hamtaKontorschef);
       
-      String hamtaOmradeschef = "Select Agent_ID from omradeschef where Agent_ID =" + resultat +"";
+      String hamtaOmradeschef = "Select Agent_ID from Omradeschef where Agent_ID =" + resultat +"";
       String omradeschef = idb.fetchSingle(hamtaOmradeschef);
       
       String hamtaInneharUtrustning = "Select Agent_ID from innehar_utrustning where Agent_ID =" + resultat +""; 
@@ -138,11 +138,11 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       
       String hamtaAnsvarigAgent = "Select Agent_ID from Alien where Agent_ID = " + resultat + "";
       String ansvarigAgent = idb.fetchSingle(hamtaAnsvarigAgent);
-      
+       
       
       
       if(resultat.equals(faltagent)){
-      idb.delete("Delete from faltagent where Agent_ID = " + resultat +"");
+      idb.delete("Delete from faltagent where Agent_ID = "  + resultat + "");
       }
       
       
@@ -170,6 +170,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       idb.delete("Delete from Agent where Agent_ID = " + resultat + "");
       
       rubrik.setText("Den valda agenten raderades");
+      
       
       }catch(InfException e) {
    

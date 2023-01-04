@@ -245,9 +245,11 @@ private static InfDB idb;
         }
          
         if(kategori.equals("Omrade")){
-        String fragaOmrade = "Select Omrades_ID from Omrade where Benamning = " + "'" + nyInfo + "'";
+        String omrade = boxMedOmraden.getSelectedItem().toString();
+        String fragaOmrade = "Select Omrades_ID from Omrade where Benamning = " + "'" + omrade + "'";
         String resultatInt = idb.fetchSingle(fragaOmrade);
         int omradesInt = Integer.parseInt(resultatInt);
+        
         idb.update("UPDATE Agent SET Omrade = " + omradesInt + " where namn = " + "'" + agentNamn + "'");
         infoRubrik.setText("Ny ändring har gjorts");
         }
