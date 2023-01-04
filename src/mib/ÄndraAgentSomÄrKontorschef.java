@@ -25,6 +25,8 @@ private static InfDB idb;
         initComponents();
         this.idb = idb;
         fyllBoxMedAgentNamn();
+        fyllBoxMedKontorsbetecknig();
+        
         
     }
 
@@ -46,6 +48,28 @@ private static InfDB idb;
             JOptionPane.showMessageDialog(null, "fel");
         }
     }
+    
+    private void fyllBoxMedKontorsbetecknig() {
+        
+         
+        String fraga = "SELECT kontorsBeteckning from kontorschef";
+        
+        ArrayList <String> allaKontorsbeteckning;
+        
+        try {
+            allaKontorsbeteckning = idb.fetchColumn(fraga);
+            
+            for(String namn:allaKontorsbeteckning) {
+                valjKontorsBeteckningBox.addItem(namn);   
+            }
+            
+        }catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "fel");
+        }
+    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,10 +82,9 @@ private static InfDB idb;
         rubrik = new javax.swing.JLabel();
         valjAgentBox = new javax.swing.JComboBox<>();
         valjAgentRubrik = new javax.swing.JLabel();
-        valjKnapp = new javax.swing.JButton();
-        kontorsbeteckningRubrik = new javax.swing.JLabel();
-        kontorsbeteckning = new javax.swing.JTextField();
+        valjKontorsbeteckningRubrik = new javax.swing.JLabel();
         andraKontorschefKnapp = new javax.swing.JButton();
+        valjKontorsBeteckningBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,15 +94,8 @@ private static InfDB idb;
         valjAgentRubrik.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         valjAgentRubrik.setText("Välj agent:");
 
-        valjKnapp.setText("Välj");
-        valjKnapp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                valjKnappActionPerformed(evt);
-            }
-        });
-
-        kontorsbeteckningRubrik.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        kontorsbeteckningRubrik.setText("Skriv in kontorsbeteckning:");
+        valjKontorsbeteckningRubrik.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        valjKontorsbeteckningRubrik.setText("Välj kontorsbeteckning:");
 
         andraKontorschefKnapp.setText("Ändra kontorschef");
         andraKontorschefKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -92,79 +108,53 @@ private static InfDB idb;
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(andraKontorschefKnapp)
+                .addGap(21, 21, 21))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(valjAgentRubrik)
+                    .addComponent(valjAgentBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addComponent(valjKontorsbeteckningRubrik)
+                        .addGap(40, 40, 40))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addComponent(valjKontorsBeteckningBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
+                .addGap(110, 110, 110)
                 .addComponent(rubrik)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(valjAgentRubrik))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(valjAgentBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(valjKnapp, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(kontorsbeteckningRubrik))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(131, 131, 131)
-                                .addComponent(kontorsbeteckning, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 57, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(andraKontorschefKnapp)))
-                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(33, 33, 33)
                 .addComponent(rubrik)
-                .addGap(48, 48, 48)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(kontorsbeteckningRubrik)
-                        .addGap(18, 18, 18)
-                        .addComponent(kontorsbeteckning, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(valjKontorsbeteckningRubrik)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(valjKontorsBeteckningBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(valjAgentRubrik)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(valjAgentBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(valjKnapp)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                        .addComponent(valjAgentBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
                 .addComponent(andraKontorschefKnapp)
                 .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void valjKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjKnappActionPerformed
-        
-        String fraga = "SELECT namn from Agent";
-        
-        ArrayList <String> allaAgentNamn;
-        
-        try {
-            allaAgentNamn = idb.fetchColumn(fraga);
-            
-            for(String namn:allaAgentNamn) {
-                valjAgentBox.addItem(namn);   
-            }
-            
-        }catch(InfException e) {
-            JOptionPane.showMessageDialog(null, "fel");
-        }
+ 
     
-    }//GEN-LAST:event_valjKnappActionPerformed
-
     private void andraKontorschefKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraKontorschefKnappActionPerformed
      try {
          String agentNamn = valjAgentBox.getSelectedItem().toString();
@@ -173,7 +163,7 @@ private static InfDB idb;
          int agentInt = Integer.parseInt(resultat);
          int rattAgentID = agentInt;
          
-         String kontorsbenämning = kontorsbeteckning.getText();
+         String kontorsbenämning = valjKontorsBeteckningBox.getSelectedItem().toString();
          System.out.println(kontorsbenämning);
          String fraga2 = "Select Agent_id from kontorschef where Kontorsbeteckning = " + "'" + kontorsbenämning + "'";
          String resultat2 = idb.fetchSingle(fraga2);
@@ -226,11 +216,10 @@ private static InfDB idb;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton andraKontorschefKnapp;
-    private javax.swing.JTextField kontorsbeteckning;
-    private javax.swing.JLabel kontorsbeteckningRubrik;
     private javax.swing.JLabel rubrik;
     private javax.swing.JComboBox<String> valjAgentBox;
     private javax.swing.JLabel valjAgentRubrik;
-    private javax.swing.JButton valjKnapp;
+    private javax.swing.JComboBox<String> valjKontorsBeteckningBox;
+    private javax.swing.JLabel valjKontorsbeteckningRubrik;
     // End of variables declaration//GEN-END:variables
 }
