@@ -78,9 +78,7 @@ private static InfDB idb;
         
     }
     
-    public void printalienID(){
-        System.out.println(this.alienID);
-    }
+   
     
      private boolean alienNamnFinnsRedan(JTextField rutaAttKolla){
         
