@@ -4,6 +4,7 @@
  */
 package mib;
 
+import java.util.ArrayList;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.JOptionPane;
@@ -20,8 +21,29 @@ public class AndraLosenord extends javax.swing.JFrame {
     public AndraLosenord(InfDB idb) {
         initComponents();
         this.idb = idb;
+        fyllBoxMedAgentNamn();
     }
 
+    private void fyllBoxMedAgentNamn() {
+        
+         
+        String fraga = "SELECT namn from Agent";
+        
+        ArrayList <String> allaAgentNamn;
+        
+        try {
+            allaAgentNamn = idb.fetchColumn(fraga);
+            
+            for(String namn:allaAgentNamn) {
+                valjAnvandarnamnBox.addItem(namn);   
+            }
+            
+        }catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "fel");
+        }
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,16 +62,16 @@ public class AndraLosenord extends javax.swing.JFrame {
         upprepaNyttLosen = new javax.swing.JPasswordField();
         knappByt = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        angeAnvandarnamn = new javax.swing.JTextField();
+        valjAnvandarnamnBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         bytLosenRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         bytLosenRubrik.setText("Byt lösenord");
 
-        nuvarandeLosenRubrik.setText("Nuvarande lösenord");
+        nuvarandeLosenRubrik.setText("Nuvarande lösenord:");
 
-        nyttLosenRubrik.setText("Nytt lösenord");
+        nyttLosenRubrik.setText("Nytt lösenord:");
 
         nuvarandeLosen.setColumns(8);
         nuvarandeLosen.addActionListener(new java.awt.event.ActionListener() {
@@ -59,10 +81,20 @@ public class AndraLosenord extends javax.swing.JFrame {
         });
 
         nyttLosen.setColumns(8);
+        nyttLosen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nyttLosenActionPerformed(evt);
+            }
+        });
 
-        upprepaRubik.setText("Upprepa nytt lösenord");
+        upprepaRubik.setText("Upprepa nytt lösenord:");
 
         upprepaNyttLosen.setColumns(8);
+        upprepaNyttLosen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upprepaNyttLosenActionPerformed(evt);
+            }
+        });
 
         knappByt.setText("Byt lösenord");
         knappByt.addActionListener(new java.awt.event.ActionListener() {
@@ -71,67 +103,72 @@ public class AndraLosenord extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Ange användarnamn");
+        jLabel1.setText("Välj användarnamn:");
 
-        angeAnvandarnamn.setColumns(7);
+        valjAnvandarnamnBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valjAnvandarnamnBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(knappByt)
+                        .addGap(33, 33, 33))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(bytLosenRubrik)
-                        .addGap(232, 232, 232))
+                        .addGap(232, 232, 232))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nuvarandeLosenRubrik)
-                            .addComponent(upprepaNyttLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nuvarandeLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(82, 82, 82)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(85, 85, 85)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(angeAnvandarnamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(59, 59, 59)
-                                .addComponent(knappByt)))
-                        .addGap(47, 47, 47))
+                            .addComponent(upprepaRubik)
+                            .addComponent(upprepaNyttLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(valjAnvandarnamnBox, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(89, 89, 89)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(nyttLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nyttLosenRubrik)
-                            .addComponent(upprepaRubik))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(nyttLosenRubrik))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(22, 22, 22)
                 .addComponent(bytLosenRubrik)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(nyttLosenRubrik))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(valjAnvandarnamnBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nyttLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nuvarandeLosenRubrik)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
+                    .addComponent(upprepaRubik))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nuvarandeLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(angeAnvandarnamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(nyttLosenRubrik)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nyttLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(upprepaRubik)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(upprepaNyttLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(knappByt))
-                .addGap(18, 18, 18))
+                    .addComponent(upprepaNyttLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addComponent(knappByt)
+                .addGap(28, 28, 28))
         );
 
         pack();
@@ -149,7 +186,7 @@ public class AndraLosenord extends javax.swing.JFrame {
         String losen = nuvarandeLosen.getText(); // hämtar det nuvarande lösenordet
         String losenNytt = nyttLosen.getText(); // hämtar det nya lösenordet
         String losenNyttNytt = upprepaNyttLosen.getText(); // hämtar det nya lösenordet igen
-        String anvandarnamn = angeAnvandarnamn.getText(); // hämtar det användarnamn som är inloggad och som vill byta lösenord
+        String anvandarnamn = (String) valjAnvandarnamnBox.getSelectedItem(); // hämtar det användarnamn som är inloggad och som vill byta lösenord
         String fraga = "SELECT Losenord from Agent where Losenord =" + "'" + losen + "'"; // hämtar lösenordet från databasten som stämmer överens med det nuvarande lösenordet
         String resultat = idb.fetchSingle(fraga);
         if(losen.equals(resultat)&& losenNytt.equals(losenNyttNytt)){ // if-sats som kollar och med nuvarande lösenordet stämmer överns med databasen och att det nya lösenordet stämmer överns i båda textfälten
@@ -168,6 +205,18 @@ public class AndraLosenord extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_knappBytActionPerformed
+
+    private void upprepaNyttLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upprepaNyttLosenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_upprepaNyttLosenActionPerformed
+
+    private void nyttLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nyttLosenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nyttLosenActionPerformed
+
+    private void valjAnvandarnamnBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjAnvandarnamnBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_valjAnvandarnamnBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,7 +254,6 @@ public class AndraLosenord extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField angeAnvandarnamn;
     private javax.swing.JLabel bytLosenRubrik;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton knappByt;
@@ -215,5 +263,6 @@ public class AndraLosenord extends javax.swing.JFrame {
     private javax.swing.JLabel nyttLosenRubrik;
     private javax.swing.JPasswordField upprepaNyttLosen;
     private javax.swing.JLabel upprepaRubik;
+    private javax.swing.JComboBox<String> valjAnvandarnamnBox;
     // End of variables declaration//GEN-END:variables
 }
