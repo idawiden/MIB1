@@ -1,5 +1,12 @@
 package mib;
 
+
+
+import javax.swing.JOptionPane;
+import oru.inf.InfDB;
+import oru.inf.InfException;
+import java.util.HashMap;
+import java.util.ArrayList;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -11,12 +18,39 @@ package mib;
  */
 public class AdminTaBortAgent extends javax.swing.JFrame {
 
+    private static InfDB idb;
+    private Object Select;
+    
     /**
      * Creates new form AdminTaBortAgent
      */
-    public AdminTaBortAgent() {
+    public AdminTaBortAgent(InfDB idb) {
         initComponents();
+        this.idb = idb;
+        fyllBoxMedNamn();
+    
     }
+    
+    
+     private void fyllBoxMedNamn() {
+        String fraga = "SELECT namn from Agent";
+        
+        ArrayList <String> allaAgentNamn;
+        
+        try {
+            allaAgentNamn = idb.fetchColumn(fraga);
+            
+            for(String namn:allaAgentNamn) {
+                valjAgentBox.addItem(namn);   
+            }
+            
+        }catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "fel");
+        }}
+        
+        
+        
+      
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,6 +72,11 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
         rubrik.setToolTipText("");
 
         raderaKnapp.setText("Radera");
+        raderaKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                raderaKnappActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,6 +108,47 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void raderaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raderaKnappActionPerformed
+        try{
+        String valdAgent = valjAgentBox.getSelectedItem().toString();
+      
+      
+      String AgentID = "Select Agent_ID from Agent where namn =" + "'" + valdAgent + "'";
+      String resultat = idb.fetchSingle(AgentID);
+      
+      
+      if(resultat.equals(AgentID)){
+      }
+      
+   
+      idb.delete("Delete from Agent where Agent_ID =" + resultat +"");
+      
+      rubrik.setText("Den valda agenten raderades");
+      
+      }catch(InfException e) {
+   
+            JOptionPane.showMessageDialog(null, "något gick fel");
+            System.out.println("internt felmeddelande" + e.getMessage());
+              
+              
+        
+   
+              }
+      
+    }//GEN-LAST:event_raderaKnappActionPerformed
+      
+
+    
+    
+                                          
+        
+   
+      
+    /**
+     * @param args the command line arguments
+     */      
+      
+            
     /**
      * @param args the command line arguments
      */
@@ -99,7 +179,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminTaBortAgent().setVisible(true);
+                new AdminTaBortAgent(idb).setVisible(true);
             }
         });
     }
@@ -109,4 +189,8 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
     private javax.swing.JLabel rubrik;
     private javax.swing.JComboBox<String> valjAgentBox;
     // End of variables declaration//GEN-END:variables
+
+    
 }
+    
+

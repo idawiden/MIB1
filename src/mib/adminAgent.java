@@ -68,6 +68,11 @@ private static InfDB idb;
         redigeraAgentInfo.setText("Redigera agent-information");
 
         taBortAgent.setText("Ta bort agent");
+        taBortAgent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                taBortAgentActionPerformed(evt);
+            }
+        });
 
         andraOmradeschef.setText("Ändra områdeschef");
         andraOmradeschef.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +153,10 @@ private static InfDB idb;
     private void andraKontorschefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraKontorschefActionPerformed
        new ÄndraAgentSomÄrKontorschef(idb).setVisible(true); //här ska ändraAgentSomÄrKontorschef menyn bli synlig 
     }//GEN-LAST:event_andraKontorschefActionPerformed
+
+    private void taBortAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taBortAgentActionPerformed
+        new AdminTaBortAgent(idb).setVisible(true); // här ska taBortAgent menyn bli synlig.
+    }//GEN-LAST:event_taBortAgentActionPerformed
 
     /**
      * @param args the command line arguments
