@@ -216,12 +216,12 @@ private static InfDB idb;
             
             
             String valdAgent = boxValjAgent.getSelectedItem().toString();
-            String hamtaId = "Select Agent_ID from Agent where= " + "'" + valdAgent + "'";
+            String hamtaId = "Select Agent_ID from Agent where namn= " + "'" + valdAgent + "'";
             String resultat = idb.fetchSingle(hamtaId);
             
             int idInt = Integer.parseInt(resultat);
                     
-            idb.insert("Insert into innehar_utrustning Values(" + idInt + ", " + rattUtrustning + ",curdate(), '");
+            idb.insert("Insert into innehar_utrustning Values(" + idInt + ", " + rattUtrustning + ", curdate())");
             
            
             
