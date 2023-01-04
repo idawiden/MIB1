@@ -82,6 +82,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Redigera alien-information"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="redigeraInfoKnappActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="taBortAlienKnapp">
       <Properties>

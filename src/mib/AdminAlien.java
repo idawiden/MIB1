@@ -49,6 +49,11 @@ private static InfDB idb;
 
         redigeraInfoKnapp.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         redigeraInfoKnapp.setText("Redigera alien-information");
+        redigeraInfoKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redigeraInfoKnappActionPerformed(evt);
+            }
+        });
 
         taBortAlienKnapp.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         taBortAlienKnapp.setText("Ta bort alien");
@@ -97,6 +102,10 @@ private static InfDB idb;
     private void taBortAlienKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taBortAlienKnappActionPerformed
          new AdminTaBortAlien(idb).setVisible(true);
     }//GEN-LAST:event_taBortAlienKnappActionPerformed
+
+    private void redigeraInfoKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redigeraInfoKnappActionPerformed
+        new AndraInformationOmAlien(idb).setVisible(true);
+    }//GEN-LAST:event_redigeraInfoKnappActionPerformed
 
     /**
      * @param args the command line arguments
