@@ -4,6 +4,7 @@
  */
 package mib;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -30,6 +31,63 @@ public class inloggningsSida extends javax.swing.JFrame {
     }
     
     
+    private void fyllBoxMedAlienNamn() { //en metod som fyller komboboxen med alla alien som finns i alientabellen 
+        String fraga = "SELECT namn from Alien"; //hämtar alla aliens från databasen som finns i alientabellen 
+        
+        ArrayList <String> allaAlienNamn; //skapar en arraylist av alienobjekt av typen string 
+        
+        try {
+            allaAlienNamn = idb.fetchColumn(fraga);
+            
+            for(String namn:allaAlienNamn) {
+                boxMedAnvandarnamn.addItem(namn);   
+            }
+            
+        }catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "fel");
+        }
+    }
+    
+    
+    private void fyllBoxAgentNamn() { //en metod som fyller komboboxen med alla agenter som finns i agenttabellen 
+        String fraga = "SELECT namn from Agent"; //hämtar alla agenter från databasen som finns i agenttabellen 
+        
+        ArrayList <String> allaAgentNamn; //skapar en arraylist av agentobjekt av typen string 
+        
+        try {
+            allaAgentNamn = idb.fetchColumn(fraga);
+            
+            for(String namn:allaAgentNamn) {
+                boxMedAnvandarnamn.addItem(namn);   
+            }
+            
+        }catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "fel");
+        }
+    }
+    
+    
+     private void fyllBoxAgentAdminNamn() { //en metod som fyller komboboxen med alla agenter som finns i agenttabellen som är administratörer
+        String fraga = "SELECT namn from Agent where administrator = 'J' "; //hämtar alla agenter från databasen som finns i agenttabellen som är administratörer
+        
+        ArrayList <String> allaAgentAdminNamn; //skapar en arraylist av agentobjekt av typen string 
+        
+        try {
+            allaAgentAdminNamn = idb.fetchColumn(fraga);
+            
+            for(String namn:allaAgentAdminNamn) {
+                boxMedAnvandarnamn.addItem(namn);   
+            }
+            
+        }catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "fel");
+        }
+    }
+    
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,11 +100,12 @@ public class inloggningsSida extends javax.swing.JFrame {
 
         startRubrik = new javax.swing.JLabel();
         anvandarnamnRubrik = new javax.swing.JLabel();
-        anvandarnamnFalt = new javax.swing.JTextField();
         losenordRubrik = new javax.swing.JLabel();
         losenordFalt = new javax.swing.JPasswordField();
         loggaIn = new javax.swing.JButton();
         titelAlternativ = new javax.swing.JComboBox<>();
+        boxMedAnvandarnamn = new javax.swing.JComboBox<>();
+        valjInloggningssatt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,8 +114,6 @@ public class inloggningsSida extends javax.swing.JFrame {
 
         anvandarnamnRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         anvandarnamnRubrik.setText("Användarnamn:");
-
-        anvandarnamnFalt.setColumns(7);
 
         losenordRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         losenordRubrik.setText("Lösenord:");
@@ -78,6 +135,13 @@ public class inloggningsSida extends javax.swing.JFrame {
             }
         });
 
+        valjInloggningssatt.setText("Välj");
+        valjInloggningssatt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valjInloggningssattActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,14 +149,18 @@ public class inloggningsSida extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(losenordRubrik)
-                        .addComponent(anvandarnamnRubrik, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
-                        .addComponent(titelAlternativ, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(loggaIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(losenordFalt)
-                        .addComponent(anvandarnamnFalt))
-                    .addComponent(startRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(startRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(boxMedAnvandarnamn, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(losenordRubrik, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(anvandarnamnRubrik, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(titelAlternativ, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(valjInloggningssatt)
+                            .addGap(29, 29, 29))
+                        .addComponent(loggaIn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(losenordFalt, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -101,12 +169,14 @@ public class inloggningsSida extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(startRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(titelAlternativ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(titelAlternativ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valjInloggningssatt))
                 .addGap(18, 18, 18)
                 .addComponent(anvandarnamnRubrik)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(anvandarnamnFalt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(boxMedAnvandarnamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(losenordRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(losenordFalt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,9 +192,7 @@ public class inloggningsSida extends javax.swing.JFrame {
        
         
         // validering som ser till att textfälten inte är tomma, samt ger ifrån sig ett felmeddelande
-          if(Validering.textFaltHarVarde(anvandarnamnFalt)){
-
-          }
+          
           if(Validering.textFaltHarVarde(losenordFalt)){
               
           }
@@ -135,7 +203,7 @@ public class inloggningsSida extends javax.swing.JFrame {
           
           
         try{
-            String anvandarNamnAgent = anvandarnamnFalt.getText(); // hämtar det angivna användarnamnen
+            String anvandarNamnAgent = boxMedAnvandarnamn.getSelectedItem().toString(); // hämtar det angivna användarnamnen
             String losenAgent = losenordFalt.getText(); // hämtar det angivna lösenordet
             String fragaAgent = "SELECT Losenord from Agent where Namn =" + "'" + anvandarNamnAgent + "'"; // fråga till databasen som hämtar det lösenord som stämmer överns med det angivna användarnamnet
             String resultat = idb.fetchSingle(fragaAgent); // i varibeln resultat hålls svaret på frågan
@@ -159,7 +227,7 @@ public class inloggningsSida extends javax.swing.JFrame {
             
             
            try{
-            String anvandarNamn = anvandarnamnFalt.getText();
+            String anvandarNamn = boxMedAnvandarnamn.getSelectedItem().toString();
             String losen = losenordFalt.getText();
             String fraga = "SELECT Losenord from Agent where administrator = 'J' and Namn =" + "'" + anvandarNamn + "'";
             
@@ -186,7 +254,7 @@ public class inloggningsSida extends javax.swing.JFrame {
             
            
             try{
-            String anvandarNamnAlien = anvandarnamnFalt.getText();
+            String anvandarNamnAlien = boxMedAnvandarnamn.getSelectedItem().toString();
             String losenAlien = losenordFalt.getText();
             String fragaAlien = "SELECT Losenord from Alien where Namn =" + "'" + anvandarNamnAlien + "'";
             String resultat = idb.fetchSingle(fragaAlien);
@@ -217,21 +285,40 @@ public class inloggningsSida extends javax.swing.JFrame {
     }//GEN-LAST:event_loggaInActionPerformed
 
     private void titelAlternativActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titelAlternativActionPerformed
-     
+      
+        
+        
     }//GEN-LAST:event_titelAlternativActionPerformed
+
+    private void valjInloggningssattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjInloggningssattActionPerformed
+      if(titelAlternativ.getSelectedItem().equals("Agent")){
+            fyllBoxAgentNamn(); 
+        }
+      
+      if(titelAlternativ.getSelectedItem().equals("Alien")){
+            fyllBoxMedAlienNamn(); 
+        }
+      
+      if(titelAlternativ.getSelectedItem().equals("Administratör")){
+            fyllBoxAgentAdminNamn(); 
+        }
+        
+        
+    }//GEN-LAST:event_valjInloggningssattActionPerformed
          
         
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField anvandarnamnFalt;
     private javax.swing.JLabel anvandarnamnRubrik;
+    private javax.swing.JComboBox<String> boxMedAnvandarnamn;
     private javax.swing.JButton loggaIn;
     private javax.swing.JPasswordField losenordFalt;
     private javax.swing.JLabel losenordRubrik;
     private javax.swing.JLabel startRubrik;
     private javax.swing.JComboBox<String> titelAlternativ;
+    private javax.swing.JButton valjInloggningssatt;
     // End of variables declaration//GEN-END:variables
 
    

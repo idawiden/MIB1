@@ -7,7 +7,6 @@ package mib;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 import java.util.ArrayList;
 
 /**
@@ -33,24 +32,13 @@ public Validering(){
 }
     
     
-
+}
 
 
  
   
   
-  public static boolean korrektAntalTecken(JPasswordField rutaAttKolla){
-      
-      boolean korrektAntal = true;
-      String s = rutaAttKolla.getText();
-      int antalTecken = Integer.parseInt(s);
-      
-      
-      if(rutaAttKolla.getText().contains(s)){
-          
-          
-      
-  }
+
       
       
      
