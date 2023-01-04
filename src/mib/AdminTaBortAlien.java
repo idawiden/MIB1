@@ -44,7 +44,7 @@ private static InfDB idb;
             JOptionPane.showMessageDialog(null, "fel");
         }
         
-        
+     ////en metod som ställer en sql fråga mot databasen som hämtar ut samtliga aliennamn från tabellen alien som sedan fyller komboxoen med namn vid instansiering.   
         
       
         
@@ -114,7 +114,10 @@ private static InfDB idb;
 
         try{
         String valdAlien = boxMedAlienNamn.getSelectedItem().toString();
+     //valdAlien håller de aliennamn som finns att välja bland i komboboxen 
       
+     //sql frågor som ställs mot databasen för att hämta ut alien_ID från olika tabeller.
+     //samt där namn ska vara samma som det valda aliennamnet i komboboxen.   
       
       String AlienID = "Select Alien_ID from Alien where namn =" + "'" + valdAlien + "'";
       String resultat = idb.fetchSingle(AlienID);
@@ -132,7 +135,7 @@ private static InfDB idb;
       String boglodite = idb.fetchSingle(hamtaBoglodite);
       
       
-      
+      //här sker kontroller med if-satser som kollar olika villkor. Vid uppfylda villkor så ställs en delete sql fråga mot databasen som raderar alien_ID från samtliga tabeller ovan.
       if(resultat.equals(squid)){
       idb.delete("Delete from Squid where Alien_ID ="+ resultat+ "");
              
@@ -148,17 +151,20 @@ private static InfDB idb;
        
       }
       
+      //till sist sker en delete av alien_ID från tabellen alien, då dessa måste göras i rätt ordning för att inte ta bort främmande nycklar först
+      //tas denna tabell bort först går det inte att koppla alien_ID till de andra tabellerna och därmed kommer inte alien_ID tas bort från resterande tabeller.
+
       idb.delete("Delete from Alien where Alien_ID =" + resultat +"");
       
-      
+      //om if-satserna uppfylls så kommer rubriken ändras till meddelandet nedan.
       valjRubrik.setText("Den valda alien raderades");
       
       
       
       
-    
+    //en cactch som fångar upp evetuella inmatningsfel så att applikationen inte "kraschar".
         }catch(InfException e) {
-   
+            //ett felmeddelande skrivs även ut vid misslyckat försök till ta bort alien ur system.
             JOptionPane.showMessageDialog(null, "något gick fel");
             System.out.println("internt felmeddelande" + e.getMessage());
         }

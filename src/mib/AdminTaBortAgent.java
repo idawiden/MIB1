@@ -47,7 +47,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
         }catch(InfException e) {
             JOptionPane.showMessageDialog(null, "fel");
         }}
-        
+        //en metod som först ställer en sql fråga mot databasen som hämtar ut samtliga namn från tabellen agent som sedan fyller komboxoen vid instansiering.
         
         
       
@@ -111,8 +111,10 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
     private void raderaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raderaKnappActionPerformed
         try{
        String valdAgent = valjAgentBox.getSelectedItem().toString();
+       //valdAgent håller de agentnamn som finns att välja bland i komboboxen 
       
-      
+      //sql frågor som ställs mot databasen för att hämta ut agent_ID frpn olika tabeller.
+      //samt där namn ska vara samma som det valda agent namnet i komboboxen.  
       String AgentID = "Select Agent_ID from Agent where namn = " + "'" + valdAgent + "'";
       String resultat = idb.fetchSingle(AgentID);
       int agentIDInt = Integer.parseInt(resultat);
@@ -140,7 +142,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       String ansvarigAgent = idb.fetchSingle(hamtaAnsvarigAgent);
        
       
-      
+      //här sker kontroller med if-satser som kollar olika villkor. Vid uppfylda villkor så ställs en delete sql fråga mot databasen som raderar agent_ID från samtliga tabeller ovan.
       if(resultat.equals(faltagent)){
       idb.delete("Delete from faltagent where Agent_ID = "  + resultat + "");
       }
@@ -167,13 +169,16 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       idb.delete("Delete from Alien where agent_ID = " + resultat +"");
       }
      
+      //till sist sker en delete av agent_ID från tabellen agent, då dessa måste göras i rätt ordning för att inte ta bort främmande nycklar först
+      //tas denna tabell bort först gpr det inte att koppla till de andra tabellerna.
       idb.delete("Delete from Agent where Agent_ID = " + resultat + "");
       
+      //om if-satserna uppfylls så kommer rubriken ändras till meddelandet nedan.
       rubrik.setText("Den valda agenten raderades");
       
-      
+      //en cactch som fångar upp evetuella inmatningsfel så att applikationen inte "kraschar".
       }catch(InfException e) {
-   
+            //ett felmeddelande skrivs även ut vid misslyckat försök till ta bort agent ur system.
             JOptionPane.showMessageDialog(null, "något gick fel");
             System.out.println("internt felmeddelande" + e.getMessage());
               

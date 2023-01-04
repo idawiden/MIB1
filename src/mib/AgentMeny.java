@@ -140,20 +140,22 @@ public class AgentMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_alternativBoxActionPerformed
 
     private void nyUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nyUtrustningActionPerformed
-         new RegistreraUtrustning(idb).setVisible(true);
+         new RegistreraUtrustning(idb).setVisible(true); //gör registreraUtrustning menyn synlig
     }//GEN-LAST:event_nyUtrustningActionPerformed
 
     private void andraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraLosenordActionPerformed
-         new AndraLosenord(idb).setVisible(true);
+         new AndraLosenord(idb).setVisible(true); //gör andraLosenord menyn synlig 
         
     }//GEN-LAST:event_andraLosenordActionPerformed
 
     private void sokOmradeschefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokOmradeschefActionPerformed
-       new sokOmradeschef(idb).setVisible(true);
+       new sokOmradeschef(idb).setVisible(true); //gör sokOmradeschef menyn synlig
     }//GEN-LAST:event_sokOmradeschefActionPerformed
 
     private void valtAlternativKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valtAlternativKnappActionPerformed
         
+        //olika if-satser som kollar vilket "item"/metoder man väljer att man vill göra i komboboxen 
+        //gör därefter "rätt" meny synlig efter val i komboboxen 
         if(alternativBox.getSelectedItem().equals("nyregistrera alien")) {
         new RegistreraAlien(idb).setVisible(true);
         }
