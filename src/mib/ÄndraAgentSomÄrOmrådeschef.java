@@ -150,7 +150,7 @@ private static InfDB idb;
           int omradet = Integer.parseInt(resultatOmrade);
           System.out.println(omradet);
         
-          idb.update("UPDATE omradeschef SET agent_ID = " + "'" + rattAgentId+ "'" + "where agent_ID = " + "'" + omradet + "'");
+          idb.update("UPDATE omradeschef SET agent_ID = " + "'" + rattAgentId+ "'" + "where agent_ID = " + "'" + agentNyttID + "'");
           
           
        
