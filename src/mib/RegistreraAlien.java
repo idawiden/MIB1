@@ -55,7 +55,7 @@ private static InfDB idb;
         
     }
     
-     private static boolean alienNamnFinnsRedan(JTextField rutaAttKolla){
+     private boolean alienNamnFinnsRedan(JTextField rutaAttKolla){
         
         boolean namnFinns = false;
         

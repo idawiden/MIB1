@@ -175,6 +175,10 @@ public class AgentMeny extends javax.swing.JFrame {
             new AndraInformationOmAlien(idb).setVisible(true);
         }
         
+        else if(alternativBox.getSelectedItem().equals("datumlista aliens")){
+            new kollaRegistreradeAlienDatum(idb).setVisible(true);
+        }
+        
     }//GEN-LAST:event_valtAlternativKnappActionPerformed
 
 

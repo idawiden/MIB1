@@ -7,8 +7,7 @@ package mib;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import oru.inf.InfDB;
-import oru.inf.InfException;
+
 import java.util.ArrayList;
 
 /**
@@ -16,11 +15,11 @@ import java.util.ArrayList;
  * @author filippabostrom
  */
 public class Validering {
-    private static InfDB idb;
     
     
-public Validering(InfDB idb){
-    this.idb = idb;
+    
+public Validering(){
+    
     
 }
     public static boolean textFaltHarVarde(JTextField rutaAttKolla) {
@@ -54,7 +53,7 @@ public Validering(InfDB idb){
   }
       
       
-      
+     
       
       
   

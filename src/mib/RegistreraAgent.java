@@ -26,7 +26,7 @@ private static InfDB idb;
     }
     
     
-     private static boolean agentNamnFinnsRedan(JTextField rutaAttKolla){
+     private boolean agentNamnFinnsRedan(JTextField rutaAttKolla){
         
         boolean namnFinns = false;
         
