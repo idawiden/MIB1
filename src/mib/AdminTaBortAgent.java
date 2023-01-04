@@ -117,10 +117,40 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       String resultat = idb.fetchSingle(AgentID);
       
       
-      if(resultat.equals(AgentID)){
+      String hamtaFaltAgent = "Select Agent_ID from faltagent where Agent_ID =" + resultat+"";
+      System.out.println(hamtaFaltAgent);
+      
+      String faltagent = idb.fetchSingle(hamtaFaltAgent);
+      
+      String hamtaKontorschef = "Select Agent_ID from kontorschef where Agent_ID =" + resultat+"";
+      String kontorschef = idb.fetchSingle(hamtaKontorschef);
+      String hamtaOmradeschef = "Select Agent_ID from omradeschef where Agent_ID =" + resultat+"";
+      String omradeschef = idb.fetchSingle(hamtaOmradeschef);
+      String hamtaInneharUtrustning = "Select Agent_ID from innehar_utrustning where Agent_ID =" + resultat+""; 
+      String inneharUtrustning = idb.fetchSingle(hamtaInneharUtrustning);
+      
+      
+      if(resultat.equals(faltagent)){
+     
+      idb.delete("Delete from Agent where Agent_ID =" + resultat +"");
       }
       
-   
+      if(resultat.equals(kontorschef)){
+          idb.delete("Delete from faltagent where Agent_ID =" + resultat +"");
+      }
+      
+      if(resultat.equals(omradeschef)){
+          idb.delete("Delete from kontorschef where Agent_ID =" + resultat +"");
+      }
+      
+      if(resultat.equals(inneharUtrustning)){
+          idb.delete("Delete from omradeschef where Agent_ID =" + resultat +"");
+      }
+      
+      if(resultat.equals(AgentID)){
+          idb.delete("Delete from innehar_utrustning where Agent_ID =" + resultat +"");
+      }
+       
       idb.delete("Delete from Agent where Agent_ID =" + resultat +"");
       
       rubrik.setText("Den valda agenten raderades");
