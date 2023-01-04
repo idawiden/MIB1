@@ -22,6 +22,7 @@ private static InfDB idb;
         initComponents();
         this.idb = idb;
         fyllBoxMedAgentNamn();
+        fyllBoxMedOmrade();
     }
 
      private void fyllBoxMedAgentNamn() {
@@ -43,6 +44,24 @@ private static InfDB idb;
         }
     }
 
+     private void fyllBoxMedOmrade() {
+         String fraga = "SELECT benamning from omrade";
+         
+         ArrayList<String> allaOmradeNamn;
+         
+          try {
+            allaOmradeNamn = idb.fetchColumn(fraga);
+            
+            for(String namn:allaOmradeNamn) {
+                namnPaOmradeBox.addItem(namn);   
+            }
+            
+        }catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "fel");
+        }
+    }
+         
+     
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,24 +74,21 @@ private static InfDB idb;
 
         rubrik = new javax.swing.JLabel();
         namnPåAgenter = new javax.swing.JComboBox<>();
-        valjAgentKnapp = new javax.swing.JButton();
         väljAgentRubrik = new javax.swing.JLabel();
-        skrivInOmrådeRubrik = new javax.swing.JLabel();
-        skrivInOmrade = new javax.swing.JTextField();
+        valjOmrådeRubrik = new javax.swing.JLabel();
         ändraOmrådeschefKnapp = new javax.swing.JButton();
+        namnPaOmradeBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         rubrik.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         rubrik.setText("Ändra områdeschef ");
 
-        valjAgentKnapp.setText("Välj");
-
         väljAgentRubrik.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         väljAgentRubrik.setText("Välj agent:");
 
-        skrivInOmrådeRubrik.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        skrivInOmrådeRubrik.setText("Skriv in område:");
+        valjOmrådeRubrik.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        valjOmrådeRubrik.setText("Välj område:");
 
         ändraOmrådeschefKnapp.setText("Ändra Områdeschef");
         ändraOmrådeschefKnapp.addActionListener(new java.awt.event.ActionListener() {
@@ -95,21 +111,17 @@ private static InfDB idb;
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(84, 84, 84)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(namnPåAgenter, 0, 89, Short.MAX_VALUE)
-                        .addGap(133, 133, 133)
-                        .addComponent(skrivInOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(123, 123, 123))
+                        .addGap(131, 131, 131)
+                        .addComponent(namnPaOmradeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
                         .addComponent(väljAgentRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(skrivInOmrådeRubrik)
-                        .addGap(110, 110, 110))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(valjAgentKnapp, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(valjOmrådeRubrik)))
+                .addGap(110, 110, 110))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,14 +131,12 @@ private static InfDB idb;
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(väljAgentRubrik)
-                    .addComponent(skrivInOmrådeRubrik))
+                    .addComponent(valjOmrådeRubrik))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(namnPåAgenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(skrivInOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(valjAgentKnapp)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                    .addComponent(namnPaOmradeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addComponent(ändraOmrådeschefKnapp)
                 .addGap(37, 37, 37))
         );
@@ -137,15 +147,18 @@ private static InfDB idb;
     private void ändraOmrådeschefKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ändraOmrådeschefKnappActionPerformed
         try{
           String agentNamn = namnPåAgenter.getSelectedItem().toString();
-          String fraga = "SELECT agent_ID from agent where Namn = " + "'" + agentNamn + "'";
+          String fraga = "SELECT agent_ID from agent where Namn ='" + agentNamn + "'";
           String resultat = idb.fetchSingle(fraga);
           int agentInt = Integer.parseInt(resultat);
           int rattAgentId = agentInt;
           
-          String omrade = skrivInOmrade.getText();
+          String omrade = namnPaOmradeBox.getSelectedItem().toString();
           System.out.println(omrade);
-          String fragaOmrade = "SELECT Agent_ID from omradeschef where omrade = " + "'" + omrade + "'";
+          String fraga1 = "SELECT Omrades_ID from omrade where benamning = " + "'" + omrade + "'";
+          String resultatFraga1 = idb.fetchSingle(fraga1);
+          String fragaOmrade = "SELECT Agent_ID from omradeschef where Omrade = " + "'" + resultatFraga1 + "'";
           String resultatOmrade = idb.fetchSingle(fragaOmrade);
+          System.out.println(resultatOmrade);
           int agentNyttID = Integer.parseInt(resultatOmrade);
           int omradet = Integer.parseInt(resultatOmrade);
           System.out.println(omradet);
@@ -157,7 +170,7 @@ private static InfDB idb;
          rubrik.setText("Områdeschef uppdaterad");
           
         }catch(InfException e) {
-            JOptionPane.showMessageDialog(null, "Gick inte att ändra information om agent som områdeschef");
+            JOptionPane.showMessageDialog(null, "Agenten är redan områdeschef");
             System.out.println("Internt felmeddelande" + e.getMessage());
         }   
          
@@ -200,11 +213,10 @@ private static InfDB idb;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> namnPaOmradeBox;
     private javax.swing.JComboBox<String> namnPåAgenter;
     private javax.swing.JLabel rubrik;
-    private javax.swing.JTextField skrivInOmrade;
-    private javax.swing.JLabel skrivInOmrådeRubrik;
-    private javax.swing.JButton valjAgentKnapp;
+    private javax.swing.JLabel valjOmrådeRubrik;
     private javax.swing.JLabel väljAgentRubrik;
     private javax.swing.JButton ändraOmrådeschefKnapp;
     // End of variables declaration//GEN-END:variables

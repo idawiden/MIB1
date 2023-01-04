@@ -35,25 +35,20 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="namnPåAgenter" pref="89" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
-                      <Component id="skrivInOmrade" min="-2" pref="71" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
+                      <Component id="namnPaOmradeBox" min="-2" pref="86" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                       <Component id="väljAgentRubrik" min="-2" pref="89" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="skrivInOmrådeRubrik" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                      <Component id="valjAgentKnapp" min="-2" pref="55" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="valjOmrådeRubrik" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -65,16 +60,14 @@
               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="väljAgentRubrik" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="skrivInOmrådeRubrik" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="valjOmrådeRubrik" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="namnPåAgenter" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="skrivInOmrade" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="namnPåAgenter" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="namnPaOmradeBox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="valjAgentKnapp" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="56" max="32767" attributes="0"/>
+              <EmptySpace pref="85" max="32767" attributes="0"/>
               <Component id="ändraOmrådeschefKnapp" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
           </Group>
@@ -100,11 +93,6 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="valjAgentKnapp">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="V&#xe4;lj"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="v&#xe4;ljAgentRubrik">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -113,15 +101,13 @@
         <Property name="text" type="java.lang.String" value="V&#xe4;lj agent:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="skrivInOmr&#xe5;deRubrik">
+    <Component class="javax.swing.JLabel" name="valjOmr&#xe5;deRubrik">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Skriv in omr&#xe5;de:"/>
+        <Property name="text" type="java.lang.String" value="V&#xe4;lj omr&#xe5;de:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="skrivInOmrade">
     </Component>
     <Component class="javax.swing.JButton" name="&#xe4;ndraOmr&#xe5;deschefKnapp">
       <Properties>
@@ -130,6 +116,16 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="&#xe4;ndraOmr&#xe5;deschefKnappActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="namnPaOmradeBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
