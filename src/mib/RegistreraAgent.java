@@ -219,6 +219,9 @@ private static InfDB idb;
     }   
     if(Validering.textFaltHarVarde(agentNamn));{ //här sker en validering med en if-sats av textfältet för inmatning av agentnamn, då fältet inte får vara tom vid registrering av agent 
     }    
+    
+    if(Validering.kollaAnvandarnamnAgent(agentNamn));{
+    }
      if(Validering.textFaltHarVarde(agentLosenord));{ //här sker en validering med en if-sats av textfältet för inmatning av agentlösenord, då fältet inte får vara tom vid registrering av agent 
     }    
       if(Validering.textFaltHarVarde(agentTelefon));{ // här sker en validering med en if-sats av täxtfältet för inmatning av telefonnummer, då fältet inte får vara tom vid registrering av agent 
