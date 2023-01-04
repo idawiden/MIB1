@@ -225,9 +225,11 @@ private static InfDB idb;
          String nyInfo = nyInfoTextRuta.getText();
          
          if(kategori.equals("Agent_ID")) {
+         String nyttID = nyInfo;
+         int agentID = 
+        
              
-             
-        idb.update("UPDATE alien SET Alien_ID = "+ agentIDInt + " where namn = "+ "'" + agentNamn +"'");
+        idb.update("UPDATE Agent SET Agent_ID = "+ nyInfo + " where namn = "+ "'" + agentNamn +"'");
         infoRubrik.setText("Ny ändring har gjorts");
              
          }

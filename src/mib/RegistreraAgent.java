@@ -7,6 +7,8 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.JOptionPane;
 import static java.lang.Integer.parseInt;
+import java.util.ArrayList;
+import javax.swing.JTextField;
 /**
  *
  * @author filippaemberg
@@ -21,6 +23,32 @@ private static InfDB idb;
         this.idb = idb;
         
         
+    }
+    
+    
+     private static boolean agentNamnFinnsRedan(JTextField rutaAttKolla){
+        
+        boolean namnFinns = false;
+        
+        try{
+            
+        
+        String fraga = "Select namn from Agent";
+        ArrayList<String> namnLista;
+        namnLista = idb.fetchColumn(fraga);
+        for(String namn : namnLista){
+           if(namn.equals(rutaAttKolla.getText())){
+               namnFinns = true;
+               JOptionPane.showMessageDialog(null, "Det namnet finns redan");
+           }
+           return namnFinns;
+        }
+       }catch(InfException e){
+           JOptionPane.showMessageDialog(null, "något gick fel");
+       
+        }
+        return namnFinns;
+    
     }
 
     /**
@@ -175,7 +203,7 @@ private static InfDB idb;
     }    
      if(Validering.textFaltHarVarde(omrade));{ //här sker en validering med en if-sats av textfältet för inmatning av omrad, då fältet inte får vara tomt vid registrering av agent 
     }    
-     if(Validering.agentNamnFinnsRedan(agentNamn)){
+     if(agentNamnFinnsRedan(agentNamn)){
          
      }
     
