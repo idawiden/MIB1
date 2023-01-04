@@ -128,6 +128,8 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       String omradeschef = idb.fetchSingle(hamtaOmradeschef);
       String hamtaInneharUtrustning = "Select Agent_ID from innehar_utrustning where Agent_ID =" + resultat+""; 
       String inneharUtrustning = idb.fetchSingle(hamtaInneharUtrustning);
+      String hamtaInneharFordon = "Select agent_ID from innehar_Fordon where agent_ID =" + resultat +"";
+      String inneharFordon = idb.fetchSingle(hamtaInneharFordon);
       
       
       if(resultat.equals(faltagent)){
@@ -149,6 +151,11 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       
       if(resultat.equals(AgentID)){
           idb.delete("Delete from innehar_utrustning where Agent_ID =" + resultat +"");
+         
+      }
+      
+      if(resultat.equals(inneharFordon)){
+          idb.delete("Delete from innehar_fordon where agent_ID =" + resultat +"");
       }
        
       idb.delete("Delete from Agent where Agent_ID =" + resultat +"");
