@@ -213,14 +213,14 @@ public class taBortUtrustning extends javax.swing.JFrame {
        int utrustningsID = Integer.parseInt(svar);
        
        
-       String deleteUtrustningAgent = "Delete from Innehar_Utrustning where Utrustnings_ID =" + utrustningsID;
+       String deleteUtrustningAgent = "Delete from Innehar_Utrustning where Utrustnings_ID = "+ utrustningsID +"";
        idb.delete(deleteUtrustningAgent);
        
-       String deleteUtrustning = "Delete from Utrustning where Utrustnings_ID = " + utrustningsID; 
+       String deleteUtrustning = "Delete from Utrustning where Utrustnings_ID = " + utrustningsID+""; 
        idb.delete(deleteUtrustning);
       
       
-      String deleteFranKategori = "Delete from" + valdKategori + "where Utrustnings_ID = " +utrustningsID;
+      String deleteFranKategori = "Delete from" + valdKategori + "where Utrustnings_ID = " +utrustningsID+"";
       idb.delete(deleteFranKategori);
       
       

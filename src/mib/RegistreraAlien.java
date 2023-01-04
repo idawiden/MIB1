@@ -11,6 +11,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import static java.lang.Integer.parseInt;
+import javax.swing.JTextField;
 
 
 /**
@@ -51,6 +52,32 @@ private static InfDB idb;
         
         
         
+        
+    }
+    
+     private static boolean alienNamnFinnsRedan(JTextField rutaAttKolla){
+        
+        boolean namnFinns = false;
+        
+        try{
+            
+        
+        String fraga = "Select namn from Alien";
+        ArrayList<String> namnLista;
+        namnLista = idb.fetchColumn(fraga);
+        for(String namn : namnLista){
+           if(namn.equals(rutaAttKolla.getText())){
+               namnFinns = true;
+               JOptionPane.showMessageDialog(null, "Det namnet finns redan");
+           }
+           return namnFinns;
+        }
+       }catch(InfException e){
+           JOptionPane.showMessageDialog(null, "något gick fel");
+       
+        }
+        return namnFinns;
+    
     }
 
     /**
@@ -243,10 +270,9 @@ private static InfDB idb;
            
         if(Validering.textFaltHarVarde(skrivInInfo)){
         }
-        
-        if(Validering.alienNamnFinnsRedan(alienNamn)){
-            
+        if(alienNamnFinnsRedan(alienNamn)) {
         }
+        
         
        try{
         String namn = alienNamn.getText(); // hämtar det angivna alienNamnet

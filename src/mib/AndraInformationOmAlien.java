@@ -261,10 +261,8 @@ private static InfDB idb;
         String nyInfo = skrivInNytt.getText();
         
         if(egenskaper.equals("Alien_ID")){
-        idb.update("UPDATE alien SET Alien_ID = "+ "'"+ nyInfo + "'" + " where namn = "+ "'" + alienNamn +"'");
-        String fragaAlienID = "Select Alien_ID from Alien where namn =" + "'" +nyInfo + "'";
-        String resultatAlien = idb.fetchSingle(fragaAlienID);
-        int alienIDInt = Integer.parseInt(resultatAlien);
+        String nyttId = nyInfo;
+        int alienIDInt = Integer.parseInt(nyttId);
         idb.update("UPDATE alien SET Alien_ID = "+ alienIDInt + " where namn = "+ "'" + alienNamn +"'");
         rubrikVadVillAndra.setText("Ny ändring har gjorts");
         }
@@ -309,16 +307,18 @@ private static InfDB idb;
          String alienIdResultat = idb.fetchSingle(hamtaAlienId);
          int alienInt = Integer.parseInt(alienIdResultat);
          
-         if(boxMedRaser.getSelectedItem().equals("Squid")){
-         String hittaNuvarandeRas = "Select Alien_ID from Squid where Alien_ID = " + alienInt +"+";
-         String nuvarandeRas = idb.fetchSingle(hittaNuvarandeRas);
-         String taBort = "Delete from Worm"+" where Alien_ID = " + alienInt +"+";
-         idb.delete(taBort);
-         String taBortIgen = "Delete from Boglodite" + "where Alien_ID =" + alienInt + "+";
+        
+         String taBortWorm = "Delete from Worm"+" where Alien_ID = " + alienInt +"";
+         idb.delete(taBortWorm);
+         String taBortBoglodite = "Delete from Boglodite" + "where Alien_ID =" + alienInt + "";
+         idb.delete(taBortBoglodite);
+         String taBortSquid = "Delete from Squid" + "where Alien_ID =" + alienInt + "";
+         idb.delete(taBortSquid);
+         
          
          String sqlRas = "Insert into "+ hamtaRas + " Values("+alienInt + ", "+ extraInfoInt +");";
          idb.insert(sqlRas);
-         }
+         
          
          if(hamtaRas.equals("worm")){
           String sqlRasWorm = "Insert into" +hamtaRas + " Values("+alienInt+");";
