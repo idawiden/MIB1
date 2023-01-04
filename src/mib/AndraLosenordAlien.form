@@ -26,31 +26,28 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="nuvarandeLösenordRubrikAlien" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="upprepaNyttLosenAlien" min="-2" max="-2" attributes="0"/>
                   <Component id="upprepaNyttLösenordRubrikAlien" min="-2" max="-2" attributes="0"/>
-                  <Component id="nyttLosenAlien" min="-2" max="-2" attributes="0"/>
                   <Component id="nyttLösenRubrikAlien" min="-2" max="-2" attributes="0"/>
-                  <Component id="nuvarandeLosenAlien" min="-2" max="-2" attributes="0"/>
                   <Component id="bytLosenRubrikAlien" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="nyttLosenAlien" alignment="0" max="32767" attributes="0"/>
+                      <Component id="nuvarandeLosenAlien" alignment="0" max="32767" attributes="0"/>
+                      <Component id="nuvarandeLösenordRubrikAlien" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="upprepaNyttLosenAlien" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="66" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="angeAnvändarnamnRubrikAlien" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="anvandarnamnAlien" min="-2" pref="71" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          </Group>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="angeAnvändarnamnRubrikAlien" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="anvandarnamnAlien" min="-2" pref="71" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="bytLosenordAlien" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="bytLosenordAlien" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -70,7 +67,7 @@
                   <Component id="anvandarnamnAlien" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="nyttLösenRubrikAlien" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -80,7 +77,10 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="upprepaNyttLosenAlien" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="bytLosenordAlien" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="bytLosenordAlien" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace pref="12" max="32767" attributes="0"/>
           </Group>

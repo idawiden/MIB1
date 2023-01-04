@@ -290,11 +290,11 @@ private static InfDB idb;
          
         
          String hamtaNamn = boxMedAgenter.getSelectedItem().toString();
-         String fragaAgent = "Select Agent_ID from Agent where Namn ="  + "'"+ hamtaNamn+"'";
+         String fragaAgent = "Select Agent_ID from Agent where Namn = "  + "'" + hamtaNamn + "'";
          String resultatAgent = idb.fetchSingle(fragaAgent);
          int agentInt = Integer.parseInt(resultatAgent);
-         idb.update("UPDATE alien SET Ansvarig_Agent = "+ agentInt + " where namn = "+ "'" + alienNamn +"'");
-         
+         idb.update("UPDATE alien SET Ansvarig_Agent = " + agentInt + " where namn = " + "'" + alienNamn +"'");
+        
          
          rubrikVadVillAndra.setText("Ny ändring har gjorts");
         }
@@ -303,30 +303,35 @@ private static InfDB idb;
          String hamtaRas = boxMedRaser.getSelectedItem().toString();
          String extraInfo = skrivInExtraInfo.getText();
          int extraInfoInt = Integer.parseInt(extraInfo);
-         String hamtaAlienId = "Select Alien_ID from Alien where namn =" + "'" + alienNamn + "'";
+         String hamtaAlienId = "Select Alien_ID from Alien where namn = " + "'" + alienNamn + "'";
          String alienIdResultat = idb.fetchSingle(hamtaAlienId);
          int alienInt = Integer.parseInt(alienIdResultat);
          
         
-         String taBortWorm = "Delete from Worm"+" where Alien_ID = " + alienInt +"";
+         String taBortWorm = "Delete from Worm" + " where Alien_ID = " + alienInt + "";
          idb.delete(taBortWorm);
-         String taBortBoglodite = "Delete from Boglodite" + "where Alien_ID =" + alienInt + "";
+         
+         String taBortBoglodite = "Delete from Boglodite" + " where Alien_ID = " + alienInt + "";
          idb.delete(taBortBoglodite);
-         String taBortSquid = "Delete from Squid" + "where Alien_ID =" + alienInt + "";
+         
+         String taBortSquid = "Delete from Squid" + " where Alien_ID = " + alienInt + "";
          idb.delete(taBortSquid);
          
          
-         String sqlRas = "Insert into "+ hamtaRas + " Values("+alienInt + ", "+ extraInfoInt +");";
+         
+         String sqlRas = "Insert into " + hamtaRas + " Values(" + alienInt + ", " + extraInfoInt + ");";
          idb.insert(sqlRas);
          
          
          if(hamtaRas.equals("worm")){
-          String sqlRasWorm = "Insert into" +hamtaRas + " Values("+alienInt+");";
+          String sqlRasWorm = "Insert into" + hamtaRas + " Values(" + alienInt + ");";
            idb.insert(sqlRasWorm);
            
-            rubrikVadVillAndra.setText("Ny ändring har gjorts");
+           
                      
          }
+         
+         rubrikVadVillAndra.setText("Ny ändring har gjorts");
         }
         
         
@@ -365,13 +370,13 @@ private static InfDB idb;
         skrivInInformationRubrik.setVisible(true);
         }
         
-        if(boxMedRaser.getSelectedItem().equals("boglodite")){
+        else if(boxMedRaser.getSelectedItem().equals("Boglodite")){
         skrivInInformationRubrik.setText("Ange antal boogies");
         skrivInExtraInfo.setVisible(true);
         skrivInInformationRubrik.setVisible(true);
         }
         
-        if(boxMedRaser.getSelectedItem().equals("worm")){
+        else if(boxMedRaser.getSelectedItem().equals("Worm")){
         skrivInExtraInfo.setVisible(false);
         skrivInInformationRubrik.setVisible(false);
         }

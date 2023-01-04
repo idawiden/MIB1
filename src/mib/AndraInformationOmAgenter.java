@@ -21,6 +21,8 @@ private static InfDB idb;
     public AndraInformationOmAgenter(InfDB idb) {
         initComponents();
         this.idb = idb;
+        fyllBoxMedAgentNamn();
+        
         infoRubrik.setVisible(false);
         kategoriBox.setVisible(false);
         nyInfoTextRuta.setVisible(false);
@@ -29,7 +31,7 @@ private static InfDB idb;
         boxMedStatus.setVisible(false);
         valjOmradeKnapp.setVisible(false);
         ValjStatusKnapp.setVisible(false);
-        andraKnapp.setVisible(false);
+        
                 
                 
         
@@ -242,11 +244,11 @@ private static InfDB idb;
         infoRubrik.setText("Ny ändring har gjorts");
         }
          
-         if(kategori.equals("Omrade")){
-        String fragaOmrade = "Select Omrades_ID from Omrade where Benamning =" + "'" +nyInfo+"'";
+        if(kategori.equals("Omrade")){
+        String fragaOmrade = "Select Omrades_ID from Omrade where Benamning = " + "'" + nyInfo + "'";
         String resultatInt = idb.fetchSingle(fragaOmrade);
         int omradesInt = Integer.parseInt(resultatInt);
-        idb.update("UPDATE Agent SET Omrade = "+ omradesInt + " where namn = "+ "'" + agentNamn +"'");
+        idb.update("UPDATE Agent SET Omrade = " + omradesInt + " where namn = " + "'" + agentNamn + "'");
         infoRubrik.setText("Ny ändring har gjorts");
         }
         
@@ -254,10 +256,12 @@ private static InfDB idb;
             String hamtaStatus = boxMedStatus.getSelectedItem().toString();
             idb.update("UPDATE Agent set Administrator =" + "'"+ hamtaStatus + "'" + " where namn = " +"'"+ agentNamn + "'" );
         }
+        
+        infoRubrik.setText("Ny ändring har genomförts");
          
          
        }catch (InfException e){
-           
+           JOptionPane.showMessageDialog(null, "något gick fel");
            
            
            
@@ -277,12 +281,19 @@ private static InfDB idb;
 
     private void valjOmradeKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjOmradeKnappActionPerformed
     boxMedOmraden.setVisible(true);
-    fyllBoxMedAgentNamn();
+    fyllBoxMedOmrade ();
+    rubrik2.setVisible(false);
+    nyInfoTextRuta.setVisible(false);
+    ValjStatusKnapp.setVisible(false);
+    
    
     }//GEN-LAST:event_valjOmradeKnappActionPerformed
 
     private void ValjStatusKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValjStatusKnappActionPerformed
        boxMedStatus.setVisible(true);
+       rubrik2.setVisible(false);
+    nyInfoTextRuta.setVisible(false);
+    boxMedOmraden.setVisible(false);
     }//GEN-LAST:event_ValjStatusKnappActionPerformed
 
     /**

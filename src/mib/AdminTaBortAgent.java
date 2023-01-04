@@ -110,54 +110,64 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
 
     private void raderaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raderaKnappActionPerformed
         try{
-        String valdAgent = valjAgentBox.getSelectedItem().toString();
+       String valdAgent = valjAgentBox.getSelectedItem().toString();
       
       
-     String AgentID = "Select Agent_ID from Agent where namn =" + "'" + valdAgent + "'";
-     String resultat = idb.fetchSingle(AgentID);
+      String AgentID = "Select Agent_ID from Agent where namn = " + "'" + valdAgent + "'";
+      String resultat = idb.fetchSingle(AgentID);
+      int agentIDInt = Integer.parseInt(resultat);
       
       
-      String hamtaFaltAgent = "Select Agent_ID from faltagent where Agent_ID =" + resultat+"";
-      System.out.println(hamtaFaltAgent);
-      
+      String hamtaFaltAgent = "Select Agent_ID from Faltagent where Agent_ID = " + agentIDInt;
       String faltagent = idb.fetchSingle(hamtaFaltAgent);
       
-      String hamtaKontorschef = "Select Agent_ID from kontorschef where Agent_ID =" + resultat+"";
+      String hamtaKontorschef = "Select Agent_ID from Kontorschef where Agent_ID =" + resultat +"";
       String kontorschef = idb.fetchSingle(hamtaKontorschef);
-      String hamtaOmradeschef = "Select Agent_ID from omradeschef where Agent_ID =" + resultat+"";
+      
+      String hamtaOmradeschef = "Select Agent_ID from omradeschef where Agent_ID =" + resultat +"";
       String omradeschef = idb.fetchSingle(hamtaOmradeschef);
-      String hamtaInneharUtrustning = "Select Agent_ID from innehar_utrustning where Agent_ID =" + resultat+""; 
+      
+      String hamtaInneharUtrustning = "Select Agent_ID from innehar_utrustning where Agent_ID =" + resultat +""; 
       String inneharUtrustning = idb.fetchSingle(hamtaInneharUtrustning);
-      String hamtaInneharFordon = "Select agent_ID from innehar_Fordon where agent_ID =" + resultat +"";
+      
+      String hamtaInneharFordon = "Select agent_ID from Innehar_Fordon where agent_ID =" + resultat + "";
       String inneharFordon = idb.fetchSingle(hamtaInneharFordon);
-      String hamtaAgent = "Select Agent_ID from Agent where Agent_ID =" + resultat +"";
+      
+      String hamtaAgent = "Select Agent_ID from Agent where Agent_ID = " + resultat +"";
       String Agent = idb.fetchSingle(hamtaAgent);
+      
+      String hamtaAnsvarigAgent = "Select Agent_ID from Alien where Agent_ID = " + resultat + "";
+      String ansvarigAgent = idb.fetchSingle(hamtaAnsvarigAgent);
       
       
       
       if(resultat.equals(faltagent)){
-      idb.delete("Delete from faltagent where Agent_ID =" + resultat +"");
+      idb.delete("Delete from faltagent where Agent_ID = " + resultat +"");
       }
       
       
       if(resultat.equals(kontorschef)){
-          idb.delete("Delete from kontorschef where Agent_ID =" + resultat +"");
+          idb.delete("Delete from kontorschef where Agent_ID = " + resultat +"");
       }
       
       if(resultat.equals(omradeschef)){
-          idb.delete("Delete from omradeschef where Agent_ID =" + resultat +"");
+          idb.delete("Delete from omradeschef where Agent_ID = " + resultat +"");
       }
       
       if(resultat.equals(inneharUtrustning)){
-          idb.delete("Delete from innehar_utrustning where Agent_ID =" + resultat +"");
+          idb.delete("Delete from innehar_utrustning where Agent_ID = " + resultat +"");
          
       }
       
       if(resultat.equals(inneharFordon)){
-          idb.delete("Delete from innehar_fordon where agent_ID =" + resultat +"");
+       idb.delete("Delete from innehar_fordon where agent_ID = " + resultat +"");
+      }
+      
+      if(resultat.equals(ansvarigAgent)){
+      idb.delete("Delete from Alien where agent_ID = " + resultat +"");
       }
      
-      idb.delete("Delete from Agent where Agent_ID =" + resultat +"");
+      idb.delete("Delete from Agent where Agent_ID = " + resultat + "");
       
       rubrik.setText("Den valda agenten raderades");
       

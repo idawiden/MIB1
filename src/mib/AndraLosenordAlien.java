@@ -80,25 +80,23 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nuvarandeLösenordRubrikAlien)
-                    .addComponent(upprepaNyttLosenAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(upprepaNyttLösenordRubrikAlien)
-                    .addComponent(nyttLosenAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nyttLösenRubrikAlien)
-                    .addComponent(nuvarandeLosenAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bytLosenRubrikAlien))
+                    .addComponent(bytLosenRubrikAlien)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(nyttLosenAlien, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(nuvarandeLosenAlien, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(nuvarandeLösenordRubrikAlien, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(upprepaNyttLosenAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(angeAnvändarnamnRubrikAlien)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(anvandarnamnAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)))
-                        .addGap(67, 67, 67))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(bytLosenordAlien)
-                        .addGap(53, 53, 53))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(angeAnvändarnamnRubrikAlien)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(anvandarnamnAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(20, 20, 20)))
+                    .addComponent(bytLosenordAlien, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(67, 67, 67))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,7 +112,7 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
                     .addComponent(nuvarandeLosenAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(anvandarnamnAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(nyttLösenRubrikAlien)
                         .addGap(18, 18, 18)
@@ -123,7 +121,9 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
                         .addComponent(upprepaNyttLösenordRubrikAlien)
                         .addGap(18, 18, 18)
                         .addComponent(upprepaNyttLosenAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(bytLosenordAlien))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(bytLosenordAlien)
+                        .addGap(12, 12, 12)))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -145,23 +145,25 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
                  String losenNyttAlien = nyttLosenAlien.getText(); //hämtar det nya lösenordet som en alien vill updatera till
                  String losenNyttNyttAlien = upprepaNyttLosenAlien.getText(); //hämtar det nya lösenordet igenom 
                  String anvandarnamn= anvandarnamnAlien.getText(); //hämtar det användarnamn på den alien som är inloggad och som vill byta lösenord
-                 String fraga = "SELECT Losenord from Alien where Losenord = " + "'" + losenAlien + "'"; //hämtar lösenordet från databasen som stämmer överrens med det nuvarande lösenordet som alien loggar in med
+                 String fraga = "SELECT Losenord from Alien where Losenord =" + "'" + losenAlien + "'"; //hämtar lösenordet från databasen som stämmer överrens med det nuvarande lösenordet som alien loggar in med
                  String resultat = idb.fetchSingle(fraga);
-                 if(losenAlien.equals(resultat) && losenAlien.equals(losenNyttNyttAlien)){ //en if-sats som kollar om det nuvarande lösenordet stämmer överrens med lösenordet i databasen och lösenordet stämmer överrens med det nya lösenordet
-                     losenAlien = losenNyttAlien; //här uppdateras sedan en aliens lösenord 
-                     idb.update("UPDATE Alien SET losenord = " + "'" + losenNyttAlien + "'" + "where namn = " + "'" + anvandarnamn + "'");//detta ovan sker med hjälp av en update metod som sker här 
+                 if(losenAlien.equals(resultat) && losenNyttAlien.equals(losenNyttNyttAlien)){ //en if-sats som kollar om det nuvarande lösenordet stämmer överrens med lösenordet i databasen och lösenordet stämmer överrens med det nya lösenordet
+                 losenAlien = losenNyttAlien; //här uppdateras sedan en aliens lösenord 
+                 idb.update("UPDATE Alien SET losenord = " + "'" + losenNyttAlien + "'" + " where namn = " + "'" + anvandarnamn + "'");//detta ovan sker med hjälp av en update metod som sker här 
                  
                  bytLosenRubrikAlien.setText("Ditt lösenord har ändrats");//här ändras rubriken till att lösenordet har ändrats för en alien, så användaren får bekräftat att ändringen gick igenom. Detta sker bara om if-satsen uppfylls.
-                 }
-                 else {
-                     JOptionPane.showMessageDialog(null, "Det gick inte att uppdatera lösenord"); //om inte så skrivs detta meddelande ut
-                 }
                  
-       }     
-      catch(InfException e) { //detta fångar eventuella error 
-          System.out.println(e.getMessage());
-              
-              }           
+                 }
+                
+                     
+                      
+                 
+                 
+                }     
+               catch(InfException e) { //detta fångar eventuella error 
+               System.out.println("internt felmeddelande" + e.getMessage());
+              JOptionPane.showMessageDialog(null, "Det gick inte att uppdatera lösenord"); //om inte så skrivs detta meddelande ut
+               }           
     }//GEN-LAST:event_bytLosenordAlienActionPerformed
 
     /**

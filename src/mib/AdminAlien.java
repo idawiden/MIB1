@@ -96,7 +96,7 @@ private static InfDB idb;
     }// </editor-fold>//GEN-END:initComponents
 
     private void registreraAlienKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registreraAlienKnappActionPerformed
-       
+new RegistreraAlien(idb).setVisible(true);       
     }//GEN-LAST:event_registreraAlienKnappActionPerformed
 
     private void taBortAlienKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taBortAlienKnappActionPerformed

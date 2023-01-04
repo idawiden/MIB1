@@ -19,21 +19,21 @@ private static InfDB idb;
     public sokOmradeschef(InfDB idb) {
         initComponents();
          this.idb = idb;
-         fyllBoxMedKontor();
+         fyllBoxMedOmraden();
     }
     
-    private void fyllBoxMedKontor() {
+    private void fyllBoxMedOmraden() {
         
-        String fraga = "Select Kontorsbeteckning from Kontorschef";
+        String fraga = "Select Benamning from Omrade";
         
-        ArrayList<String> kontor ;
+        ArrayList<String> omraden ;
         
         try{
         
-        kontor = idb.fetchColumn(fraga);
+        omraden = idb.fetchColumn(fraga);
         
-        for(String kontorsNamn : kontor) {
-            valjKontor.addItem(kontorsNamn);
+        for(String omradesNamn : omraden) {
+            valjKontor.addItem(omradesNamn);
         }
         
         }catch(InfException e) {

@@ -66,6 +66,11 @@ private static InfDB idb;
         });
 
         redigeraAgentInfo.setText("Redigera agent-information");
+        redigeraAgentInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redigeraAgentInfoActionPerformed(evt);
+            }
+        });
 
         taBortAgent.setText("Ta bort agent");
         taBortAgent.addActionListener(new java.awt.event.ActionListener() {
@@ -157,6 +162,10 @@ private static InfDB idb;
     private void taBortAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taBortAgentActionPerformed
         new AdminTaBortAgent(idb).setVisible(true); // här ska taBortAgent menyn bli synlig.
     }//GEN-LAST:event_taBortAgentActionPerformed
+
+    private void redigeraAgentInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redigeraAgentInfoActionPerformed
+        new AndraInformationOmAgenter(idb).setVisible(true);
+    }//GEN-LAST:event_redigeraAgentInfoActionPerformed
 
     /**
      * @param args the command line arguments

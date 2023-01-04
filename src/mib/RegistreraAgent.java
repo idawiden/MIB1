@@ -39,7 +39,7 @@ private static InfDB idb;
         for(String namn : namnLista){
            if(namn.equals(rutaAttKolla.getText())){
                namnFinns = true;
-               JOptionPane.showMessageDialog(null, "Det namnet finns redan");
+               JOptionPane.showMessageDialog(null, "Det användarnamnet finns redan");
            }
            return namnFinns;
         }
