@@ -186,7 +186,7 @@ public class AndraLosenord extends javax.swing.JFrame {
         String losen = nuvarandeLosen.getText(); // hämtar det nuvarande lösenordet
         String losenNytt = nyttLosen.getText(); // hämtar det nya lösenordet
         String losenNyttNytt = upprepaNyttLosen.getText(); // hämtar det nya lösenordet igen
-        String anvandarnamn = (String) valjAnvandarnamnBox.getSelectedItem(); // hämtar det användarnamn som är inloggad och som vill byta lösenord
+        String anvandarnamn = valjAnvandarnamnBox.getSelectedItem().toString(); // hämtar det användarnamn som är inloggad och som vill byta lösenord
         String fraga = "SELECT Losenord from Agent where Losenord =" + "'" + losen + "'"; // hämtar lösenordet från databasten som stämmer överens med det nuvarande lösenordet
         String resultat = idb.fetchSingle(fraga);
         if(losen.equals(resultat)&& losenNytt.equals(losenNyttNytt)){ // if-sats som kollar och med nuvarande lösenordet stämmer överns med databasen och att det nya lösenordet stämmer överns i båda textfälten
