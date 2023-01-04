@@ -226,10 +226,8 @@ private static InfDB idb;
          
          if(kategori.equals("Agent_ID")) {
          String nyttID = nyInfo;
-         int agentID = 
-        
-             
-        idb.update("UPDATE Agent SET Agent_ID = "+ nyInfo + " where namn = "+ "'" + agentNamn +"'");
+         int agentID = Integer.parseInt(nyttID);
+        idb.update("UPDATE Agent SET Agent_ID = "+ agentID + " where namn = "+ "'" + agentNamn +"'");
         infoRubrik.setText("Ny ändring har gjorts");
              
          }
