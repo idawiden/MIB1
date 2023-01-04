@@ -160,13 +160,14 @@ private static InfDB idb;
             
             String benamning = benämning.getText();
             
-            String fraga = "Insert into Utrustning" + "Values(" +rattUtrustning + ", " + "'"+benamning+"');";
+            String fraga = "Insert into Utrustning Values(" + rattUtrustning + ", " + "'"+ benamning +"')";
+            System.out.println(fraga);
             idb.insert(fraga);
             
             String kategori = boxValjKategori.getSelectedItem().toString();
             String info = skrivInInfo.getText();
             
-             String sqlKategori = "Insert into " + kategori + "Values("+rattUtrustning+ ",'" + info +"');";
+             String sqlKategori = "Insert into " + kategori + "Values("+ rattUtrustning + ",'" + info +"');";
             idb.insert(sqlKategori);
             rubrikText.setText("Ny utrustning har registrerats");
             
@@ -174,7 +175,7 @@ private static InfDB idb;
             if(kategori.equals("Vapen")){
                 int skott = Integer.parseInt(info);
                 int skottInt = skott;
-                String sqlVapen = "Insert into " + kategori + "Values("+rattUtrustning+"," + info +");";
+                String sqlVapen = "Insert into " + kategori + "Values("+ rattUtrustning +"," + info +");";
                 idb.insert(sqlVapen);
                 rubrikText.setText("Ny utrustning har registrerats");
             }

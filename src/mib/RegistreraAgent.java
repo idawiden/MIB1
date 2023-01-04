@@ -175,6 +175,9 @@ private static InfDB idb;
     }    
      if(Validering.textFaltHarVarde(omrade));{ //här sker en validering med en if-sats av textfältet för inmatning av omrad, då fältet inte får vara tomt vid registrering av agent 
     }    
+     if(Validering.agentNamnFinnsRedan(agentNamn)){
+         
+     }
     
      
         try{

@@ -130,23 +130,22 @@ private static InfDB idb;
       
       
       if(resultat.equals(squid)){
-      String deleteSquid = "Delete from Squid where Alien_ID ="+ resultat+ " +";
-       idb.delete(deleteSquid);
+      idb.delete("Delete from Squid where Alien_ID ="+ resultat+ " +");
+       
               
       }
              
       if(resultat.equals(worm)){
-        String deleteWorm = "Delete from Worm where Alien_ID ="+ resultat+ " +";
-         idb.delete(deleteWorm);
+       idb.delete("Delete from Worm where Alien_ID ="+ resultat+ " +");
+       
       }
       
       if(resultat.equals(boglodite)){
-       String deleteBoglodite = "Delete from Boglodite where Alien_ID ="+ resultat+ " +";
-       idb.delete(deleteBoglodite);
+      idb.delete("Delete from Boglodite where Alien_ID ="+ resultat+ " +");
+       
       }
       
-      String deleteAlien = "Delete from Alien where Alien_ID =" + resultat +"+";
-      idb.delete(deleteAlien);
+      idb.delete("Delete from Alien where Alien_ID =" + resultat +"+");
       
       
       valjRubrik.setText("Den valda alien raderades");
