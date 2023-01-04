@@ -120,32 +120,34 @@ private static InfDB idb;
       String resultat = idb.fetchSingle(AlienID);
       
       
-      String hamtaSquid = "Select Alien_ID from Squid where Alien_ID =" + resultat+"+";
+      String hamtaSquid = "Select Alien_ID from Squid where Alien_ID =" + resultat+"";
+      System.out.println(hamtaSquid);
+      
       String squid = idb.fetchSingle(hamtaSquid);
-      String hamtaWorm = "Select Alien_ID from Worm where Alien_ID =" + resultat+"+";
+      String hamtaWorm = "Select Alien_ID from Worm where Alien_ID =" + resultat+"";
       String worm = idb.fetchSingle(hamtaWorm);
-      String hamtaBoglodite = "Select Alien_ID from Boglodite where Alien_ID =" + resultat+"+";
+      String hamtaBoglodite = "Select Alien_ID from Boglodite where Alien_ID =" + resultat+"";
       String boglodite = idb.fetchSingle(hamtaBoglodite);
       
       
       
       if(resultat.equals(squid)){
-      idb.delete("Delete from Squid where Alien_ID ="+ resultat+ " +");
+      idb.delete("Delete from Squid where Alien_ID ="+ resultat+ "");
        
               
       }
              
       if(resultat.equals(worm)){
-       idb.delete("Delete from Worm where Alien_ID ="+ resultat+ " +");
+       idb.delete("Delete from Worm where Alien_ID ="+ resultat+ "");
        
       }
       
       if(resultat.equals(boglodite)){
-      idb.delete("Delete from Boglodite where Alien_ID ="+ resultat+ " +");
+      idb.delete("Delete from Boglodite where Alien_ID ="+ resultat+ "");
        
       }
       
-      idb.delete("Delete from Alien where Alien_ID =" + resultat +"+");
+      idb.delete("Delete from Alien where Alien_ID =" + resultat +"");
       
       
       valjRubrik.setText("Den valda alien raderades");
