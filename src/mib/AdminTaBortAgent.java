@@ -113,8 +113,8 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
         String valdAgent = valjAgentBox.getSelectedItem().toString();
       
       
-      String AgentID = "Select Agent_ID from Agent where namn =" + "'" + valdAgent + "'";
-      String resultat = idb.fetchSingle(AgentID);
+     String AgentID = "Select Agent_ID from Agent where namn =" + "'" + valdAgent + "'";
+     String resultat = idb.fetchSingle(AgentID);
       
       
       String hamtaFaltAgent = "Select Agent_ID from faltagent where Agent_ID =" + resultat+"";
@@ -130,26 +130,25 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       String inneharUtrustning = idb.fetchSingle(hamtaInneharUtrustning);
       String hamtaInneharFordon = "Select agent_ID from innehar_Fordon where agent_ID =" + resultat +"";
       String inneharFordon = idb.fetchSingle(hamtaInneharFordon);
+      String hamtaAgent = "Select Agent_ID from Agent where Agent_ID =" + resultat +"";
+      String Agent = idb.fetchSingle(hamtaAgent);
+      
       
       
       if(resultat.equals(faltagent)){
-     
-      idb.delete("Delete from Agent where Agent_ID =" + resultat +"");
+      idb.delete("Delete from faltagent where Agent_ID =" + resultat +"");
       }
+      
       
       if(resultat.equals(kontorschef)){
-          idb.delete("Delete from faltagent where Agent_ID =" + resultat +"");
-      }
-      
-      if(resultat.equals(omradeschef)){
           idb.delete("Delete from kontorschef where Agent_ID =" + resultat +"");
       }
       
-      if(resultat.equals(inneharUtrustning)){
+      if(resultat.equals(omradeschef)){
           idb.delete("Delete from omradeschef where Agent_ID =" + resultat +"");
       }
       
-      if(resultat.equals(AgentID)){
+      if(resultat.equals(inneharUtrustning)){
           idb.delete("Delete from innehar_utrustning where Agent_ID =" + resultat +"");
          
       }
@@ -157,7 +156,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       if(resultat.equals(inneharFordon)){
           idb.delete("Delete from innehar_fordon where agent_ID =" + resultat +"");
       }
-       
+     
       idb.delete("Delete from Agent where Agent_ID =" + resultat +"");
       
       rubrik.setText("Den valda agenten raderades");
