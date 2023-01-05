@@ -22,6 +22,9 @@ private static InfDB idb;
         initComponents();
         this.idb = idb;
         fyllBoxMedNamn();
+        
+        // i designen finns det textrutor,komboBoxar,textFält och JButton 
+        // här sätts en del av dessa icke synliga vid instansering 
         skrivInInformationRubrik.setVisible(false);
         skrivInNytt.setVisible(false);
         ändraKnapp.setVisible(false);
@@ -44,6 +47,8 @@ private static InfDB idb;
         
     }
     
+    
+    // en metod som fyller en komboBox med alienNamn från databasen
     private void fyllBoxMedNamn() {
         String fraga = "SELECT namn from Alien";
         
@@ -52,6 +57,7 @@ private static InfDB idb;
         try {
             allaAlienNamn = idb.fetchColumn(fraga);
             
+            // for-each-loop som rullar igenom hela listan allaAlienNamn och lägger till varje namn i boxen
             for(String namn:allaAlienNamn) {
                 boxAlienNamn.addItem(namn);   
             }
@@ -61,7 +67,7 @@ private static InfDB idb;
         }
     }
     
-    
+    // en metod som fyller en komboBox med agentNamn från databasen
     private void fyllBoxMedAgentNamn() {
         
          
@@ -72,6 +78,7 @@ private static InfDB idb;
         try {
             allaAgentNamn = idb.fetchColumn(fraga);
             
+            // for-each-loop som rullar igenom hela listan allaAgentNamn och lägger till varje namn i boxen
             for(String namn:allaAgentNamn) {
                 boxMedAgenter.addItem(namn);   
             }
@@ -81,7 +88,7 @@ private static InfDB idb;
         }
     }
 
-    
+    // metod som fyller en komboBox med platsNamn från databasen
     private void fyllBoxMedPlatsNamn() {
         
          
@@ -91,7 +98,7 @@ private static InfDB idb;
         
         try {
             allaPlatsNamn = idb.fetchColumn(fraga);
-            
+            // for-each-loop som rullar igenom hela listan allaPlatsNamn och lägger till varje namn i boxen
             for(String namn:allaPlatsNamn) {
                 platsBox.addItem(namn);   
             }
@@ -102,7 +109,8 @@ private static InfDB idb;
     }
     
     
-             
+     // metod som hämtar ut och kollar igenom alla alienID från databasen och som returnerar en boolean  
+    // denna metod används för att se till att det inte läggs till ett ID som redan finns
      private boolean alienIDFinnsRedan(JTextField rutaAttKolla){
         
         boolean alienIDFinns = false;
@@ -113,10 +121,13 @@ private static InfDB idb;
         String fraga = "Select Alien_ID from Alien";
         ArrayList<String> IDLista;
         IDLista = idb.fetchColumn(fraga);
+        
+        // for-each-loop som kollar igenom listan med ID och om det finns ett ID i listan som stämmer överens
+        // med textrutan som kollas, så blir alienIDFinns = true; och ett felmeddelande dyker upp 
         for(String id : IDLista){
            if(id.equals(rutaAttKolla.getText())){
                alienIDFinns = true;
-               JOptionPane.showMessageDialog(null, "Det alienIDet finns redan, vänligen testa ett annat");
+               JOptionPane.showMessageDialog(null, "Det alienIDet finns redan, vänligen testa ett annat"); // felmeddelande som vägleder användaren av applikationen 
            }
            return alienIDFinns;
         }
@@ -320,6 +331,10 @@ private static InfDB idb;
     }// </editor-fold>//GEN-END:initComponents
 
     private void valjAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjAlienActionPerformed
+       
+        // när det skett ett val av vilken alien som information ska ändras på
+        // blir fler swing controls synliga 
+        
         valjInfo.setVisible(true);
         rubrikVadVillAndra.setVisible(true);
         skrivInInformationRubrik.setVisible(true);
@@ -333,6 +348,8 @@ private static InfDB idb;
 
     private void ändraKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ändraKnappActionPerformed
         
+        
+        // validering som använder sig av den privata metoden alienIDFinnsRedan
         if(alienIDFinnsRedan(skrivInNytt)){
             
         }
@@ -340,10 +357,14 @@ private static InfDB idb;
         
         
         try{
-        String alienNamn =  boxAlienNamn.getSelectedItem().toString();
-        String egenskaper = valjInfo.getSelectedItem().toString();  
-        String nyInfo = skrivInNytt.getText();
+        String alienNamn =  boxAlienNamn.getSelectedItem().toString(); // hämtar ut det valda alienNamnet från komboBoxen
+        String egenskaper = valjInfo.getSelectedItem().toString(); // hämtar ut vilken egenskap hos en Alien som ska ändras
+        String nyInfo = skrivInNytt.getText(); // hämtar ut den nya informationen som skrivits in i textrutan
         
+        
+        // här sker olika if-satser beronde på vilken egenskap som valts i komboBoxen
+        
+        // här sker en ändring av ett alienID
         if(egenskaper.equals("Alien_ID")){
         String nyttId = nyInfo;
         int alienIDInt = Integer.parseInt(nyttId);
@@ -357,6 +378,7 @@ private static InfDB idb;
         idb.update("UPDATE alien SET Namn = "+ "'"+ nyInfo + "'" + " where namn = "+ "'" + alienNamn +"'");
         rubrikVadVillAndra.setText("Ny ändring har gjorts");
         }
+        
         if(egenskaper.equals("Plats")){
         String plats = platsBox.getSelectedItem().toString();
         String fragaPlats = "Select Plats_ID from Plats where Benamning =" + "'" +plats+"'";
