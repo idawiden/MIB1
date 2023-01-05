@@ -5,6 +5,7 @@
 package mib;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -82,6 +83,32 @@ private static InfDB idb;
         
         
         
+    }
+    
+    
+       private boolean agentIDFinnsRedan(JTextField rutaAttKolla){
+        
+        boolean agentIDFinns = false;
+        
+        try{
+            
+        
+        String fraga = "Select Agent_ID from Agent";
+        ArrayList<String> IDLista;
+        IDLista = idb.fetchColumn(fraga);
+        for(String id : IDLista){
+           if(id.equals(rutaAttKolla.getText())){
+               agentIDFinns = true;
+               JOptionPane.showMessageDialog(null, "Det agentIDet finns redan, vänligen testa ett annat");
+           }
+           return agentIDFinns;
+        }
+       }catch(InfException e){
+           JOptionPane.showMessageDialog(null, "något gick fel");
+       
+        }
+        return agentIDFinns;
+    
     }
 
 
@@ -220,6 +247,12 @@ private static InfDB idb;
 
     private void andraKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraKnappActionPerformed
        
+        if(agentIDFinnsRedan(nyInfoTextRuta)) {
+            
+        }
+        
+        
+        
         try{
            
          String agentNamn = boxMedAgenter.getSelectedItem().toString();
