@@ -101,7 +101,7 @@ private static InfDB idb;
                agentIDFinns = true;
                JOptionPane.showMessageDialog(null, "Det agentIDet finns redan, vänligen testa ett annat");
            }
-           return agentIDFinns;
+           
         }
        }catch(InfException e){
            JOptionPane.showMessageDialog(null, "något gick fel");
@@ -248,7 +248,11 @@ private static InfDB idb;
     private void andraKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraKnappActionPerformed
       
         //här sker en kontroll med en if-sats som vid uppfyllt villkor kör resterande kod nedan.
-        if(agentIDFinnsRedan(nyInfoTextRuta)) {
+        if(agentIDFinnsRedan(nyInfoTextRuta)); {
+            
+        }
+        
+        if(Validering.kollaAnvandarnamnAgent(nyInfoTextRuta));{
             
         }
         
