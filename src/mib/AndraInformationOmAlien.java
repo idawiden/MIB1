@@ -5,6 +5,7 @@
 package mib;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -99,6 +100,37 @@ private static InfDB idb;
             JOptionPane.showMessageDialog(null, "fel");
         }
     }
+    
+    
+             
+     private boolean alienIDFinnsRedan(JTextField rutaAttKolla){
+        
+        boolean alienIDFinns = false;
+        
+        try{
+            
+        
+        String fraga = "Select Alien_ID from Alien";
+        ArrayList<String> IDLista;
+        IDLista = idb.fetchColumn(fraga);
+        for(String id : IDLista){
+           if(id.equals(rutaAttKolla.getText())){
+               alienIDFinns = true;
+               JOptionPane.showMessageDialog(null, "Det alienIDet finns redan, vänligen testa ett annat");
+           }
+           return alienIDFinns;
+        }
+       }catch(InfException e){
+           JOptionPane.showMessageDialog(null, "något gick fel");
+       
+        }
+        return alienIDFinns;
+    
+    }
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -300,6 +332,12 @@ private static InfDB idb;
     }//GEN-LAST:event_valjAlienActionPerformed
 
     private void ändraKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ändraKnappActionPerformed
+        
+        if(alienIDFinnsRedan(skrivInNytt)){
+            
+        }
+        
+        
         
         try{
         String alienNamn =  boxAlienNamn.getSelectedItem().toString();

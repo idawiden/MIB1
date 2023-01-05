@@ -54,6 +54,38 @@ private static InfDB idb;
     }
      
      
+     
+     
+       
+     private boolean agentIDFinnsRedan(JTextField rutaAttKolla){
+        
+        boolean agentIDFinns = false;
+        
+        try{
+            
+        
+        String fraga = "Select Agent_ID from Agent";
+        ArrayList<String> IDLista;
+        IDLista = idb.fetchColumn(fraga);
+        for(String id : IDLista){
+           if(id.equals(rutaAttKolla.getText())){
+               agentIDFinns = true;
+               JOptionPane.showMessageDialog(null, "Det agentIDet finns redan, vänligen testa ett annat");
+           }
+           return agentIDFinns;
+        }
+       }catch(InfException e){
+           JOptionPane.showMessageDialog(null, "något gick fel");
+       
+        }
+        return agentIDFinns;
+    
+    }
+     
+     
+   
+     
+     
      private void fyllBoxMedOmraden() {
         
         String fraga = "Select Benamning from Omrade";
@@ -228,6 +260,10 @@ private static InfDB idb;
     }    
     
      if(agentNamnFinnsRedan(agentNamn)){
+         
+     }
+     
+     if(agentIDFinnsRedan(agentID)){
          
      }
     

@@ -104,6 +104,35 @@ private static InfDB idb;
         return namnFinns;
     
     }
+     
+     
+     
+     
+          
+     private boolean alienIDFinnsRedan(JTextField rutaAttKolla){
+        
+        boolean alienIDFinns = false;
+        
+        try{
+            
+        
+        String fraga = "Select Alien_ID from Alien";
+        ArrayList<String> IDLista;
+        IDLista = idb.fetchColumn(fraga);
+        for(String id : IDLista){
+           if(id.equals(rutaAttKolla.getText())){
+               alienIDFinns = true;
+               JOptionPane.showMessageDialog(null, "Det alienIDet finns redan, vänligen testa ett annat");
+           }
+           return alienIDFinns;
+        }
+       }catch(InfException e){
+           JOptionPane.showMessageDialog(null, "något gick fel");
+       
+        }
+        return alienIDFinns;
+    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -287,6 +316,10 @@ private static InfDB idb;
         if(Validering.textFaltHarVarde(skrivInInfo)){
         }
         if(alienNamnFinnsRedan(alienNamn)) {
+        }
+        
+        if(alienIDFinnsRedan(alienID)){
+            
         }
         
         
