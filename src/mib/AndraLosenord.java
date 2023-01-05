@@ -26,7 +26,8 @@ public class AndraLosenord extends javax.swing.JFrame {
 
     private void fyllBoxMedAgentNamn() {
         
-         
+        //en metod som ställer en sql fråga mot databasen och som hämtar ut samtliga agentnamn från tabellen agent 
+        //komboboxen fylls sedan med samtliga agentnamn 
         String fraga = "SELECT namn from Agent";
         
         ArrayList <String> allaAgentNamn;
@@ -175,7 +176,7 @@ public class AndraLosenord extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nuvarandeLosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuvarandeLosenActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_nuvarandeLosenActionPerformed
 
     private void knappBytActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knappBytActionPerformed
@@ -200,7 +201,7 @@ public class AndraLosenord extends javax.swing.JFrame {
         }
         
        
-        }
+        } //här sker en ctach som vid inmatningsfel ser till att applikationen inte kraschar 
         catch(InfException e) {
             System.out.println(e.getMessage());
         }

@@ -25,7 +25,7 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
     
     
     private void fyllBoxMedNamn() { //en metod som fyller komboboxen med alla alien som finns i alientabellen 
-        String fraga = "SELECT namn from Alien"; //hämtar alla aliens från databasen som finns i alientabellen 
+        String fraga = "SELECT namn from Alien"; //hämtar samttlliga aliennamn från databasen som finns i alientabellen 
         
         ArrayList <String> allaAlienNamn; //skapar en arraylist av alienobjekt av typen string 
         
