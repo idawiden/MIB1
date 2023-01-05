@@ -73,7 +73,7 @@ private static InfDB idb;
                JOptionPane.showMessageDialog(null, "Det agentIDet finns redan, vänligen testa ett annat");
            }
           
-        }
+        } 
        }catch(InfException e){
            JOptionPane.showMessageDialog(null, "något gick fel");
        
@@ -86,7 +86,7 @@ private static InfDB idb;
    
      
      //en metod som fyller komboboxarna med benämning på område från tabellen område
-     //en sql fråga som ställs mot databasen samt hämtar samtliga namn 
+     //en sql fråga som ställs mot databasen samt hämtar ut samtliga namn på områden i tabellen 
      private void fyllBoxMedOmraden() {
         
         String fraga = "Select Benamning from Omrade";
