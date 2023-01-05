@@ -124,7 +124,7 @@ private static InfDB idb;
                alienIDFinns = true;
                JOptionPane.showMessageDialog(null, "Det alienIDet finns redan, vänligen testa ett annat");
            }
-           return alienIDFinns;
+           
         }
        }catch(InfException e){
            JOptionPane.showMessageDialog(null, "något gick fel");
