@@ -221,7 +221,9 @@ private static InfDB idb;
                 rubrikText.setText("Ny utrustning har registrerats");
             }
             
-            
+            //vid vald agent genom kombobox så ställs en sql fråga som hämtar namnet på den valda agenten som utrustningen regostreras på
+            //sedan görs det om till en int 
+            //därefter ställs en ny sql fråga till databasen som lägger in den nya datan i tabellen innehar_utrustning med hjälp av en insert metod
             String valdAgent = boxValjAgent.getSelectedItem().toString();
             String hamtaId = "Select Agent_ID from Agent where namn= " + "'" + valdAgent + "'";
             String resultat = idb.fetchSingle(hamtaId);
