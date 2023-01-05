@@ -27,7 +27,7 @@ private static InfDB idb;
         
     }
     
-    
+    //här är en metod som gör en kontroll så att det inte är möjligt att lägga till agentnamn som redan finns i systemet 
      private boolean agentNamnFinnsRedan(JTextField rutaAttKolla){
         
         boolean namnFinns = false;
@@ -56,7 +56,7 @@ private static InfDB idb;
      
      
      
-       
+     //här sker en metod som gör en kontroll så att det inte är möjligt att lägga till agent_ID som redan finns i systemet  
      private boolean agentIDFinnsRedan(JTextField rutaAttKolla){
         
         boolean agentIDFinns = false;
@@ -72,7 +72,7 @@ private static InfDB idb;
                agentIDFinns = true;
                JOptionPane.showMessageDialog(null, "Det agentIDet finns redan, vänligen testa ett annat");
            }
-           return agentIDFinns;
+          
         }
        }catch(InfException e){
            JOptionPane.showMessageDialog(null, "något gick fel");
@@ -85,7 +85,8 @@ private static InfDB idb;
      
    
      
-     
+     //en metod som fyller komboboxarna med benämning på område från tabellen område
+     //en sql fråga som ställs mot databasen samt hämtar samtliga namn 
      private void fyllBoxMedOmraden() {
         
         String fraga = "Select Benamning from Omrade";

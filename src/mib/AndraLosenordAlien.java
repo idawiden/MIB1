@@ -32,6 +32,8 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
         try {
             allaAlienNamn = idb.fetchColumn(fraga);
             
+            //här sker en for-loop som kollar igenom alla aliennamn i samligen 
+            //sedan fylls komboboxen (valjAnvandarnamnALien) med samtliga aliennamn 
             for(String namn:allaAlienNamn) {
                 valjAnvandarnamnAlien.addItem(namn);   
             }
