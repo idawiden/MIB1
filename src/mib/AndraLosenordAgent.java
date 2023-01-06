@@ -189,7 +189,7 @@ public class AndraLosenordAgent extends javax.swing.JFrame {
         
         // metod som ändrar ett lösenord hos en Agent
         
-        if(Validering.rattAntalTecken(nyttLosen)){
+        if(Validering.rattAntalTeckenPasswordField(nyttLosen)){
             
         }
         

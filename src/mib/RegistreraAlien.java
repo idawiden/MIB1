@@ -322,6 +322,10 @@ private static InfDB idb;
             
         }
         
+        if(Validering.rattAntalTeckenTextField(alienLosen)){
+            
+        }
+        
         
        try{
         String namn = alienNamn.getText(); // hämtar det angivna alienNamnet

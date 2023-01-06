@@ -270,6 +270,10 @@ private static InfDB idb;
          
     }
      
+     if(Validering.rattAntalTeckenTextField(agentLosenord)){
+         
+     }
+     
     
      
         try{

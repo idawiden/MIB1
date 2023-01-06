@@ -170,7 +170,7 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
         
         // metod som ändrar lösenordet hos en alien
         
-        if(Validering.rattAntalTecken(nyttLosenAlien)){
+        if(Validering.rattAntalTeckenPasswordField(nyttLosenAlien)){
             
         }
         
