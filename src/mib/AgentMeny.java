@@ -144,7 +144,7 @@ public class AgentMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_nyUtrustningActionPerformed
 
     private void andraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraLosenordActionPerformed
-         new AndraLosenord(idb).setVisible(true); //gör andraLosenord menyn synlig 
+         new AndraLosenordAgent(idb).setVisible(true); //gör andraLosenord menyn synlig 
         
     }//GEN-LAST:event_andraLosenordActionPerformed
 

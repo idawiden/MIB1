@@ -138,8 +138,17 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       String hamtaAgent = "Select Agent_ID from Agent where Agent_ID = " + resultat +"";
       String Agent = idb.fetchSingle(hamtaAgent);
       
+      
+      ArrayList<String> agentID;
+      
+      
+      
       String hamtaAnsvarigAgent = "Select Agent_ID from Alien where Agent_ID = " + resultat + "";
-      String ansvarigAgent = idb.fetchSingle(hamtaAnsvarigAgent);
+      agentID = idb.fetchColumn(hamtaAnsvarigAgent);
+      
+      for(String id:agentID){
+          String allaIDen = id;
+      }
        
       
       //här sker kontroller med if-satser som kollar olika villkor. Vid uppfylda villkor så ställs en delete sql fråga mot databasen som raderar agent_ID från samtliga tabeller ovan.
@@ -165,7 +174,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
        idb.delete("Delete from innehar_fordon where agent_ID = " + resultat +"");
       }
       
-      if(resultat.equals(ansvarigAgent)){
+      if(resultat.equals(allaIDen)){
       idb.delete("Delete from Alien where agent_ID = " + resultat +"");
       }
      
