@@ -54,16 +54,18 @@ private static InfDB idb;
         ändraStatusPåAgent = new javax.swing.JButton();
         valjStatusBox = new javax.swing.JComboBox<>();
         fyllBoxMedAgenter = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tilldelaAdminStatusRubrik.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         tilldelaAdminStatusRubrik.setText("Tilldela administratörstatus");
 
-        skrivInAgentRubrik.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        skrivInAgentRubrik.setText("Skriv in Agent");
+        skrivInAgentRubrik.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        skrivInAgentRubrik.setText("Välj agent");
 
-        ändraStatusPåAgent.setText("ändra status");
+        ändraStatusPåAgent.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        ändraStatusPåAgent.setText("Ändra status");
         ändraStatusPåAgent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ändraStatusPåAgentActionPerformed(evt);
@@ -77,39 +79,50 @@ private static InfDB idb;
             }
         });
 
+        jLabel1.setText("Inloggad som Administratör");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addComponent(tilldelaAdminStatusRubrik)
-                .addContainerGap(88, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(159, 159, 159)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ändraStatusPåAgent)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(fyllBoxMedAgenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(skrivInAgentRubrik)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(165, 165, 165)
+                .addComponent(fyllBoxMedAgenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(valjStatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
+                .addGap(54, 54, 54))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(ändraStatusPåAgent))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addComponent(skrivInAgentRubrik))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(tilldelaAdminStatusRubrik))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
+                .addComponent(jLabel1)
+                .addGap(28, 28, 28)
                 .addComponent(tilldelaAdminStatusRubrik)
-                .addGap(41, 41, 41)
+                .addGap(33, 33, 33)
                 .addComponent(skrivInAgentRubrik)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(valjStatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fyllBoxMedAgenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
+                    .addComponent(fyllBoxMedAgenter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valjStatusBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(ändraStatusPåAgent)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addGap(48, 48, 48))
         );
 
         pack();
@@ -178,6 +191,7 @@ private static InfDB idb;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> fyllBoxMedAgenter;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel skrivInAgentRubrik;
     private javax.swing.JLabel tilldelaAdminStatusRubrik;
     private javax.swing.JComboBox<String> valjStatusBox;

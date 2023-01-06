@@ -64,6 +64,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
         rubrik = new javax.swing.JLabel();
         valjAgentBox = new javax.swing.JComboBox<>();
         raderaKnapp = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +72,9 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
         rubrik.setText("Välj agent");
         rubrik.setToolTipText("");
 
+        valjAgentBox.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+
+        raderaKnapp.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         raderaKnapp.setText("Radera");
         raderaKnapp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,31 +82,39 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Inloggad som Administratör");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(137, Short.MAX_VALUE)
-                .addComponent(rubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(112, 112, 112))
             .addGroup(layout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(raderaKnapp)
-                    .addComponent(valjAgentBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(valjAgentBox, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(raderaKnapp)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(rubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel1)))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(rubrik)
-                .addGap(36, 36, 36)
+                .addGap(37, 37, 37)
                 .addComponent(valjAgentBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addGap(46, 46, 46)
                 .addComponent(raderaKnapp)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addGap(60, 60, 60))
         );
 
         pack();
@@ -132,8 +144,10 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       String hamtaInneharUtrustning = "Select Agent_ID from innehar_utrustning where Agent_ID =" + resultat +""; 
       String inneharUtrustning = idb.fetchSingle(hamtaInneharUtrustning);
       
+      ArrayList<String> allaFordon;
+      
       String hamtaInneharFordon = "Select agent_ID from Innehar_Fordon where agent_ID =" + resultat + "";
-      String inneharFordon = idb.fetchSingle(hamtaInneharFordon);
+      allaFordon = idb.fetchColumn(hamtaInneharFordon);
       
       String hamtaAgent = "Select Agent_ID from Agent where Agent_ID = " + resultat +"";
       String Agent = idb.fetchSingle(hamtaAgent);
@@ -145,10 +159,9 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       
       String hamtaAnsvarigAgent = "Select Agent_ID from Alien where Agent_ID = " + resultat + "";
       agentID = idb.fetchColumn(hamtaAnsvarigAgent);
+     
       
-      for(String id:agentID){
-          String allaIDen = id;
-      }
+      
        
       
       //här sker kontroller med if-satser som kollar olika villkor. Vid uppfylda villkor så ställs en delete sql fråga mot databasen som raderar agent_ID från samtliga tabeller ovan.
@@ -169,15 +182,18 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
           idb.delete("Delete from innehar_utrustning where Agent_ID = " + resultat +"");
          
       }
+      for(String fordon:allaFordon){
       
-      if(resultat.equals(inneharFordon)){
+      if(resultat.equals(fordon)){
        idb.delete("Delete from innehar_fordon where agent_ID = " + resultat +"");
       }
+      }
       
-      if(resultat.equals(allaIDen)){
+      for(String id : agentID){
+      if(resultat.equals(id)){
       idb.delete("Delete from Alien where agent_ID = " + resultat +"");
       }
-     
+      }
       //till sist sker en delete av agent_ID från tabellen agent, då dessa måste göras i rätt ordning för att inte ta bort främmande nycklar först
       //tas denna tabell bort först gpr det inte att koppla till de andra tabellerna.
       idb.delete("Delete from Agent where Agent_ID = " + resultat + "");
@@ -246,6 +262,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton raderaKnapp;
     private javax.swing.JLabel rubrik;
     private javax.swing.JComboBox<String> valjAgentBox;

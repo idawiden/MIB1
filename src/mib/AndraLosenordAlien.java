@@ -64,6 +64,7 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
         angeAnvändarnamnRubrikAlien = new javax.swing.JLabel();
         bytLosenordAlien = new javax.swing.JButton();
         valjAnvandarnamnAlien = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,6 +95,8 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Inloggad som Alien");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,31 +104,38 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(upprepaNyttLösenordRubrikAlien)
-                    .addComponent(nyttLösenRubrikAlien)
-                    .addComponent(bytLosenRubrikAlien)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(nyttLosenAlien, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(nuvarandeLosenAlien, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(nuvarandeLösenordRubrikAlien, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(upprepaNyttLosenAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(bytLosenordAlien)
-                        .addGap(67, 67, 67))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(angeAnvändarnamnRubrikAlien)
-                            .addComponent(valjAnvandarnamnAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(49, 49, 49))))
+                            .addComponent(upprepaNyttLösenordRubrikAlien)
+                            .addComponent(nyttLösenRubrikAlien)
+                            .addComponent(bytLosenRubrikAlien)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(nyttLosenAlien, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nuvarandeLosenAlien, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nuvarandeLösenordRubrikAlien, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(upprepaNyttLosenAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(bytLosenordAlien)
+                                .addGap(67, 67, 67))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(angeAnvändarnamnRubrikAlien)
+                                    .addComponent(valjAnvandarnamnAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(49, 49, 49))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(9, 9, 9)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bytLosenRubrikAlien)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nuvarandeLösenordRubrikAlien)
                     .addComponent(angeAnvändarnamnRubrikAlien))
@@ -159,6 +169,10 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
     private void bytLosenordAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bytLosenordAlienActionPerformed
         
         // metod som ändrar lösenordet hos en alien
+        
+        if(Validering.rattAntalTecken(nyttLosenAlien)){
+            
+        }
         
         try
         {
@@ -227,6 +241,7 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
     private javax.swing.JLabel angeAnvändarnamnRubrikAlien;
     private javax.swing.JLabel bytLosenRubrikAlien;
     private javax.swing.JButton bytLosenordAlien;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPasswordField nuvarandeLosenAlien;
     private javax.swing.JLabel nuvarandeLösenordRubrikAlien;
     private javax.swing.JPasswordField nyttLosenAlien;

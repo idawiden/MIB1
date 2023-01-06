@@ -55,6 +55,33 @@ public Validering(){
 
 
 
+    public static boolean rattAntalTecken (JPasswordField rutaAttKolla){
+        
+       boolean rattAntal = false;
+       
+       if(rutaAttKolla.getText().length() < 7){
+            rattAntal = true;
+           
+           
+       }else{
+           JOptionPane.showMessageDialog(null, "Lösenordet får inte innehålla mer än 6 tecken");
+       }
+        
+       return rattAntal; 
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
  
   
