@@ -45,7 +45,7 @@ public Validering(){
         if(rutaAttKolla.getText().contains("Agent")){
             giltigtNamn = true;
         }else{
-           JOptionPane.showMessageDialog(null, "Användarnamnet måste innehålla Agent, t.ex. Agnet T");
+           JOptionPane.showMessageDialog(null, "Användarnamnet måste innehålla Agent, t.ex. Agent T");
          
         }
         return giltigtNamn;
