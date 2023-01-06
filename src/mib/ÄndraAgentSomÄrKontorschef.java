@@ -29,7 +29,10 @@ private static InfDB idb;
         
         
     }
-
+    
+    
+    // metod som fyller en komboBox med agentNamn från databasen
+    
     private void fyllBoxMedAgentNamn() {
         
          
@@ -48,6 +51,8 @@ private static InfDB idb;
             JOptionPane.showMessageDialog(null, "fel");
         }
     }
+    
+    // metod som fyller en komboBox med kontorsBeteckningar från databasen
     
     private void fyllBoxMedKontorsbetecknig() {
         
@@ -160,22 +165,36 @@ private static InfDB idb;
  
     
     private void andraKontorschefKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraKontorschefKnappActionPerformed
-     try {
+     
+        // hämtar det idet på det agentNamn som valts i komboBoxen
+        
+        try {
          String agentNamn = valjAgentBox.getSelectedItem().toString();
+         
          String fraga = "SELECT Agent_ID from agent where namn = " + "'" + agentNamn + "'";
          String resultat = idb.fetchSingle(fraga);
+         
+         // konverterar agentID till datatypen Int
+         
          int agentInt = Integer.parseInt(resultat);
          int rattAgentID = agentInt;
          
          String kontorsbenämning = valjKontorsBeteckningBox.getSelectedItem().toString();
-         System.out.println(kontorsbenämning);
+        
+        
          String fraga2 = "Select Agent_id from kontorschef where Kontorsbeteckning = " + "'" + kontorsbenämning + "'";
          String resultat2 = idb.fetchSingle(fraga2);
+         
          int agentNyttID = Integer.parseInt(resultat2);
+         
+         // en uppdatering i databasen där den valda agentens agentID sätts in i Kontorschef tabellen i databasen
+         
          idb.update("UPDATE kontorschef SET Agent_ID = " + "'" + rattAgentID + "'" +"where agent_id = " + "'" +agentNyttID+"'");
          rubrik.setText("kontorschef uppdaterad");
          
-     } catch(InfException e) {
+   
+        
+        } catch(InfException e) {
          JOptionPane.showMessageDialog(null, "Gick inte att uppdatera kontorschef");
          System.out.println("Internt felmeddelande" + e.getMessage());
           
