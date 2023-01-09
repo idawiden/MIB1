@@ -144,21 +144,21 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       String hamtaInneharUtrustning = "Select Agent_ID from innehar_utrustning where Agent_ID =" + resultat +""; 
       String inneharUtrustning = idb.fetchSingle(hamtaInneharUtrustning);
       
-      ArrayList<String> allaFordon;
+      
       
       String hamtaInneharFordon = "Select agent_ID from Innehar_Fordon where agent_ID =" + resultat + "";
-      allaFordon = idb.fetchColumn(hamtaInneharFordon);
+      String inneharFordon = idb.fetchSingle(hamtaInneharFordon);
       
       String hamtaAgent = "Select Agent_ID from Agent where Agent_ID = " + resultat +"";
       String Agent = idb.fetchSingle(hamtaAgent);
       
       
-      ArrayList<String> agentID;
+     
       
       
       
-      /*String hamtaAnsvarigAgent = "Select Agent_ID from Alien where Agent_ID = " + resultat + "";
-      agentID = idb.fetchColumn(hamtaAnsvarigAgent); */
+      String hamtaAnsvarigAgent = "Select Agent_ID from Alien where Agent_ID = " + resultat + "";
+      String ansvarigAgent = idb.fetchSingle(hamtaAnsvarigAgent); 
      
       
       
@@ -182,18 +182,20 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
           idb.delete("Delete from innehar_utrustning where Agent_ID = " + resultat +"");
          
       }
-      for(String fordon:allaFordon){
       
-      if(resultat.equals(fordon)){
+      
+      if(resultat.equals(inneharFordon)){
        idb.delete("Delete from innehar_fordon where agent_ID = " + resultat +"");
       }
-      }
       
-      /* for(String id : agentID){
-      if(resultat.equals(id)){
+      
+       
+      if(resultat.equals(ansvarigAgent)){
       idb.delete("Delete from Alien where agent_ID = " + resultat +"");
       }
-      } */
+      
+      
+      
       //till sist sker en delete av agent_ID från tabellen agent, då dessa måste göras i rätt ordning för att inte ta bort främmande nycklar först
       //tas denna tabell bort först gpr det inte att koppla till de andra tabellerna.
       idb.delete("Delete from Agent where Agent_ID = " + resultat + "");
