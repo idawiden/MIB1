@@ -146,6 +146,7 @@ private static InfDB idb;
             }
         });
 
+        infoRubrik.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         infoRubrik.setText("Vad vill du ändra?");
 
         kategoriBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Agent_ID", "Namn", "Telefon", "Administrator", "Losenord", "Omrade" }));
@@ -229,7 +230,7 @@ private static InfDB idb;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(kategoriBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nyInfoTextRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(valjOmradeKnapp)
                     .addComponent(ValjStatusKnapp))

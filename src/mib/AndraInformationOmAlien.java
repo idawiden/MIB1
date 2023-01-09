@@ -171,7 +171,7 @@ private static InfDB idb;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        rubrikVadVillAndra.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        rubrikVadVillAndra.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         rubrikVadVillAndra.setText("Vad vill du ändra?");
 
         valjInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alien_ID", "Losenord", "Plats", "Namn", "Ansvarig_Agent", "Telefon", "Ras" }));

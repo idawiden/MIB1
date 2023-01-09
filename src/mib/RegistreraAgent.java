@@ -259,15 +259,9 @@ private static InfDB idb;
       if(Validering.textFaltHarVarde(agentTelefon)){ // här sker en validering med en if-sats av täxtfältet för inmatning av telefonnummer, då fältet inte får vara tom vid registrering av agent 
     }    
     
-     if(agentNamnFinnsRedan(agentNamn)){
-         
-     }
      
-     if(agentIDFinnsRedan(agentID)){
-         
-     }
      
-   
+ 
      
      if(Validering.rattAntalTeckenTextField(agentLosenord)){
          
@@ -293,20 +287,19 @@ private static InfDB idb;
             
             String adminStatus = boxAdminstatus.getSelectedItem().toString(); //hämtar det som finns i komboboxen 
             
-             if(Validering.kollaAnvandarnamnAgent(agentNamn)){
-             }
+             
                        
              
     
-             else if(Validering.kollaAnvandarnamnAgent(agentID)== true) {
+        if(!Validering.kollaAnvandarnamnAgent(agentNamn) && !agentNamnFinnsRedan(agentNamn) && !agentIDFinnsRedan(agentID)){
             String sqlQuery = "Insert into Agent " + " Values (" + agentId + ",'"+ namn + "', '" + telefonnummer +  "'" + ", curdate(),'" + adminStatus +"'," + "'" + losen + "'," + rattOmrade + ");"; //en metod som lägger till alla värden i agent tabellen 
             idb.insert(sqlQuery);
-             }
+        
             
              
             rubrik.setText("En ny agent är registrerad i systemet"); //här updateras rubriken till det angivna 
         
-        
+        }
             
             
         }catch(InfException e){

@@ -86,7 +86,7 @@
                   <Component id="kategoriBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="nyInfoTextRuta" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="valjOmradeKnapp" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="ValjStatusKnapp" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -132,6 +132,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="infoRubrik">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Helvetica Neue" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Vad vill du &#xe4;ndra?"/>
       </Properties>
     </Component>

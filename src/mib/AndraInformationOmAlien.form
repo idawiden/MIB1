@@ -149,7 +149,7 @@
     <Component class="javax.swing.JLabel" name="rubrikVadVillAndra">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Helvetica Neue" size="18" style="0"/>
+          <Font name="Helvetica Neue" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Vad vill du &#xe4;ndra?"/>
       </Properties>
