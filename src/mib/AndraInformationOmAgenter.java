@@ -252,9 +252,6 @@ private static InfDB idb;
             
         }
         
-        if(Validering.kollaAnvandarnamnAgent(nyInfoTextRuta));{
-            
-        }
         
         
         //agentNamn och kategori håller namn på samtliga agenter samt kategorival som finns att göra i komboboxen 
@@ -276,10 +273,16 @@ private static InfDB idb;
              
          }
          
-         if(kategori.equals("Namn")){
+        
+            
+        
+        
+         
+         if(kategori.equals("Namn")&& !Validering.kollaAnvandarnamnAgent(nyInfoTextRuta)){
         idb.update("UPDATE Agent SET Namn = "+ "'"+ nyInfo + "'" + " where namn = "+ "'" + agentNamn +"'");
         infoRubrik.setText("Ny ändring har gjorts");
          }
+        
          
          if(kategori.equals("Telefon")){
         idb.update("UPDATE Agent SET Telefon = "+ "'"+ nyInfo + "'" + " where namn = "+ "'" + agentNamn +"'");
@@ -299,6 +302,13 @@ private static InfDB idb;
         if(kategori.equals("Status")){
             String hamtaStatus = boxMedStatus.getSelectedItem().toString();
             idb.update("UPDATE Agent set Administrator =" + "'"+ hamtaStatus + "'" + " where namn = " +"'"+ agentNamn + "'" );
+            infoRubrik.setText("Ny ändring har gjorts");
+        }
+        
+        if(kategori.equals("Losenord")) {
+        idb.update("UPDATE Agent SET Losenord = " + "'" + nyInfo + "'" + " where namn = " + "'" + agentNamn + "'");
+        infoRubrik.setText("Ny ändring har gjorts");
+  
         }
         
        //Vid uppfylda villkor ändras rubriken till meddelandet nedan.
