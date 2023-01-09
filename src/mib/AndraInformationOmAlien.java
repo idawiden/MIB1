@@ -374,7 +374,7 @@ private static InfDB idb;
         
         
         if(egenskaper.equals("Losenord")){
-          idb.update("UPDATE alien Set Losenord = " + nyInfo + " where namn = " + "'" + alienNamn +"'");
+          idb.update("UPDATE alien Set Losenord = " +"'" + nyInfo + "'" + " where namn = " + "'" + alienNamn +"'");
           rubrikVadVillAndra.setText("Ny ändring har gjorts");  
             
         }
