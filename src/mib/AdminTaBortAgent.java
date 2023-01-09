@@ -127,7 +127,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       
       //sql frågor som ställs mot databasen för att hämta ut agent_ID frpn olika tabeller.
       //samt där namn ska vara samma som det valda agent namnet i komboboxen.  
-      String AgentID = "Select Agent_ID from Agent where namn = " + "'" + valdAgent + "";
+      String AgentID = "Select Agent_ID from Agent where namn = " + "'" + valdAgent + "'";
       String resultat = idb.fetchSingle(AgentID);
       int agentIDInt = Integer.parseInt(resultat);
       
@@ -136,7 +136,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       String faltagent = idb.fetchSingle(hamtaFaltAgent);
       
       String hamtaKontorschef = "Select Agent_ID from Kontorschef where Agent_ID =" + resultat +"";
-      String kontorschef = idb.fetchSingle(hamtaKontorschef);
+      String kontorschef = idb.fetchSingle(hamtaKontorschef); 
       
       String hamtaOmradeschef = "Select Agent_ID from Omradeschef where Agent_ID =" + resultat +"";
       String omradeschef = idb.fetchSingle(hamtaOmradeschef);
@@ -157,8 +157,8 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       
       
       
-      String hamtaAnsvarigAgent = "Select Agent_ID from Alien where Agent_ID = " + resultat + "";
-      agentID = idb.fetchColumn(hamtaAnsvarigAgent);
+      /*String hamtaAnsvarigAgent = "Select Agent_ID from Alien where Agent_ID = " + resultat + "";
+      agentID = idb.fetchColumn(hamtaAnsvarigAgent); */
      
       
       
@@ -189,11 +189,11 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       }
       }
       
-      for(String id : agentID){
+      /* for(String id : agentID){
       if(resultat.equals(id)){
       idb.delete("Delete from Alien where agent_ID = " + resultat +"");
       }
-      }
+      } */
       //till sist sker en delete av agent_ID från tabellen agent, då dessa måste göras i rätt ordning för att inte ta bort främmande nycklar först
       //tas denna tabell bort först gpr det inte att koppla till de andra tabellerna.
       idb.delete("Delete from Agent where Agent_ID = " + resultat + "");
