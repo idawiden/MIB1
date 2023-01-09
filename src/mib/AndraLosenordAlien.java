@@ -21,6 +21,7 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
     public AndraLosenordAlien(InfDB idb) {
         initComponents();
         this.idb = idb;
+        fyllBoxMedNamn();
     }
     
     
