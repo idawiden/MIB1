@@ -313,8 +313,8 @@ private static InfDB idb;
         if(Validering.textFaltHarVarde(alienLosen)){
         }
            
-        if(Validering.textFaltHarVarde(skrivInInfo)){
-        }
+        
+        
         if(alienNamnFinnsRedan(alienNamn)) {
         }
         
@@ -374,23 +374,33 @@ private static InfDB idb;
        String extraInfoB = skrivInInfo.getText(); // hämtar extra information till rasen
        int extraInfoBInt = Integer.parseInt(extraInfoB); // extra informationen är av datatypen Int och deklararas därför till en int
        
+       
+      
+        
+       
        //insert till databasen och ras tabellerna, beroende på vilken ras som valts
        String sqlras = "Insert into "+ ras + " Values("+rattID + ", "+ extraInfoBInt +");";
        idb.insert(sqlras);
        
+       rubrik.setText("En ny Alien är registrerad");
+       
+       
        // om den valda rasen är worm ska ingen extra information läggas till, därav if-satsen
        if(ras.equals("worm")){
-           String sqlRasWorm = "Insert into" +ras + " Values("+rattID+");";
+           String sqlRasWorm = "Insert into "+ ras + " Values("+rattID + ");";
            idb.insert(sqlRasWorm);
-       }
+       
        
         rubrik.setText("En ny alien är registrerad i systemet");
-      
+       }
+       
+       
         }
         catch(InfException e) {
                 JOptionPane.showMessageDialog(null, "Något gick fel");
                 System.out.println("internt felmeddelande" + e.getMessage());
                 }
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void valjRasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjRasActionPerformed
