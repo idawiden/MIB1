@@ -270,6 +270,10 @@ private static InfDB idb;
     
      
         try{
+            
+             if(!Validering.kollaAnvandarnamnAgent(agentNamn) && !agentNamnFinnsRedan(agentNamn) && !agentIDFinnsRedan(agentID)){
+            
+            
             String namn = agentNamn.getText(); //hämtar det inmatade agentnamnet i textrutan agentNamn
             String id = agentID.getText();//hämtar id i textrutan agentID
             int idInt = Integer.parseInt(id); //här görs agentID om till en integer 
@@ -291,15 +295,25 @@ private static InfDB idb;
                        
              
     
-        if(!Validering.kollaAnvandarnamnAgent(agentNamn) && !agentNamnFinnsRedan(agentNamn) && !agentIDFinnsRedan(agentID)){
+       
+        
+         
+            
+            
             String sqlQuery = "Insert into Agent " + " Values (" + agentId + ",'"+ namn + "', '" + telefonnummer +  "'" + ", curdate(),'" + adminStatus +"'," + "'" + losen + "'," + rattOmrade + ");"; //en metod som lägger till alla värden i agent tabellen 
             idb.insert(sqlQuery);
+            
+                        rubrik.setText("En ny agent är registrerad i systemet"); //här updateras rubriken till det angivna 
+        }
         
+        else{
+            rubrik.setText("Testa igen");
+        }
             
              
-            rubrik.setText("En ny agent är registrerad i systemet"); //här updateras rubriken till det angivna 
+
         
-        }
+        
             
             
         }catch(InfException e){
