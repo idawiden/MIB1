@@ -44,7 +44,7 @@ private static InfDB idb;
             JOptionPane.showMessageDialog(null, "fel");
         }
         
-        
+     ////en metod som ställer en sql fråga mot databasen som hämtar ut samtliga aliennamn från tabellen alien som sedan fyller komboxoen med namn vid instansiering.   
         
       
         
@@ -65,6 +65,7 @@ private static InfDB idb;
         valjRubrik = new javax.swing.JLabel();
         boxMedAlienNamn = new javax.swing.JComboBox<>();
         valjKnapp = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,29 +82,37 @@ private static InfDB idb;
             }
         });
 
+        jLabel1.setText("Inloggad som Administratör");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(143, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(138, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(valjRubrik)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(boxMedAlienNamn, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(valjKnapp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(163, 163, 163))
+                .addGap(168, 168, 168))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1)
+                .addGap(51, 51, 51)
                 .addComponent(valjRubrik)
-                .addGap(39, 39, 39)
+                .addGap(41, 41, 41)
                 .addComponent(boxMedAlienNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(valjKnapp)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,27 +123,31 @@ private static InfDB idb;
 
         try{
         String valdAlien = boxMedAlienNamn.getSelectedItem().toString();
+     //valdAlien håller de aliennamn som finns att välja bland i komboboxen 
       
+     //sql frågor som ställs mot databasen för att hämta ut alien_ID från olika tabeller.
+     //samt där namn ska vara samma som det valda aliennamnet i komboboxen.   
       
       String AlienID = "Select Alien_ID from Alien where namn =" + "'" + valdAlien + "'";
       String resultat = idb.fetchSingle(AlienID);
       
       
       String hamtaSquid = "Select Alien_ID from Squid where Alien_ID =" + resultat+"";
-      System.out.println(hamtaSquid);
+     
       
       String squid = idb.fetchSingle(hamtaSquid);
+      
       String hamtaWorm = "Select Alien_ID from Worm where Alien_ID =" + resultat+"";
       String worm = idb.fetchSingle(hamtaWorm);
+      
       String hamtaBoglodite = "Select Alien_ID from Boglodite where Alien_ID =" + resultat+"";
       String boglodite = idb.fetchSingle(hamtaBoglodite);
       
       
-      
+      //här sker kontroller med if-satser som kollar olika villkor. Vid uppfylda villkor så ställs en delete sql fråga mot databasen som raderar alien_ID från samtliga tabeller ovan.
       if(resultat.equals(squid)){
       idb.delete("Delete from Squid where Alien_ID ="+ resultat+ "");
-       
-              
+             
       }
              
       if(resultat.equals(worm)){
@@ -147,18 +160,20 @@ private static InfDB idb;
        
       }
       
+      //till sist sker en delete av alien_ID från tabellen alien, då dessa måste göras i rätt ordning för att inte ta bort främmande nycklar först
+      //tas denna tabell bort först går det inte att koppla alien_ID till de andra tabellerna och därmed kommer inte alien_ID tas bort från resterande tabeller.
+
       idb.delete("Delete from Alien where Alien_ID =" + resultat +"");
       
-      
+      //om if-satserna uppfylls så kommer rubriken ändras till meddelandet nedan.
       valjRubrik.setText("Den valda alien raderades");
       
       
-      // idb.delete("delete from alien, boglodite, worm, squid from alien inner join table boglodite on Alien.Alien_ID = boglodite.Alien_ID join squid on boglodite.Alien_ID = squid.Alien_ID join worm on squid.Alien_ID = worm.Alien.ID where namn = " + "'" + valdAlien + "'" + "and Alien_ID = " + resultat + "'");
-              
       
-    
+      
+    //en cactch som fångar upp evetuella inmatningsfel så att applikationen inte "kraschar".
         }catch(InfException e) {
-   
+            //ett felmeddelande skrivs även ut vid misslyckat försök till ta bort alien ur system.
             JOptionPane.showMessageDialog(null, "något gick fel");
             System.out.println("internt felmeddelande" + e.getMessage());
         }
@@ -202,6 +217,7 @@ private static InfDB idb;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> boxMedAlienNamn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton valjKnapp;
     private javax.swing.JLabel valjRubrik;
     // End of variables declaration//GEN-END:variables

@@ -33,6 +33,7 @@ private static InfDB idb;
         registreraAlienKnapp = new javax.swing.JButton();
         redigeraInfoKnapp = new javax.swing.JButton();
         taBortAlienKnapp = new javax.swing.JButton();
+        visaVemSomArInloggadRubrik = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,6 +50,11 @@ private static InfDB idb;
 
         redigeraInfoKnapp.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         redigeraInfoKnapp.setText("Redigera alien-information");
+        redigeraInfoKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redigeraInfoKnappActionPerformed(evt);
+            }
+        });
 
         taBortAlienKnapp.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         taBortAlienKnapp.setText("Ta bort alien");
@@ -58,6 +64,8 @@ private static InfDB idb;
             }
         });
 
+        visaVemSomArInloggadRubrik.setText("Inloggad som Administratör");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -65,6 +73,7 @@ private static InfDB idb;
             .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(visaVemSomArInloggadRubrik)
                     .addComponent(redigeraInfoKnapp)
                     .addComponent(alienRubrik)
                     .addGroup(layout.createSequentialGroup()
@@ -76,9 +85,11 @@ private static InfDB idb;
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(11, 11, 11)
+                .addComponent(visaVemSomArInloggadRubrik)
+                .addGap(18, 18, 18)
                 .addComponent(alienRubrik)
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registreraAlienKnapp)
                     .addComponent(taBortAlienKnapp))
@@ -91,12 +102,16 @@ private static InfDB idb;
     }// </editor-fold>//GEN-END:initComponents
 
     private void registreraAlienKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registreraAlienKnappActionPerformed
-       
+new RegistreraAlien(idb).setVisible(true);       
     }//GEN-LAST:event_registreraAlienKnappActionPerformed
 
     private void taBortAlienKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taBortAlienKnappActionPerformed
          new AdminTaBortAlien(idb).setVisible(true);
     }//GEN-LAST:event_taBortAlienKnappActionPerformed
+
+    private void redigeraInfoKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redigeraInfoKnappActionPerformed
+        new AndraInformationOmAlien(idb).setVisible(true);
+    }//GEN-LAST:event_redigeraInfoKnappActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,5 +153,6 @@ private static InfDB idb;
     private javax.swing.JButton redigeraInfoKnapp;
     private javax.swing.JButton registreraAlienKnapp;
     private javax.swing.JButton taBortAlienKnapp;
+    private javax.swing.JLabel visaVemSomArInloggadRubrik;
     // End of variables declaration//GEN-END:variables
 }

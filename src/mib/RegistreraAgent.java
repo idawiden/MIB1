@@ -21,11 +21,13 @@ private static InfDB idb;
     public RegistreraAgent(InfDB idb) {
         initComponents();
         this.idb = idb;
+        fyllBoxMedOmraden();
+                
         
         
     }
     
-    
+    //här är en metod som gör en kontroll så att det inte är möjligt att lägga till agentnamn som redan finns i systemet 
      private boolean agentNamnFinnsRedan(JTextField rutaAttKolla){
         
         boolean namnFinns = false;
@@ -39,9 +41,9 @@ private static InfDB idb;
         for(String namn : namnLista){
            if(namn.equals(rutaAttKolla.getText())){
                namnFinns = true;
-               JOptionPane.showMessageDialog(null, "Det namnet finns redan");
+               JOptionPane.showMessageDialog(null, "Det användarnamnet finns redan");
            }
-           return namnFinns;
+          
         }
        }catch(InfException e){
            JOptionPane.showMessageDialog(null, "något gick fel");
@@ -50,6 +52,60 @@ private static InfDB idb;
         return namnFinns;
     
     }
+     
+     
+     
+     
+     //här sker en metod som gör en kontroll så att det inte är möjligt att lägga till agent_ID som redan finns i systemet  
+     private boolean agentIDFinnsRedan(JTextField rutaAttKolla){
+        
+        boolean agentIDFinns = false;
+        
+        try{
+            
+        
+        String fraga = "Select Agent_ID from Agent";
+        ArrayList<String> IDLista;
+        IDLista = idb.fetchColumn(fraga);
+        for(String id : IDLista){
+           if(id.equals(rutaAttKolla.getText())){
+               agentIDFinns = true;
+               JOptionPane.showMessageDialog(null, "Det agentIDet finns redan, vänligen testa ett annat");
+           }
+          
+        } 
+       }catch(InfException e){
+           JOptionPane.showMessageDialog(null, "något gick fel");
+       
+        }
+        return agentIDFinns;
+    
+    }
+     
+     
+   
+     
+     //en metod som fyller komboboxarna med benämning på område från tabellen område
+     //en sql fråga som ställs mot databasen samt hämtar ut samtliga namn på områden i tabellen 
+     private void fyllBoxMedOmraden() {
+        
+        String fraga = "Select Benamning from Omrade";
+        
+        ArrayList<String> omraden ;
+        
+        try{
+        
+        omraden = idb.fetchColumn(fraga);
+        
+        for(String omradesNamn : omraden) {
+            boxValjOmrade.addItem(omradesNamn);
+        }
+        
+        }catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "fel");
+        
+        }
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,7 +129,7 @@ private static InfDB idb;
         boxAdminstatus = new javax.swing.JComboBox<>();
         Registrera = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        omrade = new javax.swing.JTextField();
+        boxValjOmrade = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,9 +171,6 @@ private static InfDB idb;
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
@@ -126,17 +179,6 @@ private static InfDB idb;
                             .addComponent(jLabel7))
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(agentLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Registrera)
-                                        .addGap(33, 33, 33))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(boxAdminstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(175, 175, 175))))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGap(33, 33, 33)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,13 +188,26 @@ private static InfDB idb;
                                             .addComponent(agentID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
+                                        .addComponent(agentTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(agentLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Registrera)
+                                        .addGap(33, 33, 33))
+                                    .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(omrade, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(agentTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
+                                            .addComponent(boxAdminstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(boxValjOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(128, 128, 128))))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(rubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(rubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,7 +229,7 @@ private static InfDB idb;
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(omrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boxValjOmrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boxAdminstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -193,19 +248,32 @@ private static InfDB idb;
 
     private void RegistreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistreraActionPerformed
     
-    if(Validering.textFaltHarVarde(agentID));{ //sker en validering med en if-sats av textfältet för inmatningen av agentID, då textfältet inte får vara tom vid registrering av agent 
+    if(Validering.textFaltHarVarde(agentID)){ //sker en validering med en if-sats av textfältet för inmatningen av agentID, då textfältet inte får vara tom vid registrering av agent 
     }   
-    if(Validering.textFaltHarVarde(agentNamn));{ //här sker en validering med en if-sats av textfältet för inmatning av agentnamn, då fältet inte får vara tom vid registrering av agent 
+    if(Validering.textFaltHarVarde(agentNamn)){ //här sker en validering med en if-sats av textfältet för inmatning av agentnamn, då fältet inte får vara tom vid registrering av agent 
     }    
-     if(Validering.textFaltHarVarde(agentLosenord));{ //här sker en validering med en if-sats av textfältet för inmatning av agentlösenord, då fältet inte får vara tom vid registrering av agent 
+    
+
+     if(Validering.textFaltHarVarde(agentLosenord)){ //här sker en validering med en if-sats av textfältet för inmatning av agentlösenord, då fältet inte får vara tom vid registrering av agent 
     }    
-      if(Validering.textFaltHarVarde(agentTelefon));{ // här sker en validering med en if-sats av täxtfältet för inmatning av telefonnummer, då fältet inte får vara tom vid registrering av agent 
+      if(Validering.textFaltHarVarde(agentTelefon)){ // här sker en validering med en if-sats av täxtfältet för inmatning av telefonnummer, då fältet inte får vara tom vid registrering av agent 
     }    
-     if(Validering.textFaltHarVarde(omrade));{ //här sker en validering med en if-sats av textfältet för inmatning av omrad, då fältet inte får vara tomt vid registrering av agent 
-    }    
+    
      if(agentNamnFinnsRedan(agentNamn)){
          
      }
+     
+     if(agentIDFinnsRedan(agentID)){
+         
+     }
+     if(Validering.kollaAnvandarnamnAgent(agentNamn)){
+         
+    }
+     
+     if(Validering.rattAntalTeckenTextField(agentLosenord)){
+         
+     }
+     
     
      
         try{
@@ -218,7 +286,7 @@ private static InfDB idb;
             
             String losen = agentLosenord.getText(); //hämtar det inskrivna lösenordet i textrutan agentLosenord 
             
-            String agentOmrade = omrade.getText(); //hämtar det inmatade området 
+            String agentOmrade = boxValjOmrade.getSelectedItem().toString(); //hämtar det inmatade området 
             String fragaOmrade = "SELECT Omrades_ID from omrade where Benamning =" + "'" + agentOmrade + "'"; //hämtar områdesID från databasen där benämning är det som matas in i orade text rutan 
             String resultatOmrade = idb.fetchSingle(fragaOmrade);
             int omrade = parseInt(resultatOmrade); //här görs område om till en int 
@@ -291,13 +359,13 @@ private static InfDB idb;
     private javax.swing.JTextField agentNamn;
     private javax.swing.JTextField agentTelefon;
     private javax.swing.JComboBox<String> boxAdminstatus;
+    private javax.swing.JComboBox<String> boxValjOmrade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField omrade;
     private javax.swing.JLabel rubrik;
     // End of variables declaration//GEN-END:variables
 }

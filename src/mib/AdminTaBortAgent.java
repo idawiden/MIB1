@@ -47,7 +47,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
         }catch(InfException e) {
             JOptionPane.showMessageDialog(null, "fel");
         }}
-        
+        //en metod som först ställer en sql fråga mot databasen som hämtar ut samtliga namn från tabellen agent som sedan fyller komboxoen vid instansiering.
         
         
       
@@ -64,6 +64,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
         rubrik = new javax.swing.JLabel();
         valjAgentBox = new javax.swing.JComboBox<>();
         raderaKnapp = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +72,9 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
         rubrik.setText("Välj agent");
         rubrik.setToolTipText("");
 
+        valjAgentBox.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+
+        raderaKnapp.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         raderaKnapp.setText("Radera");
         raderaKnapp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,31 +82,39 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Inloggad som Administratör");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(137, Short.MAX_VALUE)
-                .addComponent(rubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(112, 112, 112))
             .addGroup(layout.createSequentialGroup()
-                .addGap(158, 158, 158)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(raderaKnapp)
-                    .addComponent(valjAgentBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(valjAgentBox, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(raderaKnapp)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(rubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel1)))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(rubrik)
-                .addGap(36, 36, 36)
+                .addGap(37, 37, 37)
                 .addComponent(valjAgentBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addGap(46, 46, 46)
                 .addComponent(raderaKnapp)
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addGap(60, 60, 60))
         );
 
         pack();
@@ -110,59 +122,88 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
 
     private void raderaKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raderaKnappActionPerformed
         try{
-        String valdAgent = valjAgentBox.getSelectedItem().toString();
+       String valdAgent = valjAgentBox.getSelectedItem().toString();
+       //valdAgent håller de agentnamn som finns att välja bland i komboboxen 
+      
+      //sql frågor som ställs mot databasen för att hämta ut agent_ID frpn olika tabeller.
+      //samt där namn ska vara samma som det valda agent namnet i komboboxen.  
+      String AgentID = "Select Agent_ID from Agent where namn = " + "'" + valdAgent + "'";
+      String resultat = idb.fetchSingle(AgentID);
+      int agentIDInt = Integer.parseInt(resultat);
       
       
-     String AgentID = "Select Agent_ID from Agent where namn =" + "'" + valdAgent + "'";
-     String resultat = idb.fetchSingle(AgentID);
-      
-      
-      String hamtaFaltAgent = "Select Agent_ID from faltagent where Agent_ID =" + resultat+"";
-      System.out.println(hamtaFaltAgent);
-      
+      String hamtaFaltAgent = "Select Agent_ID from Faltagent where Agent_ID = " + resultat+ "";
       String faltagent = idb.fetchSingle(hamtaFaltAgent);
       
-      String hamtaKontorschef = "Select Agent_ID from kontorschef where Agent_ID =" + resultat+"";
+      String hamtaKontorschef = "Select Agent_ID from Kontorschef where Agent_ID =" + resultat +"";
       String kontorschef = idb.fetchSingle(hamtaKontorschef);
-      String hamtaOmradeschef = "Select Agent_ID from omradeschef where Agent_ID =" + resultat+"";
+      
+      String hamtaOmradeschef = "Select Agent_ID from Omradeschef where Agent_ID =" + resultat +"";
       String omradeschef = idb.fetchSingle(hamtaOmradeschef);
-      String hamtaInneharUtrustning = "Select Agent_ID from innehar_utrustning where Agent_ID =" + resultat+""; 
+      
+      String hamtaInneharUtrustning = "Select Agent_ID from innehar_utrustning where Agent_ID =" + resultat +""; 
       String inneharUtrustning = idb.fetchSingle(hamtaInneharUtrustning);
-      String hamtaInneharFordon = "Select agent_ID from innehar_Fordon where agent_ID =" + resultat +"";
-      String inneharFordon = idb.fetchSingle(hamtaInneharFordon);
-      String hamtaAgent = "Select Agent_ID from Agent where Agent_ID =" + resultat +"";
+      
+      ArrayList<String> allaFordon;
+      
+      String hamtaInneharFordon = "Select agent_ID from Innehar_Fordon where agent_ID =" + resultat + "";
+      allaFordon = idb.fetchColumn(hamtaInneharFordon);
+      
+      String hamtaAgent = "Select Agent_ID from Agent where Agent_ID = " + resultat +"";
       String Agent = idb.fetchSingle(hamtaAgent);
       
       
+      ArrayList<String> agentID;
       
+      
+      
+      String hamtaAnsvarigAgent = "Select Agent_ID from Alien where Agent_ID = " + resultat + "";
+      agentID = idb.fetchColumn(hamtaAnsvarigAgent);
+     
+      
+      
+       
+      
+      //här sker kontroller med if-satser som kollar olika villkor. Vid uppfylda villkor så ställs en delete sql fråga mot databasen som raderar agent_ID från samtliga tabeller ovan.
       if(resultat.equals(faltagent)){
-      idb.delete("Delete from faltagent where Agent_ID =" + resultat +"");
+      idb.delete("Delete from faltagent where Agent_ID = "  + resultat + "");
       }
       
       
       if(resultat.equals(kontorschef)){
-          idb.delete("Delete from kontorschef where Agent_ID =" + resultat +"");
+          idb.delete("Delete from kontorschef where Agent_ID = " + resultat +"");
       }
       
       if(resultat.equals(omradeschef)){
-          idb.delete("Delete from omradeschef where Agent_ID =" + resultat +"");
+          idb.delete("Delete from omradeschef where Agent_ID = " + resultat +"");
       }
       
       if(resultat.equals(inneharUtrustning)){
-          idb.delete("Delete from innehar_utrustning where Agent_ID =" + resultat +"");
+          idb.delete("Delete from innehar_utrustning where Agent_ID = " + resultat +"");
          
       }
+      for(String fordon:allaFordon){
       
-      if(resultat.equals(inneharFordon)){
-          idb.delete("Delete from innehar_fordon where agent_ID =" + resultat +"");
+      if(resultat.equals(fordon)){
+       idb.delete("Delete from innehar_fordon where agent_ID = " + resultat +"");
       }
-     
-      idb.delete("Delete from Agent where Agent_ID =" + resultat +"");
+      }
       
+      for(String id : agentID){
+      if(resultat.equals(id)){
+      idb.delete("Delete from Alien where agent_ID = " + resultat +"");
+      }
+      }
+      //till sist sker en delete av agent_ID från tabellen agent, då dessa måste göras i rätt ordning för att inte ta bort främmande nycklar först
+      //tas denna tabell bort först gpr det inte att koppla till de andra tabellerna.
+      idb.delete("Delete from Agent where Agent_ID = " + resultat + "");
+      
+      //om if-satserna uppfylls så kommer rubriken ändras till meddelandet nedan.
       rubrik.setText("Den valda agenten raderades");
       
+      //en cactch som fångar upp evetuella inmatningsfel så att applikationen inte "kraschar".
       }catch(InfException e) {
-   
+            //ett felmeddelande skrivs även ut vid misslyckat försök till ta bort agent ur system.
             JOptionPane.showMessageDialog(null, "något gick fel");
             System.out.println("internt felmeddelande" + e.getMessage());
               
@@ -221,6 +262,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton raderaKnapp;
     private javax.swing.JLabel rubrik;
     private javax.swing.JComboBox<String> valjAgentBox;

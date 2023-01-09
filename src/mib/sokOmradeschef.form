@@ -28,7 +28,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="visaOmradeschefHar" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="valjKontor" min="-2" max="-2" attributes="0"/>
+                      <Component id="valjOmrade" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                       <Component id="sokKnapp" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -48,7 +48,7 @@
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="valjKontor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="valjOmrade" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="sokKnapp" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
@@ -69,10 +69,10 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="V&#xe4;lj omr&#xe5;deskontor"/>
+        <Property name="text" type="java.lang.String" value="V&#xe4;lj omr&#xe5;de"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="valjKontor">
+    <Component class="javax.swing.JComboBox" name="valjOmrade">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>

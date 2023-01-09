@@ -39,7 +39,7 @@ private static InfDB idb;
             JOptionPane.showMessageDialog(null, "fel");
         }
         
-        
+       //en metod som ställer en sql fråga mot databasen som hämtar ut samtliga aliennamn från tabellen alien som sedan fyller komboxoen med samtliga namn i databasen vid instansiering.    
         
     }
 
@@ -148,7 +148,7 @@ private static InfDB idb;
     }// </editor-fold>//GEN-END:initComponents
 
     private void andraLosenordAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraLosenordAlienActionPerformed
-       new AndraLosenordAlien(idb).setVisible(true);
+       new AndraLosenordAlien(idb).setVisible(true); //gör andraLosenordAlien menyn synlig 
     }//GEN-LAST:event_andraLosenordAlienActionPerformed
 
     private void visaOmradeschefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visaOmradeschefActionPerformed
@@ -156,12 +156,14 @@ private static InfDB idb;
         visaAlienOmradeschef.setText("");
         try{
         String valtNamn = valjInloggadAlien.getSelectedItem().toString();
-        
+        //valtNamn håller samtliga alien som går att välja på i komboboxen.
+        //sql fråga ställs mot databasen som hämtar ut vilken agent som är områdeschef för ett område för den specifika alien 
         String fraga = "SELECT Agent.Namn from Agent join Omradeschef on Agent.Agent_ID = Omradeschef.Agent_ID join Alien on Alien.Plats = Omradeschef.Omrade where Alien.Namn = " + "'" + valtNamn + "'" ;
         String resultat = idb.fetchSingle(fraga);
         visaAlienOmradeschef.append(resultat);
-        
-        
+        //metod för att visa alien som är områdeschef 
+    
+    //en catch som fångar inmatningsfel som gör att applikationen inte "kraschar"
     }catch(InfException e) {
     JOptionPane.showMessageDialog(null, "Något gick fel");
                     System.out.println("Internt felmeddelande" + e.getMessage());

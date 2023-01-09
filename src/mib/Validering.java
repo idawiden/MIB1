@@ -7,7 +7,6 @@ package mib;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 import java.util.ArrayList;
 
 /**
@@ -33,24 +32,78 @@ public Validering(){
 }
     
     
+    
+    
+    
 
 
 
+    public static boolean kollaAnvandarnamnAgent (JTextField rutaAttKolla){
+
+        boolean giltigtNamn = false;
+        
+        if(rutaAttKolla.getText().contains("Agent")){
+            giltigtNamn = true;
+        }else{
+           JOptionPane.showMessageDialog(null, "Användarnamnet måste innehålla Agent, t.ex. Agent T");
+         
+        }
+        return giltigtNamn;
+
+    }
+
+
+
+
+    public static boolean rattAntalTeckenPasswordField (JPasswordField rutaAttKolla){
+        
+       boolean rattAntal = false;
+       
+       if(rutaAttKolla.getText().length() < 7){
+            rattAntal = true;
+           
+           
+       }else{
+           JOptionPane.showMessageDialog(null, "Lösenordet får inte innehålla mer än 6 tecken");
+       }
+        
+       return rattAntal; 
+        
+        
+        
+    }
+    
+    
+    
+    
+    public static boolean rattAntalTeckenTextField (JTextField rutaAttKolla){
+        
+       boolean rattAntal = false;
+       
+       if(rutaAttKolla.getText().length() < 7){
+            rattAntal = true;
+           
+           
+       }else{
+           JOptionPane.showMessageDialog(null, "Lösenordet får inte innehålla mer än 6 tecken");
+       }
+        
+       return rattAntal; 
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+}
  
   
   
-  public static boolean korrektAntalTecken(JPasswordField rutaAttKolla){
-      
-      boolean korrektAntal = true;
-      String s = rutaAttKolla.getText();
-      int antalTecken = Integer.parseInt(s);
-      
-      
-      if(rutaAttKolla.getText().contains(s)){
-          
-          
-      
-  }
+
       
       
      

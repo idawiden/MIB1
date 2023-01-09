@@ -4,6 +4,7 @@
  */
 package mib;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import oru.inf.InfException;
 import oru.inf.InfDB;
@@ -21,6 +22,28 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
         initComponents();
         this.idb = idb;
     }
+    
+    
+    private void fyllBoxMedNamn() { //en metod som fyller komboboxen med alla alien som finns i alientabellen 
+        String fraga = "SELECT namn from Alien"; //hämtar samttlliga aliennamn från databasen som finns i alientabellen 
+        
+        ArrayList <String> allaAlienNamn; //skapar en arraylist av alienobjekt av typen string 
+        
+        try {
+            allaAlienNamn = idb.fetchColumn(fraga);
+            
+            //här sker en for-loop som kollar igenom alla aliennamn i samligen 
+            //sedan fylls komboboxen (valjAnvandarnamnALien) med samtliga aliennamn 
+            for(String namn:allaAlienNamn) {
+                valjAnvandarnamnAlien.addItem(namn);   
+            }
+            
+        }catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "fel");
+        }
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,8 +62,9 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
         upprepaNyttLösenordRubrikAlien = new javax.swing.JLabel();
         upprepaNyttLosenAlien = new javax.swing.JPasswordField();
         angeAnvändarnamnRubrikAlien = new javax.swing.JLabel();
-        anvandarnamnAlien = new javax.swing.JTextField();
         bytLosenordAlien = new javax.swing.JButton();
+        valjAnvandarnamnAlien = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,9 +86,7 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
 
         upprepaNyttLösenordRubrikAlien.setText("Upprepa nytt lösenord");
 
-        angeAnvändarnamnRubrikAlien.setText("Ange användarnamn");
-
-        anvandarnamnAlien.setToolTipText("");
+        angeAnvändarnamnRubrikAlien.setText("Välj användarnamn");
 
         bytLosenordAlien.setText("Byt lösenord");
         bytLosenordAlien.addActionListener(new java.awt.event.ActionListener() {
@@ -73,6 +95,8 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Inloggad som Alien");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,41 +104,47 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nuvarandeLösenordRubrikAlien)
-                    .addComponent(upprepaNyttLosenAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(upprepaNyttLösenordRubrikAlien)
-                    .addComponent(nyttLosenAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nyttLösenRubrikAlien)
-                    .addComponent(nuvarandeLosenAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bytLosenRubrikAlien))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(angeAnvändarnamnRubrikAlien)
+                            .addComponent(upprepaNyttLösenordRubrikAlien)
+                            .addComponent(nyttLösenRubrikAlien)
+                            .addComponent(bytLosenRubrikAlien)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(nyttLosenAlien, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nuvarandeLosenAlien, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nuvarandeLösenordRubrikAlien, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(upprepaNyttLosenAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(anvandarnamnAlien, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20)))
-                        .addGap(67, 67, 67))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(bytLosenordAlien)
-                        .addGap(53, 53, 53))))
+                                .addComponent(bytLosenordAlien)
+                                .addGap(67, 67, 67))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(angeAnvändarnamnRubrikAlien)
+                                    .addComponent(valjAnvandarnamnAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(49, 49, 49))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(9, 9, 9)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bytLosenRubrikAlien)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nuvarandeLösenordRubrikAlien)
                     .addComponent(angeAnvändarnamnRubrikAlien))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nuvarandeLosenAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(anvandarnamnAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(valjAnvandarnamnAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(nyttLösenRubrikAlien)
                         .addGap(18, 18, 18)
@@ -123,7 +153,9 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
                         .addComponent(upprepaNyttLösenordRubrikAlien)
                         .addGap(18, 18, 18)
                         .addComponent(upprepaNyttLosenAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(bytLosenordAlien))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(bytLosenordAlien)
+                        .addGap(12, 12, 12)))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -138,30 +170,36 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
         
         // metod som ändrar lösenordet hos en alien
         
+        if(Validering.rattAntalTeckenPasswordField(nyttLosenAlien)){
+            
+        }
+        
         try
         {
         
                  String losenAlien = nuvarandeLosenAlien.getText(); //hämtar det nuvarande lösenordet hos en alien 
                  String losenNyttAlien = nyttLosenAlien.getText(); //hämtar det nya lösenordet som en alien vill updatera till
                  String losenNyttNyttAlien = upprepaNyttLosenAlien.getText(); //hämtar det nya lösenordet igenom 
-                 String anvandarnamn= anvandarnamnAlien.getText(); //hämtar det användarnamn på den alien som är inloggad och som vill byta lösenord
-                 String fraga = "SELECT Losenord from Alien where Losenord = " + "'" + losenAlien + "'"; //hämtar lösenordet från databasen som stämmer överrens med det nuvarande lösenordet som alien loggar in med
+                 String anvandarnamn= valjAnvandarnamnAlien.getSelectedItem().toString(); //hämtar det användarnamn på den alien som är inloggad och som vill byta lösenord
+                 String fraga = "SELECT Losenord from Alien where Losenord =" + "'" + losenAlien + "'"; //hämtar lösenordet från databasen som stämmer överrens med det nuvarande lösenordet som alien loggar in med
                  String resultat = idb.fetchSingle(fraga);
-                 if(losenAlien.equals(resultat) && losenAlien.equals(losenNyttNyttAlien)){ //en if-sats som kollar om det nuvarande lösenordet stämmer överrens med lösenordet i databasen och lösenordet stämmer överrens med det nya lösenordet
-                     losenAlien = losenNyttAlien; //här uppdateras sedan en aliens lösenord 
-                     idb.update("UPDATE Alien SET losenord = " + "'" + losenNyttAlien + "'" + "where namn = " + "'" + anvandarnamn + "'");//detta ovan sker med hjälp av en update metod som sker här 
+                 if(losenAlien.equals(resultat) && losenNyttAlien.equals(losenNyttNyttAlien)){ //en if-sats som kollar om det nuvarande lösenordet stämmer överrens med lösenordet i databasen och lösenordet stämmer överrens med det nya lösenordet
+                 losenAlien = losenNyttAlien; //här uppdateras sedan en aliens lösenord 
+                 idb.update("UPDATE Alien SET losenord = " + "'" + losenNyttAlien + "'" + " where namn = " + "'" + anvandarnamn + "'");//detta ovan sker med hjälp av en update metod som sker här 
                  
                  bytLosenRubrikAlien.setText("Ditt lösenord har ändrats");//här ändras rubriken till att lösenordet har ändrats för en alien, så användaren får bekräftat att ändringen gick igenom. Detta sker bara om if-satsen uppfylls.
-                 }
-                 else {
-                     JOptionPane.showMessageDialog(null, "Det gick inte att uppdatera lösenord"); //om inte så skrivs detta meddelande ut
-                 }
                  
-       }     
-      catch(InfException e) { //detta fångar eventuella error 
-          System.out.println(e.getMessage());
-              
-              }           
+                 }
+                
+                     
+                      
+                 
+                 
+                }     
+               catch(InfException e) { //detta fångar eventuella error 
+               System.out.println("internt felmeddelande" + e.getMessage());
+              JOptionPane.showMessageDialog(null, "Det gick inte att uppdatera lösenord"); //om inte så skrivs detta meddelande ut
+               }           
     }//GEN-LAST:event_bytLosenordAlienActionPerformed
 
     /**
@@ -201,14 +239,15 @@ public class AndraLosenordAlien extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel angeAnvändarnamnRubrikAlien;
-    private javax.swing.JTextField anvandarnamnAlien;
     private javax.swing.JLabel bytLosenRubrikAlien;
     private javax.swing.JButton bytLosenordAlien;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPasswordField nuvarandeLosenAlien;
     private javax.swing.JLabel nuvarandeLösenordRubrikAlien;
     private javax.swing.JPasswordField nyttLosenAlien;
     private javax.swing.JLabel nyttLösenRubrikAlien;
     private javax.swing.JPasswordField upprepaNyttLosenAlien;
     private javax.swing.JLabel upprepaNyttLösenordRubrikAlien;
+    private javax.swing.JComboBox<String> valjAnvandarnamnAlien;
     // End of variables declaration//GEN-END:variables
 }

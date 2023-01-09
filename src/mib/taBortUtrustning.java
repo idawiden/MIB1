@@ -208,20 +208,27 @@ public class taBortUtrustning extends javax.swing.JFrame {
        String valdUtrustning = valjNamnUtrustning.getSelectedItem().toString();
        String valdKategori = kategoriBox.getSelectedItem().toString();
         
-       String hamtaUtrustningsID = "Select Utrustnings_ID from Utrustning where Benamning =" + "'" + valdUtrustning +"'";
+       String hamtaUtrustningsID = "Select Utrustnings_ID from Utrustning where Benamning = " + "'" + valdUtrustning +"'";
        String svar = idb.fetchSingle(hamtaUtrustningsID);
        int utrustningsID = Integer.parseInt(svar);
        
        
-       String deleteUtrustningAgent = "Delete from Innehar_Utrustning where Utrustnings_ID = "+ utrustningsID +"";
+       String deleteFranKategori = "Delete from " + valdKategori + " where Utrustnings_ID = " +utrustningsID+"";
+       System.out.println(deleteFranKategori);
+      idb.delete(deleteFranKategori);
+     
+      
+      String deleteUtrustningAgent = "Delete from Innehar_Utrustning where Utrustnings_ID = "+ utrustningsID +"";
+       System.out.println(deleteUtrustningAgent);
        idb.delete(deleteUtrustningAgent);
        
        String deleteUtrustning = "Delete from Utrustning where Utrustnings_ID = " + utrustningsID+""; 
+       System.out.println(deleteUtrustning);
        idb.delete(deleteUtrustning);
       
       
-      String deleteFranKategori = "Delete from" + valdKategori + "where Utrustnings_ID = " +utrustningsID+"";
-      idb.delete(deleteFranKategori);
+      
+      
       
       
       rubrik.setText("Utrustning har raderats");

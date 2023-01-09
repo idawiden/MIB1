@@ -22,16 +22,41 @@ public class RegistreraAlien extends javax.swing.JFrame {
 private static InfDB idb;
 
 
+
     /**
      * Creates new form RegistreraAlien
      */
     public RegistreraAlien(InfDB idb) {
         initComponents();
         this.idb = idb;
+        fyllBoxMedPlatsNamn(); //här anropas metoden direkt i konstruktorn så att komboboxen fylls direkt vid instansiering 
         fyllBoxMedAgentNamn(); // här anropas metoden direkt i konstruktorn så att komboBoxen fylls direkt vid instansering
         skrivInInfo.setVisible(false);
         extraInformation.setVisible(false);
+        
     }
+    
+    public void fyllBoxMedPlatsNamn() {
+        
+        //metoden som fyller komboBoxen med alla plats namn som finns i listan i databasen
+        
+        String fraga = "SELECT benamning from plats"; // fråga som hämtar alla namn på alla platser i databasen 
+        ArrayList <String> allaPlatsNamn; // lagras i en samling, en arrayList
+        
+        try{
+            allaPlatsNamn = idb.fetchColumn(fraga); // listan allaPlatsNamn håller i alla namn som hämtats ut från frågan
+            
+            for(String namn: allaPlatsNamn){ // for-each-loop som snurrrar igenom hela listan 
+                valjPlatsBox.addItem(namn); // och lägger till alla namnen i komboBoxen
+            }
+        }catch(InfException e) {
+            JOptionPane.showMessageDialog(null, "Något gick fel");
+        }
+         
+        
+    }
+    
+    
     
     public void fyllBoxMedAgentNamn() {
         
@@ -49,11 +74,11 @@ private static InfDB idb;
         }catch(InfException e) {
             JOptionPane.showMessageDialog(null, "Något gick fel");
         }
-        
-        
-        
+         
         
     }
+    
+   
     
      private boolean alienNamnFinnsRedan(JTextField rutaAttKolla){
         
@@ -77,6 +102,35 @@ private static InfDB idb;
        
         }
         return namnFinns;
+    
+    }
+     
+     
+     
+     
+          
+     private boolean alienIDFinnsRedan(JTextField rutaAttKolla){
+        
+        boolean alienIDFinns = false;
+        
+        try{
+            
+        
+        String fraga = "Select Alien_ID from Alien";
+        ArrayList<String> IDLista;
+        IDLista = idb.fetchColumn(fraga);
+        for(String id : IDLista){
+           if(id.equals(rutaAttKolla.getText())){
+               alienIDFinns = true;
+               JOptionPane.showMessageDialog(null, "Det alienIDet finns redan, vänligen testa ett annat");
+           }
+           
+        }
+       }catch(InfException e){
+           JOptionPane.showMessageDialog(null, "något gick fel");
+       
+        }
+        return alienIDFinns;
     
     }
 
@@ -104,10 +158,10 @@ private static InfDB idb;
         jLabel9 = new javax.swing.JLabel();
         boxRas = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
-        valjPlats = new javax.swing.JTextField();
         skrivInInfo = new javax.swing.JTextField();
         valjRas = new javax.swing.JButton();
         extraInformation = new javax.swing.JLabel();
+        valjPlatsBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,8 +191,6 @@ private static InfDB idb;
             }
         });
 
-        valjPlats.setColumns(7);
-
         skrivInInfo.setColumns(6);
 
         valjRas.setText("Välj");
@@ -150,20 +202,14 @@ private static InfDB idb;
 
         extraInformation.setText("Extra information");
 
+        valjPlatsBox.setEditable(true);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel4)
-                        .addGap(94, 94, 94)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(alienNamn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                            .addComponent(alienID, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(25, 25, 25))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,32 +222,30 @@ private static InfDB idb;
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jButton1)
                                 .addComponent(jLabel6)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(alienTelefon)
-                                    .addComponent(alienLosen))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(extraInformation)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addComponent(extraInformation)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel4)
+                        .addGap(73, 73, 73)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(alienNamn, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                            .addComponent(alienID, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                            .addComponent(alienLosen)
+                            .addComponent(alienTelefon))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(boxRas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(skrivInInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(valjRas)))
+                    .addComponent(boxRas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(valjPlatsBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valjRas)
                     .addComponent(jLabel7)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(valjPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boxAnsvarigAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))))
+                        .addComponent(jLabel8))
+                    .addComponent(boxAnsvarigAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(skrivInInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -214,37 +258,41 @@ private static InfDB idb;
                     .addComponent(alienID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(alienNamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(alienNamn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(alienLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(alienTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addGap(38, 38, 38))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(alienTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(skrivInInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(extraInformation))
                 .addGap(23, 23, 23))
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(boxAnsvarigAgent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(valjPlats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(valjPlatsBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(boxRas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(valjRas)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -264,13 +312,18 @@ private static InfDB idb;
          
         if(Validering.textFaltHarVarde(alienLosen)){
         }
-          
-        if(Validering.textFaltHarVarde(valjPlats)){
-        }
            
         if(Validering.textFaltHarVarde(skrivInInfo)){
         }
         if(alienNamnFinnsRedan(alienNamn)) {
+        }
+        
+        if(alienIDFinnsRedan(alienID)){
+            
+        }
+        
+        if(Validering.rattAntalTeckenTextField(alienLosen)){
+            
         }
         
         
@@ -287,7 +340,7 @@ private static InfDB idb;
        
         String hamtaTelefon = alienTelefon.getText(); // hämtar det angivna telefonnummret
         
-        String plats = valjPlats.getText(); // hämtar namnet på den angivna platsen
+        String plats = (String) valjPlatsBox.getSelectedItem().toString(); // hämtar namnet på den angivna platsen
         
         // fråga till databasen som hämtar plats_ID för det angivna platsnamnet
         // då det är ett platsID som ska läggas in i Alien tabellen
@@ -422,7 +475,7 @@ private static InfDB idb;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel rubrik;
     private javax.swing.JTextField skrivInInfo;
-    private javax.swing.JTextField valjPlats;
+    private javax.swing.JComboBox<String> valjPlatsBox;
     private javax.swing.JButton valjRas;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,7 @@
 package mib;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -21,6 +22,8 @@ private static InfDB idb;
     public AndraInformationOmAgenter(InfDB idb) {
         initComponents();
         this.idb = idb;
+        fyllBoxMedAgentNamn();
+        
         infoRubrik.setVisible(false);
         kategoriBox.setVisible(false);
         nyInfoTextRuta.setVisible(false);
@@ -29,13 +32,13 @@ private static InfDB idb;
         boxMedStatus.setVisible(false);
         valjOmradeKnapp.setVisible(false);
         ValjStatusKnapp.setVisible(false);
-        andraKnapp.setVisible(false);
+    //textrutor, komboboxar samt jButton som sätts till icke synliga i konstruktorn för att de inte ska synas i designen från början. Vid vissa val så ska dessa sedan bli synliga     
                 
                 
         
     }
     
-    
+    //en metod som ställer en sql fråga mot databasen som hämtar ut samtlliga namn från tabellen agent. Samtliga namn syns sedan i komboboxen och gör det mööjligt att välja mellan dessa utan att manuellt behöva skriva in ett agentnamn.
     private void fyllBoxMedAgentNamn() {
         
          
@@ -55,7 +58,7 @@ private static InfDB idb;
         }
     }
     
-    
+    //en metod som fyller komboboxen med samtliga benämningar från tabellen område i databasen.
     private void fyllBoxMedOmrade () {
         
         String fraga = "Select Benamning from Omrade";
@@ -80,6 +83,32 @@ private static InfDB idb;
         
         
         
+    }
+    
+    //här sker en metod som kollar så att det inte är möjligt att lägga till ett agent_ID som redan finns i databasen 
+       private boolean agentIDFinnsRedan(JTextField rutaAttKolla){
+        
+        boolean agentIDFinns = false;
+        
+        try{
+            
+        
+        String fraga = "Select Agent_ID from Agent";
+        ArrayList<String> IDLista;
+        IDLista = idb.fetchColumn(fraga);
+        for(String id : IDLista){
+           if(id.equals(rutaAttKolla.getText())){
+               agentIDFinns = true;
+               JOptionPane.showMessageDialog(null, "Det agentIDet finns redan, vänligen testa ett annat");
+           }
+           
+        }
+       }catch(InfException e){
+           JOptionPane.showMessageDialog(null, "något gick fel");
+       
+        }
+        return agentIDFinns;
+    
     }
 
 
@@ -217,13 +246,28 @@ private static InfDB idb;
     }// </editor-fold>//GEN-END:initComponents
 
     private void andraKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraKnappActionPerformed
-       
+      
+        //här sker en kontroll med en if-sats som vid uppfyllt villkor kör resterande kod nedan.
+        if(agentIDFinnsRedan(nyInfoTextRuta)); {
+            
+        }
+        
+        if(Validering.kollaAnvandarnamnAgent(nyInfoTextRuta));{
+            
+        }
+        
+        
+        //agentNamn och kategori håller namn på samtliga agenter samt kategorival som finns att göra i komboboxen 
+        //nyInfo är en textruta som håller information om ny inmatad data.
         try{
            
          String agentNamn = boxMedAgenter.getSelectedItem().toString();
          String kategori = kategoriBox.getSelectedItem().toString();
          String nyInfo = nyInfoTextRuta.getText();
          
+         //här sker olika kontroller med if-satser som kollar om den valda kategorin stämmer med olika egenskaper som ska gå att ändra om agenterna 
+         //vid uppfyllda villkor så ändras informationen med den nya inmatade datan 
+         //vid lyckad uppdatering av data så ändras sedan rubrikerna nedan till "Ny ändring har gjorts".
          if(kategori.equals("Agent_ID")) {
          String nyttID = nyInfo;
          int agentID = Integer.parseInt(nyttID);
@@ -242,11 +286,13 @@ private static InfDB idb;
         infoRubrik.setText("Ny ändring har gjorts");
         }
          
-         if(kategori.equals("Omrade")){
-        String fragaOmrade = "Select Omrades_ID from Omrade where Benamning =" + "'" +nyInfo+"'";
+        if(kategori.equals("Omrade")){
+        String omrade = boxMedOmraden.getSelectedItem().toString();
+        String fragaOmrade = "Select Omrades_ID from Omrade where Benamning = " + "'" + omrade + "'";
         String resultatInt = idb.fetchSingle(fragaOmrade);
         int omradesInt = Integer.parseInt(resultatInt);
-        idb.update("UPDATE Agent SET Omrade = "+ omradesInt + " where namn = "+ "'" + agentNamn +"'");
+        
+        idb.update("UPDATE Agent SET Omrade = " + omradesInt + " where namn = " + "'" + agentNamn + "'");
         infoRubrik.setText("Ny ändring har gjorts");
         }
         
@@ -254,10 +300,13 @@ private static InfDB idb;
             String hamtaStatus = boxMedStatus.getSelectedItem().toString();
             idb.update("UPDATE Agent set Administrator =" + "'"+ hamtaStatus + "'" + " where namn = " +"'"+ agentNamn + "'" );
         }
+        
+       //Vid uppfylda villkor ändras rubriken till meddelandet nedan.
+        infoRubrik.setText("Ny ändring har genomförts");
          
-         
+       //en catch som fångar eventuella inmatningsfel så att applikationen inte kraschar.  
        }catch (InfException e){
-           
+           JOptionPane.showMessageDialog(null, "något gick fel");
            
            
            
@@ -266,23 +315,31 @@ private static InfDB idb;
     }//GEN-LAST:event_andraKnappActionPerformed
 
     private void valjAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjAgentActionPerformed
-        infoRubrik.setVisible(true);
-        kategoriBox.setVisible(true);
-        valjOmradeKnapp.setVisible(true);
-        ValjStatusKnapp.setVisible(true);
-        nyInfoTextRuta.setVisible(true);
-        rubrik2.setVisible(true);
+    //här nedan vid olika kanpptryck sätts olika texxtrutor, komboboxar samt JButtons synliga
+    infoRubrik.setVisible(true);
+    kategoriBox.setVisible(true);
+    valjOmradeKnapp.setVisible(true);
+    ValjStatusKnapp.setVisible(true);
+    nyInfoTextRuta.setVisible(true);
+    rubrik2.setVisible(true);
         
     }//GEN-LAST:event_valjAgentActionPerformed
 
     private void valjOmradeKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjOmradeKnappActionPerformed
     boxMedOmraden.setVisible(true);
-    fyllBoxMedAgentNamn();
+    fyllBoxMedOmrade ();
+    rubrik2.setVisible(false);
+    nyInfoTextRuta.setVisible(false);
+    ValjStatusKnapp.setVisible(false);
+    
    
     }//GEN-LAST:event_valjOmradeKnappActionPerformed
 
     private void ValjStatusKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValjStatusKnappActionPerformed
-       boxMedStatus.setVisible(true);
+    boxMedStatus.setVisible(true);
+    rubrik2.setVisible(false);
+    nyInfoTextRuta.setVisible(false);
+    boxMedOmraden.setVisible(false);
     }//GEN-LAST:event_ValjStatusKnappActionPerformed
 
     /**

@@ -25,7 +25,9 @@ private static InfDB idb;
         fyllBoxMedAgentNamn();
     }
     
-    
+    // en metod som fyller komboboxen (boxValjAgent) med samtliga agentnamn från tabellen agent 
+    //en sql fråga ställs mot databasen för att hämta ut samtliga agentnamn.
+    //en for-loop körs sedan för att iterera igenom samtliga agentnamn i samligen och fyller sedan komboboxen 
      private void fyllBoxMedAgentNamn() {
         
          
@@ -184,9 +186,11 @@ private static InfDB idb;
     }// </editor-fold>//GEN-END:initComponents
 
     private void registreraNyUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registreraNyUtrustningActionPerformed
-        
+        //
         try{
-            
+            //den nya utrustning som matas in i textfältet görs först om till en int 
+            //sedan skriver man in benämning på utrustningen 
+            //därefter sker en insert (en sql fråga)som lägger in den nya informationen i databasen med det utrustnings_ID samt benämning som skrivs in i textrutorna 
             String utrustning = utrustningsID.getText();
             int utrustningsInt = Integer.parseInt(utrustning);
             int rattUtrustning = utrustningsInt;
@@ -196,10 +200,13 @@ private static InfDB idb;
             idb.insert("Insert into Utrustning Values(" + rattUtrustning + ", '"+ benamning +"')");
             
            
-            
+            //här sker samma som ovan men här används en kombobox istället 
             String kategori = boxValjKategori.getSelectedItem().toString();
             String info = skrivInInfo.getText();
             
+            //här görs en kontroll med hjälp av en if-sats som kollar om den valda utrustningen i kategorin stämmer överrens med antigen kommunikation, vapen eller teknik
+            //då läggs den nya utrustningen till i rätt kategorin 
+            //vid lyckad registrering så ändras rubriken till meddelandet nedan
             if(kategori.equals("Kommunikation")|| kategori.equals("Teknik")){
             String sqlKategori = "Insert into " + kategori + " Values("+ rattUtrustning + ",'" + info +"')";
             idb.insert(sqlKategori);
@@ -214,7 +221,9 @@ private static InfDB idb;
                 rubrikText.setText("Ny utrustning har registrerats");
             }
             
-            
+            //vid vald agent genom kombobox så ställs en sql fråga som hämtar namnet på den valda agenten som utrustningen regostreras på
+            //sedan görs det om till en int 
+            //därefter ställs en ny sql fråga till databasen som lägger in den nya datan i tabellen innehar_utrustning med hjälp av en insert metod
             String valdAgent = boxValjAgent.getSelectedItem().toString();
             String hamtaId = "Select Agent_ID from Agent where namn= " + "'" + valdAgent + "'";
             String resultat = idb.fetchSingle(hamtaId);

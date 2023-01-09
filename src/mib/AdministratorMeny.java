@@ -101,15 +101,15 @@ public class AdministratorMeny extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void valjUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjUtrustningActionPerformed
-         new taBortUtrustning(idb).setVisible(true);
+         new taBortUtrustning(idb).setVisible(true); //gör taBortUtrustning synlig
     }//GEN-LAST:event_valjUtrustningActionPerformed
 
     private void valjAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjAgentActionPerformed
- new adminAgent(idb).setVisible(true);
+    new adminAgent(idb).setVisible(true); //gör adminAgent menyn synlig 
     }//GEN-LAST:event_valjAgentActionPerformed
 
     private void valjAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjAlienActionPerformed
-         new AdminAlien(idb).setVisible(true);
+         new AdminAlien(idb).setVisible(true); //gör adminAlien meny synlig 
     }//GEN-LAST:event_valjAlienActionPerformed
 
     /**
