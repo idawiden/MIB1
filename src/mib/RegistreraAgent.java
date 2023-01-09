@@ -271,7 +271,7 @@ private static InfDB idb;
      
         try{
             
-             if(!Validering.kollaAnvandarnamnAgent(agentNamn) && !agentNamnFinnsRedan(agentNamn) && !agentIDFinnsRedan(agentID)){
+            
             
             
             String namn = agentNamn.getText(); //hämtar det inmatade agentnamnet i textrutan agentNamn
@@ -295,7 +295,7 @@ private static InfDB idb;
                        
              
     
-       
+        if(!Validering.kollaAnvandarnamnAgent(agentNamn) && !agentNamnFinnsRedan(agentNamn) && !agentIDFinnsRedan(agentID)){
         
          
             

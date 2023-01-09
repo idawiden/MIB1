@@ -161,8 +161,10 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       String ansvarigAgent = idb.fetchSingle(hamtaAnsvarigAgent); 
      
       
+      String fråga = "Select Agent_ID from Agent join Alien on Agent.Agent_ID = Alien.Ansvarig_Agent where namn = " + "'" + valdAgent + "'" ;
+      String svar = idb.fetchSingle(fråga);
       
-       
+      
       
       //här sker kontroller med if-satser som kollar olika villkor. Vid uppfylda villkor så ställs en delete sql fråga mot databasen som raderar agent_ID från samtliga tabeller ovan.
       if(resultat.equals(faltagent)){
@@ -189,8 +191,9 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       }
       
       
-       
-      if(resultat.equals(ansvarigAgent)){
+      
+      
+      if(resultat.equals(ansvarigAgent) && !svar.equals(resultat)){
       idb.delete("Delete from Alien where agent_ID = " + resultat +"");
       }
       
