@@ -129,7 +129,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       //samt där namn ska vara samma som det valda agent namnet i komboboxen.  
       String AgentID = "Select Agent_ID from Agent where namn = " + "'" + valdAgent + "'";
       String resultat = idb.fetchSingle(AgentID);
-      int agentIDInt = Integer.parseInt(resultat);
+     
       
       
       String hamtaFaltAgent = "Select Agent_ID from Faltagent where Agent_ID = " + resultat+ "";
@@ -149,19 +149,15 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       String hamtaInneharFordon = "Select agent_ID from Innehar_Fordon where agent_ID =" + resultat + "";
       String inneharFordon = idb.fetchSingle(hamtaInneharFordon);
       
-      String hamtaAgent = "Select Agent_ID from Agent where Agent_ID = " + resultat +"";
-      String Agent = idb.fetchSingle(hamtaAgent);
-      
-      
      
+
       
       
-      
-      String hamtaAnsvarigAgent = "Select Agent_ID from Alien where Agent_ID = " + resultat + "";
+      String hamtaAnsvarigAgent = "Select Ansvarig_Agent from Alien where Ansvarig_Agent = " + resultat + "";
       String ansvarigAgent = idb.fetchSingle(hamtaAnsvarigAgent); 
      
       
-      String fråga = "Select Agent_ID from Agent join Alien on Agent.Agent_ID = Alien.Ansvarig_Agent where namn = " + "'" + valdAgent + "'" ;
+      String fråga = "Select Agent_ID from Agent join Alien on Agent.Agent_ID = Alien.Ansvarig_Agent where namn = " + resultat + "" ;
       String svar = idb.fetchSingle(fråga);
       
       
@@ -194,7 +190,11 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       
       
       if(resultat.equals(ansvarigAgent) && !svar.equals(resultat)){
-      idb.delete("Delete from Alien where agent_ID = " + resultat +"");
+      idb.delete("Delete from Alien where Ansvarig_Agent = " + resultat +"");
+      }
+      
+      else if(svar.equals(resultat)){
+          JOptionPane.showMessageDialog(null, "Kan inte radera en agent som är ansvarig för en alien, ta bort ansvaret av alien för att kunna genomföra ändringen");
       }
       
       
