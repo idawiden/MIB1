@@ -13,12 +13,12 @@ import javax.swing.JOptionPane;
  *
  * @author filippabostrom
  */
-public class AndraLosenord extends javax.swing.JFrame {
+public class AndraLosenordAgent extends javax.swing.JFrame {
  private static InfDB idb;
     /**
      * Creates new form AndraLosenord
      */
-    public AndraLosenord(InfDB idb) {
+    public AndraLosenordAgent(InfDB idb) {
         initComponents();
         this.idb = idb;
         fyllBoxMedAgentNamn();
@@ -62,8 +62,9 @@ public class AndraLosenord extends javax.swing.JFrame {
         upprepaRubik = new javax.swing.JLabel();
         upprepaNyttLosen = new javax.swing.JPasswordField();
         knappByt = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        anvandarnamnRubrik = new javax.swing.JLabel();
         valjAnvandarnamnBox = new javax.swing.JComboBox<>();
+        visaVemSomArInloggadRubrik = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,7 +105,7 @@ public class AndraLosenord extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Välj användarnamn:");
+        anvandarnamnRubrik.setText("Välj användarnamn:");
 
         valjAnvandarnamnBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,48 +113,53 @@ public class AndraLosenord extends javax.swing.JFrame {
             }
         });
 
+        visaVemSomArInloggadRubrik.setText("Inloggad som Agent");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(knappByt)
-                        .addGap(33, 33, 33))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(bytLosenRubrik)
-                        .addGap(232, 232, 232))))
+                .addGap(237, 237, Short.MAX_VALUE)
+                .addComponent(knappByt)
+                .addGap(33, 33, 33))
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nuvarandeLosenRubrik)
-                            .addComponent(nuvarandeLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(82, 82, 82)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(upprepaRubik)
-                            .addComponent(upprepaNyttLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(bytLosenRubrik)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nuvarandeLosenRubrik)
+                                    .addComponent(nuvarandeLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(82, 82, 82)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(upprepaRubik)
+                                    .addComponent(upprepaNyttLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(anvandarnamnRubrik)
+                                    .addComponent(valjAnvandarnamnBox, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(89, 89, 89)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nyttLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nyttLosenRubrik)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(valjAnvandarnamnBox, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(89, 89, 89)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nyttLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nyttLosenRubrik))))
+                        .addGap(16, 16, 16)
+                        .addComponent(visaVemSomArInloggadRubrik)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap()
+                .addComponent(visaVemSomArInloggadRubrik)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(bytLosenRubrik)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(anvandarnamnRubrik)
                     .addComponent(nyttLosenRubrik))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -164,7 +170,7 @@ public class AndraLosenord extends javax.swing.JFrame {
                     .addComponent(nuvarandeLosenRubrik)
                     .addComponent(upprepaRubik))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nuvarandeLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(upprepaNyttLosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
@@ -182,6 +188,11 @@ public class AndraLosenord extends javax.swing.JFrame {
     private void knappBytActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_knappBytActionPerformed
         
         // metod som ändrar ett lösenord hos en Agent
+        
+        if(Validering.rattAntalTeckenPasswordField(nyttLosen)){
+            
+        }
+        
         
         try{
         String losen = nuvarandeLosen.getText(); // hämtar det nuvarande lösenordet
@@ -236,27 +247,28 @@ public class AndraLosenord extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AndraLosenord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AndraLosenordAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AndraLosenord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AndraLosenordAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AndraLosenord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AndraLosenordAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AndraLosenord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AndraLosenordAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AndraLosenord(idb).setVisible(true);
+                new AndraLosenordAgent(idb).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel anvandarnamnRubrik;
     private javax.swing.JLabel bytLosenRubrik;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton knappByt;
     private javax.swing.JPasswordField nuvarandeLosen;
     private javax.swing.JLabel nuvarandeLosenRubrik;
@@ -265,5 +277,6 @@ public class AndraLosenord extends javax.swing.JFrame {
     private javax.swing.JPasswordField upprepaNyttLosen;
     private javax.swing.JLabel upprepaRubik;
     private javax.swing.JComboBox<String> valjAnvandarnamnBox;
+    private javax.swing.JLabel visaVemSomArInloggadRubrik;
     // End of variables declaration//GEN-END:variables
 }

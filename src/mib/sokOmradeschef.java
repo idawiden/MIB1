@@ -114,6 +114,25 @@ private static InfDB idb;
 
     private void sokKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokKnappActionPerformed
         
+        visaOmradeschefHar.setText("");
+        try{
+        String valtOmrade = valjOmrade.getSelectedItem().toString();
+        //valtOmrade håller samtliga områden som går att välja på i komboboxen.
+        //sql fråga ställs mot databasen som hämtar ut vilken agent som är områdeschef för ett område
+        
+        String fraga = "Select Agent.Namn from Agent join Omradeschef on Agent.Agent_ID = omradeschef.Agent_ID join omrade on omrade.Omrades_ID = omradeschef.Omrade where omrade.Benamning = " + "'" + valtOmrade + "'" ;
+        String resultat = idb.fetchSingle(fraga);
+        visaOmradeschefHar.setText(resultat);
+        //metod för att visa vem som är områdeschef 
+    
+    //en catch som fångar inmatningsfel som gör att applikationen inte "kraschar"
+    }catch(InfException e) {
+    JOptionPane.showMessageDialog(null, "Något gick fel");
+                    System.out.println("Internt felmeddelande" + e.getMessage());
+}
+        
+        
+        
     }//GEN-LAST:event_sokKnappActionPerformed
 
  

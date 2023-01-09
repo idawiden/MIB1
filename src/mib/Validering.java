@@ -45,7 +45,7 @@ public Validering(){
         if(rutaAttKolla.getText().contains("Agent")){
             giltigtNamn = true;
         }else{
-           JOptionPane.showMessageDialog(null, "Användarnamnet måste innehålla Agent, t.ex. Agnet T");
+           JOptionPane.showMessageDialog(null, "Användarnamnet måste innehålla Agent, t.ex. Agent T");
          
         }
         return giltigtNamn;
@@ -55,6 +55,50 @@ public Validering(){
 
 
 
+    public static boolean rattAntalTeckenPasswordField (JPasswordField rutaAttKolla){
+        
+       boolean rattAntal = false;
+       
+       if(rutaAttKolla.getText().length() < 7){
+            rattAntal = true;
+           
+           
+       }else{
+           JOptionPane.showMessageDialog(null, "Lösenordet får inte innehålla mer än 6 tecken");
+       }
+        
+       return rattAntal; 
+        
+        
+        
+    }
+    
+    
+    
+    
+    public static boolean rattAntalTeckenTextField (JTextField rutaAttKolla){
+        
+       boolean rattAntal = false;
+       
+       if(rutaAttKolla.getText().length() < 7){
+            rattAntal = true;
+           
+           
+       }else{
+           JOptionPane.showMessageDialog(null, "Lösenordet får inte innehålla mer än 6 tecken");
+       }
+        
+       return rattAntal; 
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
 }
  
   
