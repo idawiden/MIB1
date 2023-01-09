@@ -96,15 +96,15 @@ private static InfDB idb;
     }// </editor-fold>//GEN-END:initComponents
 
     private void registreraAlienKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registreraAlienKnappActionPerformed
-new RegistreraAlien(idb).setVisible(true);       
+new RegistreraAlien(idb).setVisible(true);  //när man tryckrt på registrera alien knappen så dycker denna meny fram.        
     }//GEN-LAST:event_registreraAlienKnappActionPerformed
 
     private void taBortAlienKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taBortAlienKnappActionPerformed
-         new AdminTaBortAlien(idb).setVisible(true);
+         new AdminTaBortAlien(idb).setVisible(true);//när man trycker på ta bort alien knappen så kommer adminTaBortAlien menyn fram.
     }//GEN-LAST:event_taBortAlienKnappActionPerformed
 
     private void redigeraInfoKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redigeraInfoKnappActionPerformed
-        new AndraInformationOmAlien(idb).setVisible(true);
+        new AndraInformationOmAlien(idb).setVisible(true);// när man trycker på redigera alien information kknappen så kommer andraInfromationOmAlien menyn fram.
     }//GEN-LAST:event_redigeraInfoKnappActionPerformed
 
     /**

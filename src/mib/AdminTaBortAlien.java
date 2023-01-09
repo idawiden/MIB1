@@ -44,7 +44,7 @@ private static InfDB idb;
             JOptionPane.showMessageDialog(null, "fel");
         }
         
-     ////en metod som ställer en sql fråga mot databasen som hämtar ut samtliga aliennamn från tabellen alien som sedan fyller komboxoen med namn vid instansiering.   
+     //en metod som ställer en sql fråga mot databasen som hämtar ut samtliga aliennamn från tabellen alien som sedan fyller komboxoen med namn vid instansiering.   
         
       
         
