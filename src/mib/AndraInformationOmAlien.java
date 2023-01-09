@@ -432,13 +432,13 @@ private static InfDB idb;
          idb.delete(taBortSquid);
          
          
-         
+         if(hamtaRas.equals("squid")|| hamtaRas.equals("boglodite")){
          String sqlRas = "Insert into " + hamtaRas + " Values(" + alienInt + ", " + extraInfoInt + ");";
          idb.insert(sqlRas);
+         }
          
-         
-         if(hamtaRas.equals("worm")){
-          String sqlRasWorm = "Insert into" + hamtaRas + " Values(" + alienInt + ");";
+         else if(hamtaRas.equals("worm")){
+          String sqlRasWorm = "Insert into Worm Values(" + alienInt + ");";
            idb.insert(sqlRasWorm);
            
            
