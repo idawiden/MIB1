@@ -267,15 +267,6 @@ private static InfDB idb;
      
      
      
-        if(Validering.kollaAnvandarnamnAgent(agentNamn)) {
-            
-        }
-        if(agentNamnFinnsRedan(agentNamn)){
-            
-        }
-        if(agentIDFinnsRedan(agentID)){
-            
-        }
         
          
        
@@ -311,11 +302,11 @@ private static InfDB idb;
         if(Validering.kollaAnvandarnamnAgent(agentNamn) == false && agentNamnFinnsRedan(agentNamn) == true && agentIDFinnsRedan(agentID)== true){
             
             rubrik.setText("testa igen");
-        }
         
+        }
             
         
-        else{
+        else if(Validering.kollaAnvandarnamnAgent(agentNamn) == true && agentNamnFinnsRedan(agentNamn) == false && agentIDFinnsRedan(agentID)== false) {
             
              
 
