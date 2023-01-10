@@ -164,7 +164,7 @@ public class AgentMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_andraLosenordActionPerformed
 
     private void sokOmradeschefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sokOmradeschefActionPerformed
-       new sokOmradeschef(idb).setVisible(true); //gör sokOmradeschef menyn synlig
+       new SokOmradeschef(idb).setVisible(true); //gör SokOmradeschef menyn synlig
     }//GEN-LAST:event_sokOmradeschefActionPerformed
 
     private void valtAlternativKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valtAlternativKnappActionPerformed
@@ -180,12 +180,12 @@ public class AgentMeny extends javax.swing.JFrame {
         }
         
         else if(alternativBox.getSelectedItem().equals("platslista aliens")){
-             new platsLista(idb).setVisible(true);
+             new PlatsLista(idb).setVisible(true);
            
         }
         
         else if (alternativBox.getSelectedItem().equals("raslista aliens")){
-             new raslistaAliens(idb).setVisible(true);
+             new RaslistaAliens(idb).setVisible(true);
         }
         
         else if(alternativBox.getSelectedItem().equals("ändra alieninformation")){
@@ -193,14 +193,14 @@ public class AgentMeny extends javax.swing.JFrame {
         }
         
         else if(alternativBox.getSelectedItem().equals("datumlista aliens")){
-            new kollaRegistreradeAlienDatum(idb).setVisible(true);
+            new KollaRegistreradeAlienDatum(idb).setVisible(true);
         }
         
     }//GEN-LAST:event_valtAlternativKnappActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        new inloggningsSida(idb).setVisible(true);
+        new InloggningsSida(idb).setVisible(true);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -11,12 +11,12 @@ import java.util.ArrayList;
  *
  * @author filippabostrom
  */
-public class sokOmradeschef extends javax.swing.JFrame {
+public class SokOmradeschef extends javax.swing.JFrame {
 private static InfDB idb;
     /**
      * Creates new form sokOmradeschef
      */
-    public sokOmradeschef(InfDB idb) {
+    public SokOmradeschef(InfDB idb) {
         initComponents();
          this.idb = idb;
          fyllBoxMedOmraden();
