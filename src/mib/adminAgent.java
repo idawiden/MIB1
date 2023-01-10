@@ -38,6 +38,7 @@ private static InfDB idb;
         taBortAgent = new javax.swing.JButton();
         andraOmradeschef = new javax.swing.JButton();
         andraKontorschef = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,47 +94,58 @@ private static InfDB idb;
             }
         });
 
+        jLabel1.setText("Inloggad som administratör");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(redigeraAgentInfo)
-                    .addComponent(tilldelaAdministratorStatus)
-                    .addComponent(informationOmAgent)
-                    .addComponent(agentRubrik)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(agentRubrik))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(registreraAgent)
-                            .addComponent(andraOmradeschef))
-                        .addGap(54, 54, 54)
+                            .addComponent(tilldelaAdministratorStatus)
+                            .addComponent(redigeraAgentInfo)
+                            .addComponent(informationOmAgent)
+                            .addComponent(andraOmradeschef)
+                            .addComponent(registreraAgent))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(andraKontorschef)
-                            .addComponent(taBortAgent))))
-                .addContainerGap(39, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(taBortAgent))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(andraKontorschef)))))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addComponent(jLabel1)
+                .addGap(8, 8, 8)
                 .addComponent(agentRubrik)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registreraAgent)
                     .addComponent(taBortAgent))
                 .addGap(18, 18, 18)
+                .addComponent(andraOmradeschef)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(informationOmAgent)
                 .addGap(18, 18, 18)
                 .addComponent(tilldelaAdministratorStatus)
-                .addGap(18, 18, 18)
-                .addComponent(redigeraAgentInfo)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(andraOmradeschef)
+                    .addComponent(redigeraAgentInfo)
                     .addComponent(andraKontorschef))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
         );
 
         pack();
@@ -207,6 +219,7 @@ private static InfDB idb;
     private javax.swing.JButton andraKontorschef;
     private javax.swing.JButton andraOmradeschef;
     private javax.swing.JButton informationOmAgent;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton redigeraAgentInfo;
     private javax.swing.JButton registreraAgent;
     private javax.swing.JButton taBortAgent;
