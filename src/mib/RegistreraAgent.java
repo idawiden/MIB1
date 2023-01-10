@@ -259,13 +259,26 @@ private static InfDB idb;
       if(Validering.textFaltHarVarde(agentTelefon)){ // här sker en validering med en if-sats av täxtfältet för inmatning av telefonnummer, då fältet inte får vara tom vid registrering av agent 
     }    
     
-     
-     
- 
+    
      
      if(Validering.rattAntalTeckenTextField(agentLosenord)){
          
      }
+     
+     
+     
+        if(!Validering.kollaAnvandarnamnAgent(agentNamn)) {
+            
+        }
+        if(!agentNamnFinnsRedan(agentNamn)){
+            
+        }
+        if(!agentIDFinnsRedan(agentID)){
+            
+        }
+        
+         
+       
      
     
      
@@ -295,13 +308,9 @@ private static InfDB idb;
                        
              
     
-        if(!Validering.kollaAnvandarnamnAgent(agentNamn) && !agentNamnFinnsRedan(agentNamn) && !agentIDFinnsRedan(agentID)){
+        if(Validering.kollaAnvandarnamnAgent(agentNamn) && agentNamnFinnsRedan(agentNamn) && agentIDFinnsRedan(agentID)){
         
-         
-        }
-        else{
-            rubrik.setText("Testa igen");
-        }
+      
             
              
 
@@ -310,7 +319,7 @@ private static InfDB idb;
             
                         rubrik.setText("En ny agent är registrerad i systemet"); //här updateras rubriken till det angivna 
         
-        
+        }
             
             
         }catch(InfException e){
