@@ -308,9 +308,14 @@ private static InfDB idb;
                        
              
     
-        if(!Validering.kollaAnvandarnamnAgent(agentNamn) && !agentNamnFinnsRedan(agentNamn) && !agentIDFinnsRedan(agentID)){
+        if(Validering.kollaAnvandarnamnAgent(agentNamn) == false && agentNamnFinnsRedan(agentNamn) == true && agentIDFinnsRedan(agentID)== true){
+            
+            rubrik.setText("testa igen");
+        }
         
-      
+            
+        
+        else{
             
              
 
