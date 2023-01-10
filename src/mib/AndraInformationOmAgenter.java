@@ -110,6 +110,33 @@ private static InfDB idb;
         return agentIDFinns;
     
     }
+       
+       
+       
+         private boolean agentNamnFinnsRedan(JTextField rutaAttKolla){
+        
+        boolean namnFinns = false;
+        
+        try{
+            
+        
+        String fraga = "Select namn from Agent";
+        ArrayList<String> namnLista;
+        namnLista = idb.fetchColumn(fraga);
+        for(String namn : namnLista){
+           if(namn.equals(rutaAttKolla.getText())){
+               namnFinns = true;
+               JOptionPane.showMessageDialog(null, "Det användarnamnet finns redan");
+           }
+          
+        }
+       }catch(InfException e){
+           JOptionPane.showMessageDialog(null, "något gick fel");
+       
+        }
+        return namnFinns;
+    
+    }
 
 
     /**
@@ -266,7 +293,14 @@ private static InfDB idb;
          //här sker olika kontroller med if-satser som kollar om den valda kategorin stämmer med olika egenskaper som ska gå att ändra om agenterna 
          //vid uppfyllda villkor så ändras informationen med den nya inmatade datan 
          //vid lyckad uppdatering av data så ändras sedan rubrikerna nedan till "Ny ändring har gjorts".
-         if(kategori.equals("Agent_ID")) {
+         
+         if(kategori.equals("Agent_ID") && agentIDFinnsRedan(nyInfoTextRuta) == true){
+         infoRubrik.setText("Testa igen");
+            
+         }
+        
+         
+         else if(kategori.equals("Agent_ID") && agentIDFinnsRedan(nyInfoTextRuta) == false) {   
          String nyttID = nyInfo;
          int agentID = Integer.parseInt(nyttID);
         idb.update("UPDATE Agent SET Agent_ID = "+ agentID + " where namn = "+ "'" + agentNamn +"'");
@@ -276,10 +310,12 @@ private static InfDB idb;
          
         
             
-        
+        if((kategori.equals("Namn")&& Validering.kollaAnvandarnamnAgent(nyInfoTextRuta) == false && agentNamnFinnsRedan(nyInfoTextRuta) == true)) {
+            infoRubrik.setText("Testa igen");
+        }
         
          
-         if(kategori.equals("Namn")&& !Validering.kollaAnvandarnamnAgent(nyInfoTextRuta)){
+         else if(kategori.equals("Namn")&& Validering.kollaAnvandarnamnAgent(nyInfoTextRuta) == true && agentNamnFinnsRedan(nyInfoTextRuta) == false){
         idb.update("UPDATE Agent SET Namn = "+ "'"+ nyInfo + "'" + " where namn = "+ "'" + agentNamn +"'");
         infoRubrik.setText("Ny ändring har gjorts");
          }
@@ -312,8 +348,7 @@ private static InfDB idb;
   
         }
         
-       //Vid uppfylda villkor ändras rubriken till meddelandet nedan.
-        infoRubrik.setText("Ny ändring har genomförts");
+       
          
        //en catch som fångar eventuella inmatningsfel så att applikationen inte kraschar.  
        }catch (InfException e){
