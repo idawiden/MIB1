@@ -157,7 +157,7 @@ private static InfDB idb;
     }//GEN-LAST:event_tilldelaAdministratorStatusActionPerformed
 
     private void informationOmAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_informationOmAgentActionPerformed
-       new VisaAllInformationAgent(idb).setVisible(true); // här ska VisaAllInformationAgent menyn bli synlig 
+       new visaAllInformationAgent(idb).setVisible(true); // här ska visaAllInformationAgent menyn bli synlig 
     }//GEN-LAST:event_informationOmAgentActionPerformed
 
     private void andraOmradeschefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraOmradeschefActionPerformed
