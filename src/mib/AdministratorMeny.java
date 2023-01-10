@@ -35,6 +35,7 @@ public class AdministratorMeny extends javax.swing.JFrame {
         valjAgent = new javax.swing.JButton();
         kategoriRubrik = new javax.swing.JLabel();
         valjUtrustning = new javax.swing.JButton();
+        loggaUtKnapp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,21 +66,30 @@ public class AdministratorMeny extends javax.swing.JFrame {
             }
         });
 
+        loggaUtKnapp.setText("Logga ut");
+        loggaUtKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loggaUtKnappActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(valkommenRubrik)
-                    .addComponent(kategoriRubrik)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(valjAlien)
-                        .addGap(26, 26, 26)
-                        .addComponent(valjAgent)
-                        .addGap(23, 23, 23)
-                        .addComponent(valjUtrustning)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(loggaUtKnapp)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(valkommenRubrik)
+                        .addComponent(kategoriRubrik)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(valjAlien)
+                            .addGap(26, 26, 26)
+                            .addComponent(valjAgent)
+                            .addGap(23, 23, 23)
+                            .addComponent(valjUtrustning))))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -94,7 +104,9 @@ public class AdministratorMeny extends javax.swing.JFrame {
                     .addComponent(valjAlien)
                     .addComponent(valjAgent)
                     .addComponent(valjUtrustning))
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addComponent(loggaUtKnapp)
+                .addGap(43, 43, 43))
         );
 
         pack();
@@ -111,6 +123,11 @@ public class AdministratorMeny extends javax.swing.JFrame {
     private void valjAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjAlienActionPerformed
          new AdminAlien(idb).setVisible(true); //gör adminAlien meny synlig 
     }//GEN-LAST:event_valjAlienActionPerformed
+
+    private void loggaUtKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loggaUtKnappActionPerformed
+       new inloggningsSida(idb).setVisible(true);
+       
+    }//GEN-LAST:event_loggaUtKnappActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,6 +166,7 @@ public class AdministratorMeny extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel kategoriRubrik;
+    private javax.swing.JButton loggaUtKnapp;
     private javax.swing.JButton valjAgent;
     private javax.swing.JButton valjAlien;
     private javax.swing.JButton valjUtrustning;

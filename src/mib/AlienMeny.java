@@ -60,6 +60,7 @@ private static InfDB idb;
         visaAlienOmradeschef = new javax.swing.JTextArea();
         valjInloggadAlien = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
+        loggaUtKnapp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +90,13 @@ private static InfDB idb;
 
         jLabel3.setText("Vem är inloggad?");
 
+        loggaUtKnapp.setText("Logga ut");
+        loggaUtKnapp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loggaUtKnappActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,7 +119,11 @@ private static InfDB idb;
                                 .addComponent(jLabel2)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(loggaUtKnapp)
+                                .addContainerGap())
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(visaOmradeschef)
@@ -137,11 +149,17 @@ private static InfDB idb;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(visaOmradeschef)
                     .addComponent(valjInloggadAlien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(39, 39, 39))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(39, 39, 39))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(loggaUtKnapp)
+                        .addGap(27, 27, 27))))
         );
 
         pack();
@@ -171,6 +189,11 @@ private static InfDB idb;
 
     }//GEN-LAST:event_visaOmradeschefActionPerformed
 
+    private void loggaUtKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loggaUtKnappActionPerformed
+        new inloggningsSida(idb).setVisible(true);
+        
+    }//GEN-LAST:event_loggaUtKnappActionPerformed
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -179,6 +202,7 @@ private static InfDB idb;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton loggaUtKnapp;
     private javax.swing.JComboBox<String> valjInloggadAlien;
     private javax.swing.JTextArea visaAlienOmradeschef;
     private javax.swing.JButton visaOmradeschef;

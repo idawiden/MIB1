@@ -279,7 +279,7 @@ public class inloggningsSida extends javax.swing.JFrame {
            }
         
        
-        
+       
         
 
     }//GEN-LAST:event_loggaInActionPerformed
