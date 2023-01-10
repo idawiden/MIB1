@@ -424,9 +424,7 @@ private static InfDB idb;
          String taBortWorm = "Delete from Worm" + " where Alien_ID = " + alienInt + "";
          idb.delete(taBortWorm);
          
-          if(hamtaRas.equals("worm")){
-              
-          
+          if(hamtaRas.equals("Worm")){
           String sqlRasWorm = "Insert into Worm values(" + alienInt + ");";
           idb.insert(sqlRasWorm);
            

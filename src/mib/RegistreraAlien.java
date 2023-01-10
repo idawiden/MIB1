@@ -379,7 +379,7 @@ private static InfDB idb;
         
        
        //insert till databasen och ras tabellerna, beroende på vilken ras som valts
-       String sqlras = "Insert into "+ ras + " Values("+rattID + ", "+ extraInfoBInt +");";
+       String sqlras = "Insert into "+ ras + " values("+rattID + ", "+ extraInfoBInt +");";
        idb.insert(sqlras);
        
        rubrik.setText("En ny Alien är registrerad");
@@ -387,7 +387,7 @@ private static InfDB idb;
        
        // om den valda rasen är worm ska ingen extra information läggas till, därav if-satsen
        if(ras.equals("worm")){
-           String sqlRasWorm = "Insert into "+ ras + " Values("+rattID + ");";
+           String sqlRasWorm = "Insert into "+ ras + " values(" + rattID + ");";
            idb.insert(sqlRasWorm);
        
        
