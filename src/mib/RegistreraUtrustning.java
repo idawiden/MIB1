@@ -214,6 +214,10 @@ private static InfDB idb;
     private void registreraNyUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registreraNyUtrustningActionPerformed
         //
         try{
+            
+            if(utrustningsIDFinnsRedan(utrustningsID)== false) {
+                
+            }
             //den nya utrustning som matas in i textfältet görs först om till en int 
             //sedan skriver man in benämning på utrustningen 
             //därefter sker en insert (en sql fråga)som lägger in den nya informationen i databasen med det utrustnings_ID samt benämning som skrivs in i textrutorna 
@@ -223,9 +227,12 @@ private static InfDB idb;
             
             String benamning = benämning.getText();
             
+          
+            
             idb.insert("Insert into Utrustning Values(" + rattUtrustning + ", '"+ benamning +"')");
             
-           
+            
+            
             //här sker samma som ovan men här används en kombobox istället 
             String kategori = boxValjKategori.getSelectedItem().toString();
             String info = skrivInInfo.getText();
@@ -234,23 +241,18 @@ private static InfDB idb;
             //då läggs den nya utrustningen till i rätt kategorin 
             //vid lyckad registrering så ändras rubriken till meddelandet nedan
             
-            if(kategori.equals("Kommunikation")|| kategori.equals("Teknik") && utrustningsIDFinnsRedan(utrustningsID) == true){
-           rubrikText.setText("testa igen");
-            }
+           
             
             
-            else if(kategori.equals("Kommunikation")|| kategori.equals("Teknik") && utrustningsIDFinnsRedan(utrustningsID) == false){
+            if(kategori.equals("Kommunikation")|| kategori.equals("Teknik")){
             String sqlKategori = "Insert into " + kategori + " Values("+ rattUtrustning + ",'" + info +"')";
             idb.insert(sqlKategori);
             rubrikText.setText("Ny utrustning har registrerats");
             }
             
-            if(kategori.equals("Vapen") && utrustningsIDFinnsRedan(utrustningsID) == true){
-                
-                rubrikText.setText("testa igen");
-            }
+            
      
-            else if(kategori.equals("Vapen")&& utrustningsIDFinnsRedan(utrustningsID) == false){
+            if(kategori.equals("Vapen")) {
                 int skott = Integer.parseInt(info);
                 int skottInt = skott;
                 String sqlVapen = "Insert into " + kategori + " Values("+ rattUtrustning +"," + info +");";
@@ -267,14 +269,10 @@ private static InfDB idb;
             
             int idInt = Integer.parseInt(resultat);
                     
-            if(utrustningsIDFinnsRedan(utrustningsID) == true) {
-                
-                rubrikText.setText("testa igen");
-            }
             
-            else if(utrustningsIDFinnsRedan(utrustningsID) == false){
+            
             idb.insert("Insert into innehar_utrustning Values(" + idInt + ", " + rattUtrustning + ", curdate())");
-            }
+            
            
             
             
