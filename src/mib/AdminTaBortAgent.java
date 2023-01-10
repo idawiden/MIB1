@@ -226,7 +226,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       //en cactch som fångar upp evetuella inmatningsfel så att applikationen inte "kraschar".
       }catch(InfException e) {
             //ett felmeddelande skrivs även ut vid misslyckat försök till ta bort agent ur system.
-            //JOptionPane.showMessageDialog(null, "något gick fel");
+           
             System.out.println("internt felmeddelande" + e.getMessage());
               
               
