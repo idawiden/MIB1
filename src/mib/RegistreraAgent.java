@@ -298,20 +298,17 @@ private static InfDB idb;
         if(!Validering.kollaAnvandarnamnAgent(agentNamn) && !agentNamnFinnsRedan(agentNamn) && !agentIDFinnsRedan(agentID)){
         
          
-            
-            
-            String sqlQuery = "Insert into Agent " + " Values (" + agentId + ",'"+ namn + "', '" + telefonnummer +  "'" + ", curdate(),'" + adminStatus +"'," + "'" + losen + "'," + rattOmrade + ");"; //en metod som lägger till alla värden i agent tabellen 
-            idb.insert(sqlQuery);
-            
-                        rubrik.setText("En ny agent är registrerad i systemet"); //här updateras rubriken till det angivna 
         }
-        
         else{
             rubrik.setText("Testa igen");
         }
             
              
 
+         String sqlQuery = "Insert into Agent " + " Values (" + agentId + ",'"+ namn + "', '" + telefonnummer +  "'" + ", curdate(),'" + adminStatus +"'," + "'" + losen + "'," + rattOmrade + ");"; //en metod som lägger till alla värden i agent tabellen 
+            idb.insert(sqlQuery);
+            
+                        rubrik.setText("En ny agent är registrerad i systemet"); //här updateras rubriken till det angivna 
         
         
             
