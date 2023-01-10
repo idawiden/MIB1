@@ -20,7 +20,7 @@ public class MIB {
            
        }
        
-        new inloggningsSida(idb).setVisible(true);
+        new InloggningsSida(idb).setVisible(true);
         
     
     }

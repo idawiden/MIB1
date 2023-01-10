@@ -15,14 +15,13 @@ import java.util.HashMap;
  *
  * @author filippabostrom
  */
-public class visaAllInformationAgent extends javax.swing.JFrame {
+public class VisaAllInformationAgent extends javax.swing.JFrame {
     private static InfDB idb;
 
     /**
      * Creates new form visaAllInformationAgent
-     * @param idb
      */
-    public visaAllInformationAgent(InfDB idb) {
+    public VisaAllInformationAgent(InfDB idb) {
         this.idb = idb;
         initComponents();
         fyllBoxMedAgentNamn();
@@ -236,7 +235,7 @@ public class visaAllInformationAgent extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new visaAllInformationAgent(idb).setVisible(true);
+                new VisaAllInformationAgent(idb).setVisible(true);
             }
         });
     }
