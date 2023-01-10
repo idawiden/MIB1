@@ -34,7 +34,6 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="upprepaNyttLösenordRubrikAlien" min="-2" max="-2" attributes="0"/>
                           <Component id="nyttLösenRubrikAlien" min="-2" max="-2" attributes="0"/>
-                          <Component id="bytLosenRubrikAlien" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                               <Component id="nyttLosenAlien" alignment="0" max="32767" attributes="0"/>
                               <Component id="nuvarandeLosenAlien" alignment="0" max="32767" attributes="0"/>
@@ -42,7 +41,7 @@
                           </Group>
                           <Component id="upprepaNyttLosenAlien" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="81" max="32767" attributes="0"/>
+                      <EmptySpace pref="88" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="bytLosenordAlien" min="-2" max="-2" attributes="0"/>
@@ -53,10 +52,11 @@
                                   <Component id="angeAnvändarnamnRubrikAlien" min="-2" max="-2" attributes="0"/>
                                   <Component id="valjAnvandarnamnAlien" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
+                  <Component id="bytLosenRubrikAlien" alignment="0" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -71,7 +71,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="nuvarandeLösenordRubrikAlien" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="angeAnvändarnamnRubrikAlien" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="angeAnvändarnamnRubrikAlien" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
