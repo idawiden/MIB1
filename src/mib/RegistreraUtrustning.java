@@ -247,7 +247,7 @@ private static InfDB idb;
             
             if(kategori.equals("Vapen") && utrustningsIDFinnsRedan(utrustningsID) == true){
                 
-                rubrikText
+                rubrikText.setText("testa igen");
             }
      
             else if(kategori.equals("Vapen")&& utrustningsIDFinnsRedan(utrustningsID) == false){
@@ -267,8 +267,14 @@ private static InfDB idb;
             
             int idInt = Integer.parseInt(resultat);
                     
-            idb.insert("Insert into innehar_utrustning Values(" + idInt + ", " + rattUtrustning + ", curdate())");
+            if(utrustningsIDFinnsRedan(utrustningsID) == true) {
+                
+                rubrikText.setText("testa igen");
+            }
             
+            else if(utrustningsIDFinnsRedan(utrustningsID) == false){
+            idb.insert("Insert into innehar_utrustning Values(" + idInt + ", " + rattUtrustning + ", curdate())");
+            }
            
             
             
