@@ -11,12 +11,12 @@ import oru.inf.InfDB;
  *
  * @author filippabostrom
  */
-public class adminAgent extends javax.swing.JFrame {
+public class AdminAgent extends javax.swing.JFrame {
 private static InfDB idb;
     /**
      * Creates new form adminAgent
      */
-    public adminAgent(InfDB idb) {
+    public AdminAgent(InfDB idb) {
         initComponents();
         this.idb = idb;
     }
@@ -211,7 +211,7 @@ private static InfDB idb;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new adminAgent(idb).setVisible(true);
+                new AdminAgent(idb).setVisible(true);
             }
         });
     }

@@ -117,7 +117,7 @@ public class AdministratorMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_valjUtrustningActionPerformed
 
     private void valjAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjAgentActionPerformed
-    new adminAgent(idb).setVisible(true); //gör AdminAgent menyn synlig 
+    new AdminAgent(idb).setVisible(true); //gör AdminAgent menyn synlig 
     }//GEN-LAST:event_valjAgentActionPerformed
 
     private void valjAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjAlienActionPerformed
