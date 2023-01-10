@@ -45,7 +45,7 @@ public class VisaAllInformationAgent extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "fel");
         }
     }
-
+//en metod som fyller komboboxen med samtliga agentnamn 
         
         
     
