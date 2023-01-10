@@ -371,23 +371,24 @@ private static InfDB idb;
        
        
        String ras = boxRas.getSelectedItem().toString(); // hämtar vald ras från komboboxen
+       
+       
+       if(ras.equals("boglodite")|| ras.equals("squid")){
        String extraInfoB = skrivInInfo.getText(); // hämtar extra information till rasen
        int extraInfoBInt = Integer.parseInt(extraInfoB); // extra informationen är av datatypen Int och deklararas därför till en int
        
-       
-      
-        
-       
        //insert till databasen och ras tabellerna, beroende på vilken ras som valts
-       String sqlras = "Insert into "+ ras + " values("+rattID + ", "+ extraInfoBInt +");";
+       String sqlras = "Insert into "+ ras + " values(" +rattID + ", "+ extraInfoBInt +");";
        idb.insert(sqlras);
        
        rubrik.setText("En ny Alien är registrerad");
+       }
+       
        
        
        // om den valda rasen är worm ska ingen extra information läggas till, därav if-satsen
        if(ras.equals("worm")){
-           String sqlRasWorm = "Insert into "+ ras + " values(" + rattID + ");";
+           String sqlRasWorm = "Insert into Worm values(" + rattID + ");";
            idb.insert(sqlRasWorm);
        
        
