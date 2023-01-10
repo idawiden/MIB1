@@ -267,13 +267,13 @@ private static InfDB idb;
      
      
      
-        if(!Validering.kollaAnvandarnamnAgent(agentNamn)) {
+        if(Validering.kollaAnvandarnamnAgent(agentNamn)) {
             
         }
-        if(!agentNamnFinnsRedan(agentNamn)){
+        if(agentNamnFinnsRedan(agentNamn)){
             
         }
-        if(!agentIDFinnsRedan(agentID)){
+        if(agentIDFinnsRedan(agentID)){
             
         }
         
@@ -308,7 +308,7 @@ private static InfDB idb;
                        
              
     
-        if(Validering.kollaAnvandarnamnAgent(agentNamn) && agentNamnFinnsRedan(agentNamn) && agentIDFinnsRedan(agentID)){
+        if(!Validering.kollaAnvandarnamnAgent(agentNamn) && !agentNamnFinnsRedan(agentNamn) && !agentIDFinnsRedan(agentID)){
         
       
             
@@ -320,6 +320,7 @@ private static InfDB idb;
                         rubrik.setText("En ny agent är registrerad i systemet"); //här updateras rubriken till det angivna 
         
         }
+        
             
             
         }catch(InfException e){
