@@ -12,12 +12,12 @@ import javax.swing.JOptionPane;
  *
  * @author filip
  */
-public class TilldelaAdminStatus extends javax.swing.JFrame {
+public class tilldelaAdminStatus extends javax.swing.JFrame {
 private static InfDB idb;
     /**
      * Creates new form tilldelaAdminStatus
      */
-    public TilldelaAdminStatus(InfDB idb) {
+    public tilldelaAdminStatus(InfDB idb) {
         initComponents();
         this.idb = idb;
         fyllBoxMedAgentNamn();
@@ -167,21 +167,20 @@ private static InfDB idb;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TilldelaAdminStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(tilldelaAdminStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TilldelaAdminStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(tilldelaAdminStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TilldelaAdminStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(tilldelaAdminStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TilldelaAdminStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(tilldelaAdminStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TilldelaAdminStatus(idb).setVisible(true);
+                new tilldelaAdminStatus(idb).setVisible(true);
             }
         });
     }

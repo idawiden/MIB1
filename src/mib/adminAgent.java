@@ -11,12 +11,12 @@ import oru.inf.InfDB;
  *
  * @author filippabostrom
  */
-public class AdminAgent extends javax.swing.JFrame {
+public class adminAgent extends javax.swing.JFrame {
 private static InfDB idb;
     /**
      * Creates new form adminAgent
      */
-    public AdminAgent(InfDB idb) {
+    public adminAgent(InfDB idb) {
         initComponents();
         this.idb = idb;
     }
@@ -132,10 +132,9 @@ private static InfDB idb;
                 .addGap(8, 8, 8)
                 .addComponent(agentRubrik)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(registreraAgent, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(taBortAgent)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registreraAgent)
+                    .addComponent(taBortAgent))
                 .addGap(18, 18, 18)
                 .addComponent(andraOmradeschef)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
@@ -153,7 +152,7 @@ private static InfDB idb;
     }// </editor-fold>//GEN-END:initComponents
 
     private void tilldelaAdministratorStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tilldelaAdministratorStatusActionPerformed
-       new TilldelaAdminStatus(idb).setVisible(true); //här ska TilldelaAdminStatus menyn bli synlig 
+       new tilldelaAdminStatus(idb).setVisible(true); //här ska tilldelaAdminStatus menyn bli synlig 
     }//GEN-LAST:event_tilldelaAdministratorStatusActionPerformed
 
     private void informationOmAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_informationOmAgentActionPerformed
@@ -197,21 +196,20 @@ private static InfDB idb;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(adminAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(adminAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(adminAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(adminAgent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminAgent(idb).setVisible(true);
+                new adminAgent(idb).setVisible(true);
             }
         });
     }

@@ -13,12 +13,12 @@ import oru.inf.InfException;
  *
  * @author filippabostrom
  */
-public class KollaRegistreradeAlienDatum extends javax.swing.JFrame {
+public class kollaRegistreradeAlienDatum extends javax.swing.JFrame {
 private static InfDB idb;
     /**
      * Creates new form kollaRegistreradeAlienDatum
      */
-    public KollaRegistreradeAlienDatum(InfDB idb) {
+    public kollaRegistreradeAlienDatum(InfDB idb) {
         initComponents();
         this.idb = idb;
         fyllBox1MedDatum();
@@ -218,21 +218,20 @@ private static InfDB idb;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(KollaRegistreradeAlienDatum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(kollaRegistreradeAlienDatum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(KollaRegistreradeAlienDatum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(kollaRegistreradeAlienDatum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(KollaRegistreradeAlienDatum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(kollaRegistreradeAlienDatum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(KollaRegistreradeAlienDatum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(kollaRegistreradeAlienDatum.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new KollaRegistreradeAlienDatum(idb).setVisible(true);
+                new kollaRegistreradeAlienDatum(idb).setVisible(true);
             }
         });
     }

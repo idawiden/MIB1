@@ -65,11 +65,9 @@
               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
               <Component id="agentRubrik" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="registreraAgent" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="taBortAgent" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="taBortAgent" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="andraOmradeschef" min="-2" max="-2" attributes="0"/>

@@ -113,11 +113,11 @@ public class AdministratorMeny extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void valjUtrustningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjUtrustningActionPerformed
-         new TaBortUtrustning(idb).setVisible(true); //gör TaBortUtrustning synlig
+         new taBortUtrustning(idb).setVisible(true); //gör taBortUtrustning synlig
     }//GEN-LAST:event_valjUtrustningActionPerformed
 
     private void valjAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjAgentActionPerformed
-    new AdminAgent(idb).setVisible(true); //gör AdminAgent menyn synlig 
+    new adminAgent(idb).setVisible(true); //gör adminAgent menyn synlig 
     }//GEN-LAST:event_valjAgentActionPerformed
 
     private void valjAlienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjAlienActionPerformed
@@ -125,7 +125,7 @@ public class AdministratorMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_valjAlienActionPerformed
 
     private void loggaUtKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loggaUtKnappActionPerformed
-       new InloggningsSida(idb).setVisible(true);
+       new inloggningsSida(idb).setVisible(true);
        
     }//GEN-LAST:event_loggaUtKnappActionPerformed
 
