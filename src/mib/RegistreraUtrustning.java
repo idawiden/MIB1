@@ -5,6 +5,7 @@
 package mib;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -47,6 +48,31 @@ private static InfDB idb;
         }
     }
 
+     
+      private boolean utrustningsIDFinnsRedan(JTextField rutaAttKolla){
+        
+        boolean utrustningsIDFinns = false;
+        
+        try{
+            
+        
+        String fraga = "Select Utrustnings_ID from Utrustning";
+        ArrayList<String> IDLista;
+        IDLista = idb.fetchColumn(fraga);
+        for(String id : IDLista){
+           if(id.equals(rutaAttKolla.getText())){
+               utrustningsIDFinns = true;
+               JOptionPane.showMessageDialog(null, "Det utrustningsIDet finns redan, vänligen testa ett annat");
+           }
+          
+        } 
+       }catch(InfException e){
+           JOptionPane.showMessageDialog(null, "något gick fel");
+       
+        }
+        return utrustningsIDFinns;
+    
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,7 +98,7 @@ private static InfDB idb;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        rubrikText.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        rubrikText.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         rubrikText.setText("Fyll i information");
 
         jLabel2.setText("UtrustningsID:");
@@ -207,13 +233,24 @@ private static InfDB idb;
             //här görs en kontroll med hjälp av en if-sats som kollar om den valda utrustningen i kategorin stämmer överrens med antigen kommunikation, vapen eller teknik
             //då läggs den nya utrustningen till i rätt kategorin 
             //vid lyckad registrering så ändras rubriken till meddelandet nedan
-            if(kategori.equals("Kommunikation")|| kategori.equals("Teknik")){
+            
+            if(kategori.equals("Kommunikation")|| kategori.equals("Teknik") && utrustningsIDFinnsRedan(utrustningsID) == true){
+           rubrikText.setText("testa igen");
+            }
+            
+            
+            else if(kategori.equals("Kommunikation")|| kategori.equals("Teknik") && utrustningsIDFinnsRedan(utrustningsID) == false){
             String sqlKategori = "Insert into " + kategori + " Values("+ rattUtrustning + ",'" + info +"')";
             idb.insert(sqlKategori);
             rubrikText.setText("Ny utrustning har registrerats");
             }
+            
+            if(kategori.equals("Vapen") && utrustningsIDFinnsRedan(utrustningsID) == true){
+                
+                rubrikText
+            }
      
-            if(kategori.equals("Vapen")){
+            else if(kategori.equals("Vapen")&& utrustningsIDFinnsRedan(utrustningsID) == false){
                 int skott = Integer.parseInt(info);
                 int skottInt = skott;
                 String sqlVapen = "Insert into " + kategori + " Values("+ rattUtrustning +"," + info +");";
