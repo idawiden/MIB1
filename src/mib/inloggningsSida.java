@@ -109,13 +109,13 @@ public class inloggningsSida extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        startRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        startRubrik.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         startRubrik.setText("Vänligen ange titel och logga in");
 
-        anvandarnamnRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        anvandarnamnRubrik.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         anvandarnamnRubrik.setText("Användarnamn:");
 
-        losenordRubrik.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        losenordRubrik.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         losenordRubrik.setText("Lösenord:");
 
         losenordFalt.setColumns(7);
@@ -166,9 +166,9 @@ public class inloggningsSida extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(startRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(titelAlternativ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(valjInloggningssatt))
