@@ -415,39 +415,59 @@ private static InfDB idb;
         
         if(egenskaper.equals("Ras")){
          String hamtaRas = boxMedRaser.getSelectedItem().toString();
-         String extraInfo = skrivInExtraInfo.getText();
-         int extraInfoInt = Integer.parseInt(extraInfo);
+         
          String hamtaAlienId = "Select Alien_ID from Alien where namn = " + "'" + alienNamn + "'";
          String alienIdResultat = idb.fetchSingle(hamtaAlienId);
          int alienInt = Integer.parseInt(alienIdResultat);
          
-        
+         
          String taBortWorm = "Delete from Worm" + " where Alien_ID = " + alienInt + "";
          idb.delete(taBortWorm);
+         
+          if(hamtaRas.equals("worm")){
+              
+          
+          String sqlRasWorm = "Insert into Worm values(" + alienInt + ");";
+          idb.insert(sqlRasWorm);
+           
+        System.out.println(sqlRasWorm); 
+        
+          }
          
          String taBortBoglodite = "Delete from Boglodite" + " where Alien_ID = " + alienInt + "";
          idb.delete(taBortBoglodite);
          
+          System.out.println(taBortBoglodite);
+          
+          
+         
          String taBortSquid = "Delete from Squid" + " where Alien_ID = " + alienInt + "";
          idb.delete(taBortSquid);
          
+          System.out.println(taBortSquid);
+          
+          
+         if(boxMedRaser.getSelectedItem().equals("Boglodite") || boxMedRaser.getSelectedItem().equals("Squid")){
+         String extraInfo = skrivInExtraInfo.getText();
+         int extraInfoInt = Integer.parseInt(extraInfo);
          
-         if(hamtaRas.equals("squid")|| hamtaRas.equals("boglodite")){
-         String sqlRas = "Insert into " + hamtaRas + " Values(" + alienInt + ", " + extraInfoInt + ");";
+         
+          String sqlRas = "Insert into " + hamtaRas + " values(" + alienInt + ", " + extraInfoInt + ");";
          idb.insert(sqlRas);
+           System.out.println(sqlRas);
+         
          }
          
-         else if(hamtaRas.equals("worm")){
-          String sqlRasWorm = "Insert into Worm Values(" + alienInt + ");";
-           idb.insert(sqlRasWorm);
-           
-           
-                     
-         }
+     
+         
+         
+       
+        
          
          rubrikVadVillAndra.setText("Ny ändring har gjorts");
-        }
         
+        
+        }
         
             
         }catch(InfException e) {
