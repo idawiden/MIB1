@@ -15,7 +15,7 @@ import java.util.HashMap;
  *
  * @author filippabostrom
  */
-public class InloggningsSida extends javax.swing.JFrame {
+public class inloggningsSida extends javax.swing.JFrame {
     private static InfDB idb;
     private HashMap <String,String> agenter;
 
@@ -23,7 +23,7 @@ public class InloggningsSida extends javax.swing.JFrame {
      * Creates new form inloggningsSida
      * @param idb
      */
-    public InloggningsSida(InfDB idb) {
+    public inloggningsSida(InfDB idb) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.idb = idb;

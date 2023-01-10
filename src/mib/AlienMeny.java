@@ -182,7 +182,7 @@ private static InfDB idb;
     }//GEN-LAST:event_visaOmradeschefActionPerformed
 
     private void loggaUtKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loggaUtKnappActionPerformed
-        new InloggningsSida(idb).setVisible(true);
+        new inloggningsSida(idb).setVisible(true);
         
     }//GEN-LAST:event_loggaUtKnappActionPerformed
 

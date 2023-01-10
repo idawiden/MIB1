@@ -15,6 +15,7 @@ public class adminAgent extends javax.swing.JFrame {
 private static InfDB idb;
     /**
      * Creates new form adminAgent
+     * @param idb
      */
     public adminAgent(InfDB idb) {
         initComponents();
@@ -153,11 +154,11 @@ private static InfDB idb;
     }// </editor-fold>//GEN-END:initComponents
 
     private void tilldelaAdministratorStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tilldelaAdministratorStatusActionPerformed
-       new TilldelaAdminStatus(idb).setVisible(true); //här ska TilldelaAdminStatus menyn bli synlig 
+       new tilldelaAdminStatus(idb).setVisible(true); //här ska tilldelaAdminStatus menyn bli synlig 
     }//GEN-LAST:event_tilldelaAdministratorStatusActionPerformed
 
     private void informationOmAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_informationOmAgentActionPerformed
-       new VisaAllInformationAgent(idb).setVisible(true); // här ska VisaAllInformationAgent menyn bli synlig 
+       new visaAllInformationAgent(idb).setVisible(true); // här ska VisaAllInformationAgent menyn bli synlig 
     }//GEN-LAST:event_informationOmAgentActionPerformed
 
     private void andraOmradeschefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraOmradeschefActionPerformed
