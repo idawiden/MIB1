@@ -92,9 +92,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(141, 141, 141)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(valjAgentBox, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(raderaKnapp)))
+                        .addComponent(raderaKnapp))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(125, 125, 125)
                         .addComponent(rubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -102,6 +100,10 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addComponent(jLabel1)))
                 .addContainerGap(124, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(valjAgentBox, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,36 +132,48 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       String AgentID = "Select Agent_ID from Agent where namn = " + "'" + valdAgent + "'";
       String resultat = idb.fetchSingle(AgentID);
      
-      
+      System.out.println(resultat);
       
       String hamtaFaltAgent = "Select Agent_ID from Faltagent where Agent_ID = " + resultat+ "";
       String faltagent = idb.fetchSingle(hamtaFaltAgent);
       
+      System.out.println(faltagent);
+      
       String hamtaKontorschef = "Select Agent_ID from Kontorschef where Agent_ID =" + resultat +"";
       String kontorschef = idb.fetchSingle(hamtaKontorschef); 
+      
+       System.out.println(kontorschef);
       
       String hamtaOmradeschef = "Select Agent_ID from Omradeschef where Agent_ID =" + resultat +"";
       String omradeschef = idb.fetchSingle(hamtaOmradeschef);
       
+       System.out.println(omradeschef);
+      
       String hamtaInneharUtrustning = "Select Agent_ID from innehar_utrustning where Agent_ID =" + resultat +""; 
       String inneharUtrustning = idb.fetchSingle(hamtaInneharUtrustning);
+      
+       System.out.println(inneharUtrustning);
       
       
       
       String hamtaInneharFordon = "Select agent_ID from Innehar_Fordon where agent_ID =" + resultat + "";
       String inneharFordon = idb.fetchSingle(hamtaInneharFordon);
       
-     
+      System.out.println(inneharFordon);
 
       
       
       String hamtaAnsvarigAgent = "Select Ansvarig_Agent from Alien where Ansvarig_Agent = " + resultat + "";
       String ansvarigAgent = idb.fetchSingle(hamtaAnsvarigAgent); 
+      
+       System.out.println(ansvarigAgent);
      
       
-      String fråga = "Select Agent_ID from Agent join Alien on Agent.Agent_ID = Alien.Ansvarig_Agent where namn = " + resultat + "" ;
+      String fråga = "Select Alien.Ansvarig_Agent from Alien join Agent on Agent.Agent_ID = Alien.Ansvarig_Agent where Alien.Ansvarig_Agent = " + resultat + "" ;
       String svar = idb.fetchSingle(fråga);
       
+       System.out.println(fråga);
+       System.out.println(svar);
       
       
       //här sker kontroller med if-satser som kollar olika villkor. Vid uppfylda villkor så ställs en delete sql fråga mot databasen som raderar agent_ID från samtliga tabeller ovan.
@@ -189,13 +203,16 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       
       
       
-      if(resultat.equals(ansvarigAgent) && !svar.equals(resultat)){
+      if(!resultat.equals(ansvarigAgent)&& (svar == null)){
       idb.delete("Delete from Alien where Ansvarig_Agent = " + resultat +"");
       }
       
-      else if(svar.equals(resultat)){
+      else if(svar != null){
           JOptionPane.showMessageDialog(null, "Kan inte radera en agent som är ansvarig för en alien, ta bort ansvaret av alien för att kunna genomföra ändringen");
+          
+           
       }
+      
       
       
       
@@ -209,7 +226,7 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       //en cactch som fångar upp evetuella inmatningsfel så att applikationen inte "kraschar".
       }catch(InfException e) {
             //ett felmeddelande skrivs även ut vid misslyckat försök till ta bort agent ur system.
-            JOptionPane.showMessageDialog(null, "något gick fel");
+            //JOptionPane.showMessageDialog(null, "något gick fel");
             System.out.println("internt felmeddelande" + e.getMessage());
               
               
