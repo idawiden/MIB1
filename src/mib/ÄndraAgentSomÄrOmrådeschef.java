@@ -24,6 +24,7 @@ private static InfDB idb;
         fyllBoxMedAgentNamn();
         fyllBoxMedOmrade();
     }
+    //två metoder som fyller komboxoeb direkt med samtlig data som skrivs i metoderna, i dessa fall med samtliga agentnamn samt områdesnamn som finns i databasen.
 
      private void fyllBoxMedAgentNamn() {
         
@@ -60,7 +61,12 @@ private static InfDB idb;
             JOptionPane.showMessageDialog(null, "fel");
         }
     }
-         
+     //ovan är två metoder som först ställer en sql fråga mot databasen som hämtar samtliga agent- och områdesnamn från databasen. 
+     //Sedan så använder vi oss av en arraylist of strings för att hålla agent och områdes objekt 
+     //därefter körs en for-loop igenom samtliga objekt för att sedan lägga till dom i komboboxen. 
+     // Vi använder oss av "Try" och "catch" genomgående i applikationen. De hanterar undantag som kan uppstå vid kod- eller datafel under programutförande. "Try" är där undantaget uppstår i koden och en "catc-en" fångar undantagen och sedan hanterar det. 
+     //När catchen fångar upp undantaget så skrivs ett felmeddelande ut till utvecklaren, av kompliatorn. 
+     //En try och catch används för att programmet/applikationen inte ska crascha.
      
     
     /**
@@ -157,6 +163,9 @@ private static InfDB idb;
           String resultat = idb.fetchSingle(fraga);
           int agentInt = Integer.parseInt(resultat);
           int rattAgentId = agentInt;
+          //agentNamn håller de valda agenten som användaren valt i komboboxen 
+          //sedan ställs en sql fråga mot databasen där agent_ID hämtas ut från tabellen agent där namn är samma som det valda agentnamnet i komboboxen 
+          //sedan gör vi om stringen till en int, där "rattAgentId" håller integervärdet från "agentInt".
           
           String omrade = namnPaOmradeBox.getSelectedItem().toString();
           System.out.println(omrade);
@@ -168,18 +177,28 @@ private static InfDB idb;
           int agentNyttID = Integer.parseInt(resultatOmrade);
           int omradet = Integer.parseInt(resultatOmrade);
           System.out.println(omradet);
-        
-          idb.update("UPDATE omradeschef SET agent_ID = " + "'" + rattAgentId+ "'" + "where agent_ID = " + "'" + agentNyttID + "'");
+          //"ormade" håller de valda områder som användaren valt i komboboxen som agenten ska bli områdeschef för.
+          //vi använder oss av en system.out.println för att se innan vi fick koden att fungera vart det kraschade (vart felet i koden var).
+          //Sedan ställs en sql fråga mot databasen där områdes_ID från tabellen område hämtas ut från databasen där benämning (kolumnen) är samma som det område man väljer i komboboxen.
+          //Därefter ställs en till sql fråga mot databasen där vi hämtar agent_ID frpn tabellen områdeschef där område är samma som sql frågan ovan 
+          //vi ställer denna fråga då vi inte vill att man ska kunna ändra på en agent som redan är områdeschef för ett område 
+          //sedan använder vi återigen metoden Integer.parseInt()för att konvertera ett strängvärde, som lagrats i variabeln "resultatOmrade", till en int datatyp. 
+          //Därefter så tilldelar den värdet till "agentNyttID" samt "omradet". 
+          //Vi använde en system.out.println till för att återigen se vilka kodrader som skrivs ut och vart i koden den slutar köra.
           
+          
+          idb.update("UPDATE omradeschef SET agent_ID = " + "'" + rattAgentId+ "'" + "where agent_ID = " + "'" + agentNyttID + "'");
+          //här sker en update som updaterar i tabellen omrdeschef om den agent som användaren valt till att bli områdeschef 
           
        
          rubrik.setText("Områdeschef uppdaterad");
+         //därefter uppdateras rubriken till meddelandet ovan vid lyckad ändring.
           
         }catch(InfException e) {
             JOptionPane.showMessageDialog(null, "Agenten är redan områdeschef");
             System.out.println("Internt felmeddelande" + e.getMessage());
         }   
-         
+         //Om agenten som användaren väljer i komboboxen redan är områdeschef för ett område så kommer användaren att få felmeddelandet ovan. 
         
     }//GEN-LAST:event_ändraOmrådeschefKnappActionPerformed
 
