@@ -22,6 +22,7 @@ private static InfDB idb;
         this.idb = idb;
         fyllBoxMedAgentNamn();
     }
+    //en metod som fyller komboboxen direkt med samtliga agentnamn
     
      private void fyllBoxMedAgentNamn() {
         String fraga = "SELECT namn from Agent";
@@ -39,7 +40,13 @@ private static InfDB idb;
             JOptionPane.showMessageDialog(null, "fel");
         }
     }
-
+    //ovan är en metod som först ställer en sql fråga mot databasen som hämtar samtliga agentnamn från databasen. 
+     //Sedan så använder vi oss av en arraylist of strings för att hålla agentnamn objekt 
+     //därefter körs en for-loop igenom samtliga objekt för att sedan lägga till dom i komboboxen. 
+     // Vi använder oss av "Try" och "catch" för att fånga samt hantera undantaget som kan uppstå under programkörning. 
+     //När catchen fångar upp undantaget så skrivs ett felmeddelande ut till utvecklaren, av kompliatorn. 
+     //En try och catch används för att programmet/applikationen inte ska crascha.
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

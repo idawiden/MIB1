@@ -26,7 +26,7 @@ private static InfDB idb;
     }
     
     
-    // metod som fyller en komboBox med agentNamn från databasen
+    //två metoder som fyller komboboxen direkt med samtlig data som skrivs i metoderna, i dessa fall med samtliga agentnamn samt områdesnamn som hämtas från databasen.     
 
      private void fyllBoxMedAgentNamn() {
         
@@ -66,8 +66,13 @@ private static InfDB idb;
             JOptionPane.showMessageDialog(null, "fel");
         }
     }
-         
-     
+      
+     //ovan är två metoder som först ställer en sql fråga mot databasen som hämtar samtliga agentnamn samt benämning från databasen. 
+     //Sedan så använder vi oss av en arraylist of strings för att hålla agentnamn samt områdes objekt 
+     //därefter körs en for-loop igenom samtliga objekt för att sedan lägga till dom i komboboxen. 
+     // Vi använder oss av "Try" och "catch" för att fånga samt hantera undantaget som kan uppstå under programkörning. 
+     //När catchen fångar upp undantaget så skrivs ett felmeddelande ut till utvecklaren, av kompliatorn. 
+     //En try och catch används för att programmet/applikationen inte ska crascha.
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -161,6 +166,7 @@ private static InfDB idb;
         
         
         try{
+          //hämtar agent_ID på den valda agenten från komboboxen 
           String agentNamn = namnPåAgenter.getSelectedItem().toString();
           String fraga = "SELECT agent_ID from agent where Namn ='" + agentNamn + "'";
           String resultat = idb.fetchSingle(fraga);
@@ -170,23 +176,28 @@ private static InfDB idb;
           String omrade = namnPaOmradeBox.getSelectedItem().toString();
           System.out.println(omrade);
          
+          //en sql fråga som hämtar områdes ID från tabellen område där benämning är lika som det man väljer i komboboxen
+          //sedan ställs en till sql fråga mot databasen som hämtar agent_ID från områdeschef, för att kolla om den valda agenten redan är områdeschef för ett område 
+          //Då om en agent redan är chef för ett område så ska det inte gå att ändra. 
           String fraga1 = "SELECT Omrades_ID from omrade where benamning = " + "'" + omrade + "'";
           String resultatFraga1 = idb.fetchSingle(fraga1);
           String fragaOmrade = "SELECT Agent_ID from omradeschef where Omrade = " + "'" + resultatFraga1 + "'";
           String resultatOmrade = idb.fetchSingle(fragaOmrade);
           
-          
+          // konverterar agentID samt omrdet till datatypen Int
           System.out.println(resultatOmrade);
           int agentNyttID = Integer.parseInt(resultatOmrade);
           int omradet = Integer.parseInt(resultatOmrade);
           System.out.println(omradet);
         
+          // en uppdatering i databasen där den valda agentens agentID sätts in i områdeschef tabellen i databasen
           idb.update("UPDATE omradeschef SET agent_ID = " + "'" + rattAgentId+ "'" + "where agent_ID = " + "'" + agentNyttID + "'");
           
           
-       
+         //vid lyckad ändring så ändras rubriken till meddelandet nedan. 
          rubrik.setText("Områdeschef uppdaterad");
-          
+        
+        //Här så kan man inte ändra på en agent som redan är områdeschef utan då skrivs felmeddelandet nedan ut.
         }catch(InfException e) {
             JOptionPane.showMessageDialog(null, "Agenten är redan områdeschef");
             System.out.println("Internt felmeddelande" + e.getMessage());

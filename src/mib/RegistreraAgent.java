@@ -260,16 +260,10 @@ private static InfDB idb;
     
     
      
-     if(Validering.rattAntalTeckenTextField(agentLosenord)){
+     if(Validering.rattAntalTeckenTextField(agentLosenord)){ // här sker en validering med en if-sats där det kollas så att lösenordet som skrivs in innehåller ett godkänts antal tecken
          
      }
-     
-     
-     
-        
-         
-       
-     
+    
     
      
         try{
@@ -296,22 +290,35 @@ private static InfDB idb;
             
              
                        
-             
-    
-        if(Validering.kollaAnvandarnamnAgent(agentNamn) == false && agentNamnFinnsRedan(agentNamn) == true && agentIDFinnsRedan(agentID)== true){
+        // här sker tre olika valideringar
+        // den första är en validering från Valideringsklassen, en extern metod anropas som kollar så att användarnamnet som registreras innehåller "Agent"
+        
+
+        // om denna metod returnerar false, betyder det att agentnamnet inte innehåller "Agent" och meddelandet "testa igen" blir synligt
+        if(Validering.kollaAnvandarnamnAgent(agentNamn) == false && 
+                //här sker ett internt metodanrop där det testas om agentNamnet som man försöker registrera finns i databasen
+                // om denna metod returnerar true så finns namnet redan och ska inte gå att läggas till
+                agentNamnFinnsRedan(agentNamn) == true && 
+                // här sker ett internt mettodanrop där det testat om agentID som man försöker registrera finns i databasen
+                // om denna metod returnerar true så finns id redan och ska inte gå att läggast till
+                agentIDFinnsRedan(agentID)== true){
             
-            rubrik.setText("testa igen");
+            rubrik.setText("testa igen"); // meddelande som visar att användaren måste testa igen, med ett annat, namn eller id
         
         }
             
+        // här sker en else-if sats, om det är så att valideringarna stämmer och att användaren matat in rätt data
+        // det vill säga att, agentNamnet innehåller agent, att agentNamnet inte redan finns i databasen samt att idet inte redan finns
+        
         
         else if(Validering.kollaAnvandarnamnAgent(agentNamn) == true && agentNamnFinnsRedan(agentNamn) == false && agentIDFinnsRedan(agentID)== false) {
             
-             
+         // om användaren matat in rätt data sker en insert till databasen, där informationen som skrivits in skickas in i tabellen Agent    
 
          String sqlQuery = "Insert into Agent " + " Values (" + agentId + ",'"+ namn + "', '" + telefonnummer +  "'" + ", curdate(),'" + adminStatus +"'," + "'" + losen + "'," + rattOmrade + ");"; //en metod som lägger till alla värden i agent tabellen 
             idb.insert(sqlQuery);
             
+            // rubriken i JFramen ändras så att man kan se att en ny agent har registrerats
                         rubrik.setText("En ny agent är registrerad i systemet"); //här updateras rubriken till det angivna 
         
         }
