@@ -125,8 +125,8 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
        String valdAgent = valjAgentBox.getSelectedItem().toString();
        //valdAgent håller de agentnamn som finns att välja bland i komboboxen 
       
-      //sql frågor som ställs mot databasen för att hämta ut agent_ID frpn olika tabeller.
-      //samt där namn ska vara samma som det valda agent namnet i komboboxen.  
+      //sql frågor som ställs mot databasen för att hämta ut agent_ID från olika tabeller.
+      //samt där namn ska vara samma som det valda agentnamnet i komboboxen.  
       String AgentID = "Select Agent_ID from Agent where namn = " + "'" + valdAgent + "'";
       String resultat = idb.fetchSingle(AgentID);
      
@@ -200,11 +200,12 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       
       
       
-      
+      //här har vi en if och else sats som kollar villkor för att kunna ta bort en agent. 
+      //om resultat inte är lika med ansvarigAgent och svar är null så kommer agenten att tas bort från systemet 
       if(!resultat.equals(ansvarigAgent)&& (svar == null)){
       idb.delete("Delete from Alien where Ansvarig_Agent = " + resultat +"");
       }
-      
+      //om svar inte är null, alltså att en agent är ansvarig för en alien så kommer ändringen inte lyckas och felmeddelandet nedan kommer att visas för användaren för att få hjälp att sedan kunna mata in rätt data.
       else if(svar != null){
           JOptionPane.showMessageDialog(null, "Kan inte radera en agent som är ansvarig för en alien, ta bort ansvaret av alien för att kunna genomföra ändringen");
           
