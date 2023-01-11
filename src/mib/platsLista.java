@@ -19,20 +19,22 @@ private static InfDB idb;
     public platsLista(InfDB idb) {
         this.idb = idb;
         initComponents();
-        fyllBoxMedPlatser();
+        fyllBoxMedPlatser(); 
         
     }
     
+    // metod som fyller komboBoxen med benämningar av olika platser
+    
     private void fyllBoxMedPlatser() {
         
-         String fraga = "SELECT Benamning from Plats";
+         String fraga = "SELECT Benamning from Plats"; // hämtar ut alla benämingar från tabellen Plats
         
-        ArrayList <String> allaPlatser;
+        ArrayList <String> allaPlatser; // håller benämningen på alla platser
         
         try {
             allaPlatser = idb.fetchColumn(fraga);
             
-            for(String namn:allaPlatser) {
+            for(String namn:allaPlatser) { // for-each-loop som snurrar igenom listan och lägger till dessa i komboBoxen
                 valjPlats.addItem(namn);   
             }
             
@@ -124,16 +126,20 @@ private static InfDB idb;
 
     private void okKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okKnappActionPerformed
         
+       
+        
         visaAliens.setText("");
-        ArrayList <String> aliensPaVissPlats;
+        ArrayList <String> aliensPaVissPlats; // ArrayList som håller information om aliens på en viss plats
         
         try{    
-        String valdPlats = valjPlats.getSelectedItem().toString();
+        String valdPlats = valjPlats.getSelectedItem().toString(); // hämtar ut den valda platsen
+       
+        // hämtar ut namn från Alien tabellen, joinar Plats tabellen och söker efter aliens som har samma Plats_ID som den valda platsens id, och där benämningen är den plats användaren valt i komboboxen 
         String fraga = "SELECT namn from Alien join Plats on alien.Plats = Plats.Plats_ID where Plats.Benamning = " + "'" + valdPlats + "'";
         aliensPaVissPlats = idb.fetchColumn(fraga);
         
-        for(String namn: aliensPaVissPlats) {
-            visaAliens.append(namn + " "+ "\t");
+        for(String namn: aliensPaVissPlats) { // for-each-loop som snurrar igenom listan
+            visaAliens.append(namn + " "+ "\t"); // med metoden append, skrivs sedan namnen ut i textrutan 
             
         }
         
