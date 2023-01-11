@@ -333,20 +333,23 @@ private static InfDB idb;
         }
         
          
-        //
+        // Om valideringen stämmer, att agentnamnet innehåller agent samt inte redan finns i databasen så kan infromationen ändras
          else if(kategori.equals("Namn")&& Validering.kollaAnvandarnamnAgent(nyInfoTextRuta) == true && agentNamnFinnsRedan(nyInfoTextRuta) == false){
+        // här sker en update där namnet på agenten ändras
         idb.update("UPDATE Agent SET Namn = "+ "'"+ nyInfo + "'" + " where namn = "+ "'" + agentNamn +"'");
         infoRubrik.setText("Ny ändring har gjorts");
          }
         
-         
+         // ändring av telefonNummer
          if(kategori.equals("Telefon")){
         idb.update("UPDATE Agent SET Telefon = "+ "'"+ nyInfo + "'" + " where namn = "+ "'" + agentNamn +"'");
         infoRubrik.setText("Ny ändring har gjorts");
         }
          
+        // ändring av område 
         if(kategori.equals("Omrade")){
-        String omrade = boxMedOmraden.getSelectedItem().toString();
+        String omrade = boxMedOmraden.getSelectedItem().toString(); // väljer ett område i komboBoxen
+        // hämtar omrades_ID för det valda området
         String fragaOmrade = "Select Omrades_ID from Omrade where Benamning = " + "'" + omrade + "'";
         String resultatInt = idb.fetchSingle(fragaOmrade);
         int omradesInt = Integer.parseInt(resultatInt);
@@ -355,13 +358,17 @@ private static InfDB idb;
         infoRubrik.setText("Ny ändring har gjorts");
         }
         
+        // ändring av en agents status
         if(kategori.equals("Status")){
             String hamtaStatus = boxMedStatus.getSelectedItem().toString();
+            // update av administratör status
             idb.update("UPDATE Agent set Administrator =" + "'"+ hamtaStatus + "'" + " where namn = " +"'"+ agentNamn + "'" );
             infoRubrik.setText("Ny ändring har gjorts");
         }
-        
+        // ändring av lösenord 
         if(kategori.equals("Losenord")) {
+            
+        // update av lösenord   
         idb.update("UPDATE Agent SET Losenord = " + "'" + nyInfo + "'" + " where namn = " + "'" + agentNamn + "'");
         infoRubrik.setText("Ny ändring har gjorts");
   
