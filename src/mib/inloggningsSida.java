@@ -226,7 +226,7 @@ public class inloggningsSida extends javax.swing.JFrame {
         if(titelAlternativ.getSelectedItem().equals("Administratör")){
           
             
-            
+           
            try{
             // här väljs den agent som man vill logga in som 
             String anvandarNamn = boxMedAnvandarnamn.getSelectedItem().toString();
@@ -254,7 +254,8 @@ public class inloggningsSida extends javax.swing.JFrame {
             if(titelAlternativ.getSelectedItem().equals("Alien")) {
                 
             
-           
+           // I try kan ett fel uppstå som kallas undantag
+           // try används alltså för att kunna fånga ett eventuellt problem i koden
             try{
             // här väljs den alien som man vill logga in som 
             String anvandarNamnAlien = boxMedAnvandarnamn.getSelectedItem().toString(); // hämtar ut det valda namnet från komboBoxen
@@ -271,6 +272,9 @@ public class inloggningsSida extends javax.swing.JFrame {
              startRubrik.setText("Du angav fel användarnamn eller lösenord ");
           }
           
+            
+          // catchen fångar felet eller undantaget och hanterar detta genom att ge ett felmeddelande
+          // samt se till att applikationen inte krashar
           }catch(InfException e) {
               JOptionPane.showMessageDialog(null, "Något gick fel");
                  System.out.println("internt felmeddelande" + e.getMessage());
