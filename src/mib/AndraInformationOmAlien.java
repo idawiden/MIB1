@@ -372,7 +372,7 @@ private static InfDB idb;
         rubrikVadVillAndra.setText("Ny ändring har gjorts");
         }
         
-        
+        // här sker en ändring av ett lösenord
         if(egenskaper.equals("Losenord")){
           idb.update("UPDATE alien Set Losenord = " +"'" + nyInfo + "'" + " where namn = " + "'" + alienNamn +"'");
           rubrikVadVillAndra.setText("Ny ändring har gjorts");  
@@ -380,12 +380,13 @@ private static InfDB idb;
         }
         
         
-        
+        // här sker en ändring av ett namn
         if(egenskaper.equals("Namn")){
         idb.update("UPDATE alien SET Namn = "+ "'"+ nyInfo + "'" + " where namn = "+ "'" + alienNamn +"'");
         rubrikVadVillAndra.setText("Ny ändring har gjorts");
         }
         
+        // här sker en ändring av en plats
         if(egenskaper.equals("Plats")){
         String plats = platsBox.getSelectedItem().toString();
         String fragaPlats = "Select Plats_ID from Plats where Benamning =" + "'" +plats+"'";
@@ -395,11 +396,13 @@ private static InfDB idb;
         rubrikVadVillAndra.setText("Ny ändring har gjorts");
         }
         
+        // här sker en ändring av ett telefonNummer
         if(egenskaper.equals("Telefon")){
         idb.update("UPDATE alien SET Telefon = "+ "'"+ nyInfo + "'" + " where namn = "+ "'" + alienNamn +"'");
         rubrikVadVillAndra.setText("Ny ändring har gjorts");
         }
         
+        // här sker en ändring av en ansvarig_Agent
         if(egenskaper.equals("Ansvarig_Agent")){
          
         
@@ -413,17 +416,22 @@ private static InfDB idb;
          rubrikVadVillAndra.setText("Ny ändring har gjorts");
         }
         
+        // här sker en ändring av en Aliens ras
         if(egenskaper.equals("Ras")){
-         String hamtaRas = boxMedRaser.getSelectedItem().toString();
+         String hamtaRas = boxMedRaser.getSelectedItem().toString(); // hämtar ut den valda rasen 
          
-         String hamtaAlienId = "Select Alien_ID from Alien where namn = " + "'" + alienNamn + "'";
+         // hämtar ut Alien_ID hos den valda aliens namn från databasen
+         String hamtaAlienId = "Select Alien_ID from Alien where namn = " + "'" + alienNamn + "'"; 
          String alienIdResultat = idb.fetchSingle(hamtaAlienId);
          int alienInt = Integer.parseInt(alienIdResultat);
          
-         
+         // Här sker en delete där det kollas om den valda alienen finns i Worm-tabellen 
+         // om den finns i Worm-tabellen tas den bort
          String taBortWorm = "Delete from Worm" + " where Alien_ID = " + alienInt + "";
          idb.delete(taBortWorm);
          
+         // sedan sker en insert till databasen som kollar om rasen man valt att en alien ska bli är Worm 
+         // så skickas alienID för den alienen in i Worm-tabellen
           if(hamtaRas.equals("Worm")){
           String sqlRasWorm = "Insert into Worm values(" + alienInt + ");";
           idb.insert(sqlRasWorm);
@@ -431,25 +439,29 @@ private static InfDB idb;
         System.out.println(sqlRasWorm); 
         
           }
-         
+          
+         // här sker en delete där det kollas om den valda alienen finns i Boglodite-tabellen
+         // om den finns i Boglodite-tabellen tas den bort
          String taBortBoglodite = "Delete from Boglodite" + " where Alien_ID = " + alienInt + "";
          idb.delete(taBortBoglodite);
          
           System.out.println(taBortBoglodite);
           
-          
-         
+          // här sker en delete där det kollas om den valda alienen finns i Squid-tabellen
+          // om  den finns i Squid-tabellen tas den bort
          String taBortSquid = "Delete from Squid" + " where Alien_ID = " + alienInt + "";
          idb.delete(taBortSquid);
          
           System.out.println(taBortSquid);
           
-          
+         // en if-sats som kollar om man valt Boglodite eller Squid i komboBoxen
+         // om man gjort det hämtas den extraInfo som skrivits in i extraInfo rutan (armar, boogies)
          if(boxMedRaser.getSelectedItem().equals("Boglodite") || boxMedRaser.getSelectedItem().equals("Squid")){
          String extraInfo = skrivInExtraInfo.getText();
-         int extraInfoInt = Integer.parseInt(extraInfo);
+         int extraInfoInt = Integer.parseInt(extraInfo); // String som konverteras till en int
          
-         
+         // här sker en insert till databasen med den valda rasen(antingen Squid eller Boglodite)
+         // samt en insert med ett alienID för den valda alienen och extrainformationen som skrivits in
           String sqlRas = "Insert into " + hamtaRas + " values(" + alienInt + ", " + extraInfoInt + ");";
          idb.insert(sqlRas);
            System.out.println(sqlRas);
@@ -461,7 +473,7 @@ private static InfDB idb;
          
        
         
-         
+         // denna rubrik sätts när en insert har skett
          rubrikVadVillAndra.setText("Ny ändring har gjorts");
         
         
@@ -495,6 +507,7 @@ private static InfDB idb;
 
     private void valjRasIgenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjRasIgenActionPerformed
        
+        // extra information i form av fler textrutor och knappar som blir syndliga om man vill ändra ras
         
         if(boxMedRaser.getSelectedItem().equals("Squid")){
         skrivInInformationRubrik.setText("Ange antal armar");
