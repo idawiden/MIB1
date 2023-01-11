@@ -135,7 +135,7 @@ public class visaAllInformationAgent extends javax.swing.JFrame {
 
     private void valjKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjKnappActionPerformed
        
-        
+        // börjar med att göra textRutan tom 
         
         textRutaAllInfoAgent.setText("");
         ArrayList<HashMap<String,String>> allInfoAgent;
@@ -143,11 +143,13 @@ public class visaAllInformationAgent extends javax.swing.JFrame {
         try{
             String valtAgentNamn = valjAgent.getSelectedItem().toString(); // hämtar ut det valda agentNamnet från komboBoxen
             String fraga = "SELECT * from Agent where namn = " + "'" + valtAgentNamn + "'"; // hämtar ut all information om en agent
-            allInfoAgent = idb.fetchRows(fraga);
+            allInfoAgent = idb.fetchRows(fraga); // allInfoAgent är en lista som håller rader med agentInfo från databasen
             
             
+            // här sker en for-each-loop av en ArrayList av hashmap
+            // som i textRutan (textRutaAllInfoAgent) genom metoden append hämtar ut och skriver ut informationen om Agenten 
            for(HashMap<String,String> agent : allInfoAgent) {
-               textRutaAllInfoAgent.append(agent.get("Agent_ID")+ "\t");
+               textRutaAllInfoAgent.append(agent.get("Agent_ID")+ "\t"); // här hämtas nyckeln för att i sin tur hämta ut värdet 
                textRutaAllInfoAgent.append(" " + agent.get("Namn")+ "\t");
                textRutaAllInfoAgent.append(" " + agent.get("Telefon")+ "\t");
                textRutaAllInfoAgent.append(" " + agent.get("Anstallningsdatum")+ "\t");

@@ -19,9 +19,11 @@ private static InfDB idb;
     public sokOmradeschef(InfDB idb) {
         initComponents();
          this.idb = idb;
-         fyllBoxMedOmraden();
+         fyllBoxMedOmraden(); // här anropas metoden i konstruktorn så att komboBoxen fylls direkt
     }
     
+   
+    // metod som fyller KomboBoxen med benämningar på områden från databasen
     private void fyllBoxMedOmraden() {
         
         String fraga = "Select Benamning from Omrade";

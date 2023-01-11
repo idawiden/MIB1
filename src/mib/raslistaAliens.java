@@ -110,18 +110,19 @@ public class raslistaAliens extends javax.swing.JFrame {
     private void valjKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjKnappActionPerformed
       
         
+       
         visaRaslista.setText(" ");
-        ArrayList<String> bogloditeLista;
+        ArrayList<String> bogloditeLista; // skapar en ArrayList med namn på aliens av rasen Boglodite
         
         if(valjRas.getSelectedItem().equals("Boglodite")) {
           
           try{
-           String valdRas = valjRas.getSelectedItem().toString();
-           String fraga = "SELECT namn from Alien, Boglodite where Alien.Alien_ID = Boglodite.Alien_ID" ;
+           String valdRas = valjRas.getSelectedItem().toString(); // hämtar ut den valda rasen i komboBoxen 
+           String fraga = "SELECT namn from Alien, Boglodite where Alien.Alien_ID = Boglodite.Alien_ID" ; // hämtar ut namn från alien-tabellen, samt Boglodite där Alien_ID stämmer överens
            bogloditeLista = idb.fetchColumn(fraga);
            
-           for(String namnAvRas: bogloditeLista){
-            visaRaslista.append(namnAvRas + "\t");
+           for(String namnAvRas: bogloditeLista){ // for-each-loop som snurrar igenom listan och hämtar ut namnen på alien 
+            visaRaslista.append(namnAvRas + "\t"); // och skrivs ut i textrutan 
            }
            
           }catch(InfException e){
@@ -130,6 +131,9 @@ public class raslistaAliens extends javax.swing.JFrame {
         }
           
           
+        // nedan följer kod för de två resterande raserna (Worm & Squid)
+        // där det skapas två nya separata ArrayList som håller namn på aliens av dessa raser
+        
           
            ArrayList<String> wormLista;
         

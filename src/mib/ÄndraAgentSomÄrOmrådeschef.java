@@ -24,6 +24,9 @@ private static InfDB idb;
         fyllBoxMedAgentNamn();
         fyllBoxMedOmrade();
     }
+    
+    
+    // metod som fyller en komboBox med agentNamn från databasen
 
      private void fyllBoxMedAgentNamn() {
         
@@ -43,6 +46,9 @@ private static InfDB idb;
             JOptionPane.showMessageDialog(null, "fel");
         }
     }
+     
+     
+     // metod som fyller en komboBox med benämningar för de olika områdena
 
      private void fyllBoxMedOmrade() {
          String fraga = "SELECT benamning from omrade";
@@ -151,6 +157,9 @@ private static InfDB idb;
     }// </editor-fold>//GEN-END:initComponents
 
     private void ändraOmrådeschefKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ändraOmrådeschefKnappActionPerformed
+        
+        
+        
         try{
           String agentNamn = namnPåAgenter.getSelectedItem().toString();
           String fraga = "SELECT agent_ID from agent where Namn ='" + agentNamn + "'";
@@ -160,10 +169,13 @@ private static InfDB idb;
           
           String omrade = namnPaOmradeBox.getSelectedItem().toString();
           System.out.println(omrade);
+         
           String fraga1 = "SELECT Omrades_ID from omrade where benamning = " + "'" + omrade + "'";
           String resultatFraga1 = idb.fetchSingle(fraga1);
           String fragaOmrade = "SELECT Agent_ID from omradeschef where Omrade = " + "'" + resultatFraga1 + "'";
           String resultatOmrade = idb.fetchSingle(fragaOmrade);
+          
+          
           System.out.println(resultatOmrade);
           int agentNyttID = Integer.parseInt(resultatOmrade);
           int omradet = Integer.parseInt(resultatOmrade);

@@ -21,15 +21,18 @@ private static InfDB idb;
     public kollaRegistreradeAlienDatum(InfDB idb) {
         initComponents();
         this.idb = idb;
-        fyllBox1MedDatum();
+        fyllBox1MedDatum(); 
         fyllBox2MedDatum();
     }
     
     
     private void fyllBox1MedDatum () {
         
-        String fraga = "SELECT Registreringsdatum from Alien";
-        ArrayList<String> datum1Lista;
+        // metod som fyller en komboBox med registreringsdatum 
+        
+        String fraga = "SELECT Registreringsdatum from Alien"; // hämtar ut registreringsdatum från databasen
+        
+        ArrayList<String> datum1Lista; // ArrayList som håller i värdena som hämtats ut 
        
           
           try{
@@ -37,7 +40,7 @@ private static InfDB idb;
            
            datum1Lista = idb.fetchColumn(fraga);
            
-           for(String datum: datum1Lista){
+           for(String datum: datum1Lista){ // for-each-loop som lägger till alla datum i komboboxen
             boxDatum1.addItem(datum);
            }
            
@@ -52,7 +55,7 @@ private static InfDB idb;
         
     }
     
-    
+     // metod som fyller den andra komboBoxen med registreringsdatum
      private void fyllBox2MedDatum () {
         
         String fraga = "SELECT Registreringsdatum from Alien";
@@ -99,6 +102,9 @@ private static InfDB idb;
         visaAlien = new javax.swing.JTextArea();
         välKnapp = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,6 +128,12 @@ private static InfDB idb;
 
         jLabel1.setText("Inloggad som agent");
 
+        jLabel4.setText("Alien_ID");
+
+        jLabel5.setText("Namn");
+
+        jLabel6.setText("Registreringsdatum");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,22 +144,30 @@ private static InfDB idb;
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rubrikDatum)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(boxDatum1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addGap(35, 35, 35)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(boxDatum2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(välKnapp))))))
+                                        .addGap(35, 35, 35)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(boxDatum2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(27, 27, 27)
+                                                .addComponent(välKnapp))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(13, 13, 13)
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel6))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1)))
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,9 +185,14 @@ private static InfDB idb;
                     .addComponent(boxDatum1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boxDatum2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(välKnapp))
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
 
         pack();
@@ -175,16 +200,23 @@ private static InfDB idb;
 
     private void välKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_välKnappActionPerformed
         
+        
+        
         visaAlien.setText("");
+        
+        // skapas en ArrayList av hashMap som håller information om Alien
         
         ArrayList<HashMap<String,String>> infoOmAlien;
         try{
-        String datum1 = boxDatum1.getSelectedItem().toString();
-        String datum2 = boxDatum2.getSelectedItem().toString();
+        String datum1 = boxDatum1.getSelectedItem().toString(); // hämtar ut den valda datumet från komboBoxen
+        String datum2 = boxDatum2.getSelectedItem().toString(); // hämtar ut det andra datumet från den andra komboBoxen 
+        
+        // hämtar ut information om aliens som är registrerade mellan två olika datum
+        // kollar om registreringsdatumet i databasen är större än datum1( första valda registreringsdatumet) och mindre än datum2(andra valda registrerigsdatumet)
         String fraga = "Select Alien_ID, Namn, Registreringsdatum from Alien where Registreringsdatum > '" + datum1 +"' and registreringsdatum < '" + datum2 + "';";
         infoOmAlien = idb.fetchRows(fraga);
         
-        
+        // for-each-loop som skriver ut information om de aliens som är registrerade inom spannet datum1 till datum2
         for(HashMap<String,String> datum :infoOmAlien){
            visaAlien.append(datum.get("Alien_ID")+ "\t");
            visaAlien.append(" " + datum.get("Namn")+ "\t");
@@ -242,6 +274,9 @@ private static InfDB idb;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel rubrikDatum;
     private javax.swing.JTextArea visaAlien;
