@@ -221,26 +221,28 @@ public class inloggningsSida extends javax.swing.JFrame {
                   
                   }
           }
-        
+          
+        // här sker ett val i komboBoxen där man väljer att logga in som Administratör
         if(titelAlternativ.getSelectedItem().equals("Administratör")){
           
             
             
            try{
+            // här väljs den agent som man vill logga in som 
             String anvandarNamn = boxMedAnvandarnamn.getSelectedItem().toString();
-            String losen = losenordFalt.getText();
-            String fraga = "SELECT Losenord from Agent where administrator = 'J' and Namn =" + "'" + anvandarNamn + "'";
+            String losen = losenordFalt.getText(); // här hämtas det lösenord som användaren skrivit in i lösenordsRutan 
+            String fraga = "SELECT Losenord from Agent where administrator = 'J' and Namn =" + "'" + anvandarNamn + "'"; // här hämtas lösenordet hos den valda agents namn ut, här kollas det också att agenten är administratör
             
           
             String resultat = idb.fetchSingle(fraga);
             
-          if(losen.equals(resultat)){
+          if(losen.equals(resultat)){ // om lösenordet som angetts stämmer överens med lösenordet i databasen sker en inloggning
               loggaIn.setText("du loggas in");
-              new AdministratorMeny(idb).setVisible(true);
+              new AdministratorMeny(idb).setVisible(true); // flyttas över till administratörmenyn
            
           
           
-            }else {
+            }else {  // stämmer det inte får användaren ett meddelande i rubriken 
                startRubrik.setText("Du angav fel användarnamn eller lösenord");
           }
           }catch(InfException e) {
@@ -248,23 +250,24 @@ public class inloggningsSida extends javax.swing.JFrame {
               
           }
         }
-            
+            // här sker ett val i komboBoxen där man väljer att logga in som alien
             if(titelAlternativ.getSelectedItem().equals("Alien")) {
                 
             
            
             try{
-            String anvandarNamnAlien = boxMedAnvandarnamn.getSelectedItem().toString();
-            String losenAlien = losenordFalt.getText();
-            String fragaAlien = "SELECT Losenord from Alien where Namn =" + "'" + anvandarNamnAlien + "'";
+            // här väljs den alien som man vill logga in som 
+            String anvandarNamnAlien = boxMedAnvandarnamn.getSelectedItem().toString(); // hämtar ut det valda namnet från komboBoxen
+            String losenAlien = losenordFalt.getText(); // hämtar ut det angivna lösenordet 
+            String fragaAlien = "SELECT Losenord from Alien where Namn =" + "'" + anvandarNamnAlien + "'"; // här hämtas lösenordet från databasen för den valda alienen ut 
             String resultat = idb.fetchSingle(fragaAlien);
                  
-            if(losenAlien.equals(resultat)){
+            if(losenAlien.equals(resultat)){ //  om lösenordet som angetts stämmer överens med lösenordet i databasen sker en inloggning
               loggaIn.setText("du loggas in");
               
-              new AlienMeny(idb).setVisible(true);
+              new AlienMeny(idb).setVisible(true); // flyttas över till alienMenyn
           
-          }else{
+          }else{ // stämmer inte lösenordet överens får användaren ett meddelande i rubriken 
              startRubrik.setText("Du angav fel användarnamn eller lösenord ");
           }
           
@@ -291,7 +294,11 @@ public class inloggningsSida extends javax.swing.JFrame {
     }//GEN-LAST:event_titelAlternativActionPerformed
 
     private void valjInloggningssattActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjInloggningssattActionPerformed
-      if(titelAlternativ.getSelectedItem().equals("Agent")){
+      
+        // tre if-satser som kollar vad man vill logga in som, som fyller komboBoxen med namn av det valde alternativet
+        // Väljs "Administratör" fylls alltså komboBoxen med alla administratörer som finns i databasen
+        
+        if(titelAlternativ.getSelectedItem().equals("Agent")){
             fyllBoxAgentNamn(); 
         }
       
