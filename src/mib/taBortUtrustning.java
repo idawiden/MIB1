@@ -24,12 +24,12 @@ public class taBortUtrustning extends javax.swing.JFrame {
         this.idb = idb;
     }
     
-    
-     private void fyllBoxMedUtrustningsNamnKommunkation(){
+     // Metod som fyller komboboxen med utrustning av kategori kommunikation som existerar i databasen.
+     private void fyllBoxMedUtrustningsNamnKommunkation(){ 
         
-         String fraga = "SELECT Benamning from Utrustning join Kommunikation on Utrustning.Utrustnings_ID = Kommunikation.Utrustnings_ID;";
+         String fraga = "SELECT Benamning from Utrustning join Kommunikation on Utrustning.Utrustnings_ID = Kommunikation.Utrustnings_ID;"; 
         
-        ArrayList <String> kommunikationLista;
+        ArrayList <String> kommunikationLista; 
         
         try {
             kommunikationLista = idb.fetchColumn(fraga);
@@ -47,14 +47,14 @@ public class taBortUtrustning extends javax.swing.JFrame {
         
     }
     
-    
-    private void fyllBoxMedUtrustningsNamnVapen() {
+    // Metod som fyller komboboxen med utrustning av kategori vapen som existerar i databasen.
+    private void fyllBoxMedUtrustningsNamnVapen() { 
         
           String fraga = "SELECT Benamning from Utrustning join Vapen on Utrustning.Utrustnings_ID = Vapen.Utrustnings_ID;";
         
         ArrayList <String> VapenLista;
         
-        try {
+        try { 
             VapenLista = idb.fetchColumn(fraga);
             
             for(String namn:VapenLista) {
@@ -71,7 +71,7 @@ public class taBortUtrustning extends javax.swing.JFrame {
         
     }
     
-    
+    // Metod som fyller komboboxen med utrustning av kategori teknik som existerar i databasen.
     private void fyllBoxMedUtrustningsNamnTeknik() {
         
           String fraga = "SELECT Benamning from Utrustning join Teknik on Utrustning.Utrustnings_ID = Teknik.Utrustnings_ID;";
@@ -186,7 +186,7 @@ public class taBortUtrustning extends javax.swing.JFrame {
 
     private void valjKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjKategoriActionPerformed
         
-        
+        // Beroende på vilken utrustningskategori användaren väljer, fylls boxen med benämningar som existerar i databasen ur den valda kategorin.
         if(kategoriBox.getSelectedItem().equals("Teknik")) {
             
             fyllBoxMedUtrustningsNamnTeknik(); 
@@ -211,7 +211,8 @@ public class taBortUtrustning extends javax.swing.JFrame {
         
         
         
-        
+       //Här hämtar man ut det aktuella utrustnings ID från den benämning som användaren valt i komboboxrutan.  
+       
       
        try{
        String valdUtrustning = valjNamnUtrustning.getSelectedItem().toString();
@@ -221,6 +222,7 @@ public class taBortUtrustning extends javax.swing.JFrame {
        String svar = idb.fetchSingle(hamtaUtrustningsID);
        int utrustningsID = Integer.parseInt(svar);
        
+       // Sedan raderas den valda utrustningen.
        
        String deleteFranKategori = "Delete from " + valdKategori + " where Utrustnings_ID = " +utrustningsID+"";
        System.out.println(deleteFranKategori);
@@ -239,7 +241,7 @@ public class taBortUtrustning extends javax.swing.JFrame {
       
       
       
-      
+      // Detta är texten som kommer fram om utrustningen lyckats raderats.
       taBortUtrustningRubrik.setText("Utrustning har raderats");
           
       
