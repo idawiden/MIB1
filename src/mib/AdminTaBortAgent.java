@@ -200,11 +200,12 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
       
       
       
-      
+      //här har vi en if och else sats som kollar villkor för att kunna ta bort en agent. 
+      //om resultat inte är lika med ansvarigAgent och svar är null så kommer agenten att tas bort från systemet 
       if(!resultat.equals(ansvarigAgent)&& (svar == null)){
       idb.delete("Delete from Alien where Ansvarig_Agent = " + resultat +"");
       }
-      
+      //om svar inte är null, alltså att en agent är ansvarig för en alien så kommer ändringen inte lyckas och felmeddelandet nedan kommer att visas för användaren för att få hjälp att sedan kunna mata in rätt data.
       else if(svar != null){
           JOptionPane.showMessageDialog(null, "Kan inte radera en agent som är ansvarig för en alien, ta bort ansvaret av alien för att kunna genomföra ändringen");
           
