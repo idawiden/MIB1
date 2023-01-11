@@ -134,12 +134,15 @@ public class visaAllInformationAgent extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void valjKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjKnappActionPerformed
+       
+        
+        
         textRutaAllInfoAgent.setText("");
         ArrayList<HashMap<String,String>> allInfoAgent;
         
         try{
-            String valtAgentNamn = valjAgent.getSelectedItem().toString();
-            String fraga = "SELECT * from Agent where namn = " + "'" + valtAgentNamn + "'";
+            String valtAgentNamn = valjAgent.getSelectedItem().toString(); // hämtar ut det valda agentNamnet från komboBoxen
+            String fraga = "SELECT * from Agent where namn = " + "'" + valtAgentNamn + "'"; // hämtar ut all information om en agent
             allInfoAgent = idb.fetchRows(fraga);
             
             

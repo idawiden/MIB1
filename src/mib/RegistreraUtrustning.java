@@ -206,6 +206,7 @@ private static InfDB idb;
         //
         try{
             
+            // metod som ser till att det inte går att lägga till utrustning med ett utrustnings_ID som redan finns
             if(utrustningsIDFinnsRedan(utrustningsID)== false) {
                 
             }
@@ -232,9 +233,10 @@ private static InfDB idb;
             //då läggs den nya utrustningen till i rätt kategorin 
             //vid lyckad registrering så ändras rubriken till meddelandet nedan
             
+          
+            // i och med att kategorierna Kommunikation samt Teknik har två kolumner i tabellen där en är en int och en är en String
+            // så skickar inserten med två värden till tabellens kolumner, första = int, andra = String 
            
-            
-            
             if(kategori.equals("Kommunikation")|| kategori.equals("Teknik")){
             String sqlKategori = "Insert into " + kategori + " Values("+ rattUtrustning + ",'" + info +"')";
             idb.insert(sqlKategori);
@@ -242,7 +244,7 @@ private static InfDB idb;
             }
             
             
-     
+            // insert till kategorien Vapen, insert med två värden där båda värdena är av datatypen int
             if(kategori.equals("Vapen")) {
                 int skott = Integer.parseInt(info);
                 int skottInt = skott;
@@ -261,7 +263,7 @@ private static InfDB idb;
             int idInt = Integer.parseInt(resultat);
                     
             
-            
+            // insert till tabellen innehar_utrustning, där id för agenten som har utrustningen, utrustningsID, samt utkvitteringsdatum skickas med
             idb.insert("Insert into innehar_utrustning Values(" + idInt + ", " + rattUtrustning + ", curdate())");
             
            
@@ -277,19 +279,23 @@ private static InfDB idb;
 
     private void valjKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valjKnappActionPerformed
         
+      // när man väljer vilken kategori man vill lägga till utrustningen i får man olika vägledningar då extra informationen 
+      // beror på vilken kategori som utrustningen är av
+ 
+        
         if(boxValjKategori.getSelectedItem().equals("Vapen")){
-            extraInfoUtrustning.setText("Ange antal kaliber");
+            extraInfoUtrustning.setText("Ange antal kaliber"); // till ett vapen ska extra informationen vara antal kaliber i form av int
             extraInfoUtrustning.setVisible(true);
             skrivInInfo.setVisible(true);
         }
         if(boxValjKategori.getSelectedItem().equals("Teknik")){
-            extraInfoUtrustning.setText("Ange kraftkälla");
+            extraInfoUtrustning.setText("Ange kraftkälla"); // extra information där kraftkälla anges i form av String
             extraInfoUtrustning.setVisible(true);
             skrivInInfo.setVisible(true);
         }
         
         if(boxValjKategori.getSelectedItem().equals("Kommunikation")){
-            extraInfoUtrustning.setText("Ange överföringsteknik");
+            extraInfoUtrustning.setText("Ange överföringsteknik"); // extra information där överföringsteknik anges i form av String
             extraInfoUtrustning.setVisible(true);
             skrivInInfo.setVisible(true);
         }
