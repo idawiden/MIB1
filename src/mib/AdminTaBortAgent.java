@@ -125,8 +125,8 @@ public class AdminTaBortAgent extends javax.swing.JFrame {
        String valdAgent = valjAgentBox.getSelectedItem().toString();
        //valdAgent håller de agentnamn som finns att välja bland i komboboxen 
       
-      //sql frågor som ställs mot databasen för att hämta ut agent_ID frpn olika tabeller.
-      //samt där namn ska vara samma som det valda agent namnet i komboboxen.  
+      //sql frågor som ställs mot databasen för att hämta ut agent_ID från olika tabeller.
+      //samt där namn ska vara samma som det valda agentnamnet i komboboxen.  
       String AgentID = "Select Agent_ID from Agent where namn = " + "'" + valdAgent + "'";
       String resultat = idb.fetchSingle(AgentID);
      
