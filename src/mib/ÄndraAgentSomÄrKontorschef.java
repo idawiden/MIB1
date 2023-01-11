@@ -26,7 +26,7 @@ private static InfDB idb;
         this.idb = idb;
         fyllBoxMedAgentNamn();
         fyllBoxMedKontorsbetecknig();
-        
+      //två metoder som fyller komboboxen direkt med samtlig data som skrivs i metoderna, i dessa fall med samtliga agentnamn samt områdesnamn som hämtas från databasen.  
         
     }
     
@@ -72,7 +72,12 @@ private static InfDB idb;
             JOptionPane.showMessageDialog(null, "fel");
         }
     }
-    
+    //ovan är två metoder som först ställer en sql fråga mot databasen som hämtar samtliga agentnamn samt kontorsbeeckning från databasen. 
+     //Sedan så använder vi oss av en arraylist of strings för att hålla agentnamn samt kontorsbetecknings objekt 
+     //därefter körs en for-loop igenom samtliga objekt för att sedan lägga till dom i komboboxen. 
+     // Vi använder oss av "Try" och "catch" för att fånga samt hantera undantaget som kan uppstå under programkörning. 
+     //När catchen fångar upp undantaget så skrivs ett felmeddelande ut till utvecklaren, av kompliatorn. 
+     //En try och catch används för att programmet/applikationen inte ska crascha.
     
     
     /**
@@ -166,7 +171,7 @@ private static InfDB idb;
     
     private void andraKontorschefKnappActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andraKontorschefKnappActionPerformed
      
-        // hämtar det idet på det agentNamn som valts i komboBoxen
+        // hämtar det ID:et på det agentNamn som valts i komboBoxen
         
         try {
          String agentNamn = valjAgentBox.getSelectedItem().toString();
@@ -191,9 +196,9 @@ private static InfDB idb;
          
          idb.update("UPDATE kontorschef SET Agent_ID = " + "'" + rattAgentID + "'" +"where agent_id = " + "'" +agentNyttID+"'");
          rubrik.setText("kontorschef uppdaterad");
-         
+         //vid lyckad ändring så ändras rubriken till meddelandet ovan. 
    
-        
+        //även här så kan man inte ändra på en agent som redan är kontorschef utan då skrivs felmeddelandet nedan ut.
         } catch(InfException e) {
          JOptionPane.showMessageDialog(null, "Gick inte att uppdatera kontorschef");
          System.out.println("Internt felmeddelande" + e.getMessage());
