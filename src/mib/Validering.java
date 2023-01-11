@@ -75,7 +75,7 @@ public Validering(){
 
 
 
-    // metod som kollar om ett lösenord skrivit in med ett giltigt antal tecken
+    // metod som kollar om ett lösenord i ett lösenordsFält (JPasswordField) skrivit in med ett giltigt antal tecken
     // returnerar en boolean
     public static boolean rattAntalTeckenPasswordField (JPasswordField rutaAttKolla){
        
@@ -101,11 +101,12 @@ public Validering(){
     }
     
     
-    
-    
+    // metod som kollar om ett lösenord i ett textfält skrivits in met ett giltigt antal tecken
+    // returnernar en boolean
     public static boolean rattAntalTeckenTextField (JTextField rutaAttKolla){
         
        boolean rattAntal = false;
+       
        
        if(rutaAttKolla.getText().length() < 7){
             rattAntal = true;
