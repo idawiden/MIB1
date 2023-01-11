@@ -306,27 +306,34 @@ private static InfDB idb;
          //vid uppfyllda villkor så ändras informationen med den nya inmatade datan 
          //vid lyckad uppdatering av data så ändras sedan rubrikerna nedan till "Ny ändring har gjorts".
          
+         
+         // if-sats som kollar om agentID redan finns i databasen, returnerar metoden i if-satsen true så finns agentID i databasen
+         // och användaren får ett meddelande i rubriken om att testa igen
          if(kategori.equals("Agent_ID") && agentIDFinnsRedan(nyInfoTextRuta) == true){
          infoRubrik.setText("Testa igen");
             
          }
         
-         
+         // en else-if sats som kollar om agentID finns i databasen, returnerar metoden else-if- satsen false
+         // betyder det att AgentID inte finns och då kan den alltså ändras
          else if(kategori.equals("Agent_ID") && agentIDFinnsRedan(nyInfoTextRuta) == false) {   
          String nyttID = nyInfo;
          int agentID = Integer.parseInt(nyttID);
+         
+         // här sker denna update som då sätter ett nytt agentID på den valda agenten
         idb.update("UPDATE Agent SET Agent_ID = "+ agentID + " where namn = "+ "'" + agentNamn +"'");
         infoRubrik.setText("Ny ändring har gjorts");
              
          }
          
-        
+        // en If-sats som kollar om agentNamnet som försöker ändras finns i databsen eller ej, samt en koll om agentNamnet innehåller "Agent"
             
         if((kategori.equals("Namn")&& Validering.kollaAnvandarnamnAgent(nyInfoTextRuta) == false && agentNamnFinnsRedan(nyInfoTextRuta) == true)) {
             infoRubrik.setText("Testa igen");
         }
         
          
+        //
          else if(kategori.equals("Namn")&& Validering.kollaAnvandarnamnAgent(nyInfoTextRuta) == true && agentNamnFinnsRedan(nyInfoTextRuta) == false){
         idb.update("UPDATE Agent SET Namn = "+ "'"+ nyInfo + "'" + " where namn = "+ "'" + agentNamn +"'");
         infoRubrik.setText("Ny ändring har gjorts");
