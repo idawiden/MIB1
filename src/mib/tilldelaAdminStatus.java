@@ -134,12 +134,14 @@ private static InfDB idb;
     private void ändraStatusPåAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ändraStatusPåAgentActionPerformed
         
         
-        
+       //"agent" och "valdstatus" håller den valda datan från komboboxarna 
+       //sedan ställs en sql fråga mot databasen där man hämtar ut administratör från agent där namn är samma som den valda agenten i komboboxen 
         try {
         String agent = fyllBoxMedAgenter.getSelectedItem().toString();
         String valdStatus = valjStatusBox.getSelectedItem().toString();
         String fraga = "SELECT Administrator from agent where Namn = " + "'" + agent + "'";
        
+        //sedan uppdateras tabellen agent genom att skicka med den valda stausen till ägenten med det namnet som valts i komboBoxen
         idb.update("UPDATE Agent SET Administrator = " + "'" + valdStatus + "'" + "where namn = " + "'" + agent + "'");
         tilldelaAdminStatusRubrik.setText("Administratörstatus har ändrats");
         
