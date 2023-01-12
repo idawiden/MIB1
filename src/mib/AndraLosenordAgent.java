@@ -213,8 +213,9 @@ public class AndraLosenordAgent extends javax.swing.JFrame {
         }
         
        
-        } //här sker en ctach som vid inmatningsfel ser till att applikationen inte kraschar 
+        } //här sker en catch som vid inmatningsfel ser till att applikationen inte kraschar 
         catch(InfException e) {
+         JOptionPane.showMessageDialog(null, "Något gick fel");
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_knappBytActionPerformed
